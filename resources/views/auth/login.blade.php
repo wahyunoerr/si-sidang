@@ -26,16 +26,16 @@
 							<!--begin::Input group-->
 							<div class="fv-row mb-10">
 								<!--begin::Label-->
-								<label class="form-label fs-6 fw-bolder text-dark">{{ __('Email Address') }}</label>
+								<label class="form-label fs-6 fw-bolder text-dark">{{ __('username') }}</label>
 								<!--end::Label-->
 								<!--begin::Input-->
-								<input id="email" type="email" class="form-control form-control-lg form-control-solid  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
-                                 @error('email')
+								<input id="email" type="email" class="form-control form-control-lg form-control-solid  @error('username') is-invalid @enderror" name="username" value="{{ old('usesrname') }}" required autocomplete="username" autofocus/>
+                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                
+
 								<!--end::Input-->
 							</div>
 							<!--end::Input group-->
