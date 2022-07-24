@@ -14,7 +14,7 @@
                             <!--begin::Heading-->
 							<div class="text-center mb-10">
 								<!--begin::Title-->
-                                <i class="fas fa-university fa-5x pb-3"></i>
+                                <img src="{{ asset('backend/media/logos/logo-umri.png')}}" class="h-200px mb-5" alt="">
 								<h1 class="text-dark mb-3">Silahkan Masuk Untuk Melanjutkan</h1>
 								<!--end::Title-->
 								<!--begin::Link-->

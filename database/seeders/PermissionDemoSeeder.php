@@ -42,6 +42,9 @@ class PermissionDemoSeeder extends Seeder
             'name' => 'Dosen test',
             'username' => '12345678',
             'email' => 'dosen@umri.ac.id',
+            'foto' => 'asdasd',
+            'serial_user' => '123123',
+            'no_telp' => '4363456',
             'password' => bcrypt('12345678')
         ]);
         $user->assignRole($dosenRole);
@@ -52,6 +55,9 @@ class PermissionDemoSeeder extends Seeder
             'name' => 'kaprodi test',
             'username' => '123456789',
             'email' => 'kaprodi@umri.ac.id',
+            'foto' => 'asdasd',
+            'serial_user' => '123123',
+            'no_telp' => '4363456',
             'password' => bcrypt('12345678')
         ]);
         $user->assignRole($kaprodiRole);
@@ -62,6 +68,9 @@ class PermissionDemoSeeder extends Seeder
             'name' => 'mahasiswa test',
             'username' => '12345678',
             'email' => 'mahasiswa@student.umri.ac.id',
+            'foto' => 'asdasd',
+            'serial_user' => '123123',
+            'no_telp' => '4363456',
             'password' => bcrypt('12345678')
         ]);
         $user->assignRole($mahasiswaRole);
@@ -71,6 +80,9 @@ class PermissionDemoSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'admin test',
             'username' => 'admin',
+            'foto' => 'asdasd',
+            'serial_user' => '123123',
+            'no_telp' => '4363456',
             'email' => 'admin@umri.ac.id',
             'password' => bcrypt('12345678')
         ]);

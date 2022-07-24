@@ -245,6 +245,17 @@
 <!--end::Sign-in Method-->
 
 
+		<script src="{{ asset('backend/js/scripts.bundle.js')}}"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script src="{{ asset('backend/js/custom/account/settings/signin-methods.js')}}"></script>
+		<script src="{{ asset('backend/js/custom/account/settings/profile-details.js')}}"></script>
+		<script src="{{ asset('backend/js/custom/account/settings/deactivate-account.js')}}"></script>
+		<script src="{{ asset('backend/js/custom/modals/two-factor-authentication.js')}}"></script>
+		<script src="{{ asset('backend/js/custom/widgets.js')}}"></script>
+		<script src="{{ asset('backend/js/custom/apps/chat/chat.js')}}"></script>
+		<script src="{{ asset('backend/js/custom/modals/upgrade-plan.js')}}"></script>
+
 <script type="text/javascript">
       function simpanProfil() {
         var id = $('#id').val();
