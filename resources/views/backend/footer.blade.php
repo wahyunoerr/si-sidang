@@ -53,6 +53,25 @@
  <script src="{{ asset('backend/js/custom/apps/chat/create-app.js')}}"></script>
  <script src="{{ asset('backend/js/custom/modals/create-app.js')}}"></script>
  <script src="{{ asset('backend/js/custom/modals/upgrade-plan.js')}}"></script>
+ <script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+ <script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $('#example2').DataTable();
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    })
+</script>
+<script src="{{ asset('backend/vendor/sweetalert/sweetalert2.min.js') }}"></script>
+
  <!--end::Page Custom Javascript-->
  <!--end::Javascript-->
 </body>

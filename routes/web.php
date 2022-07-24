@@ -23,6 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/user', 'UserController@index');
-    Route::get('/user/profil', 'UserController@profil');
+    Route::get('/user/profil', 'UserController@index');
+    Route::get('/user/editprofil','UserController@editprofil');
+    Route::post('/user/updateprofil/{id}','UserController@updateprofil')->name('profil.update');
 });
