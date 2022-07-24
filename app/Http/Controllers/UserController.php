@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Auth;
+use Auth, Hash;
 
 class UserController extends Controller
 {
     public function index(){
-        return view('admin.user.profil');
+        $data = Auth::user();
+        return view('admin.user.profil', compact('data'));
     }
 
     public function editprofil(){
@@ -33,7 +34,10 @@ class UserController extends Controller
 
             $user_data['foto'] = 'uploads/user/' . $new_foto;
             User::whereId($id)->update($user_data);
-            // unlink($data->foto);
+
+            if($data->foto){
+             unlink($data->foto);
+            }
         }
 
         $user_data = [
@@ -45,6 +49,37 @@ class UserController extends Controller
 
         User::whereId($id)->update($user_data);
         echo json_encode(["status" => TRUE]);
+    }
+
+
+    public function updateEmail(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'password_sekarang' => 'password|required'
+        ]);
+
+        $data_email = [
+            'email' => $request->email
+        ];
+
+
+        User::whereId(Auth::user()->id)->update($data_email);
+        echo json_encode(["status" => TRUE]);
+    }
+
+    public function ubah_password(Request $request){
+        $request->validate([
+            'pass_lama' => 'required|password',
+            'pass_baru' => 'required|same:konf_pass{{ asset($data->foto) }}',
+            'konf_pass' => 'required'
+        ]);
+
+        $data_password = [
+            'password' => bcrypt($request->pass_conf)
+        ];
+        User::whereId(Auth::user()->id)->update($data_password);
+        echo json_encode(["status" => TRUE]);
+
     }
 
 }
