@@ -74,8 +74,6 @@
 <script src="{{ asset('backend/vendor/sweetalert/sweetalert2.min.js') }}"></script>
 
 
-
-
  <!--end::Page Custom Javascript-->
  <!--end::Javascript-->
 </body>

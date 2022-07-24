@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'role:admin'], function () {
     Route::get('/user/profil', 'UserController@index')->name('profil.index');
     Route::get('/user/editprofil','UserController@editprofil')->name('profil.edit');
     Route::post('/user/update-profil/{id}','UserController@updateprofil')->name('profil.update');
