@@ -22,10 +22,15 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::group(['middleware' => 'role:admin'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/profil', 'UserController@index')->name('profil.index');
     Route::get('/user/editprofil','UserController@editprofil')->name('profil.edit');
     Route::post('/user/update-profil/{id}','UserController@updateprofil')->name('profil.update');
     Route::post('/user/update-email/{id}','UserController@updateEmail')->name('email.update');
     Route::post('/user/ubah-password/{id}','UserController@ubah_password')->name('password.update');
+});
+
+
+Route::group(['middleware' => 'role:mahasiswa'], function () {
+    Route::get('/mahasiswa/daftar-sidang', 'DaftarSidangController@index')->name('daftarsidang.index');
 });
