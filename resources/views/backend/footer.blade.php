@@ -23,7 +23,6 @@
         <!--end::Menu-->
     </div>
     <!--end::Container-->
-<<<<<<< HEAD
  </div>
  <!--end::Footer-->
 
@@ -83,8 +82,3 @@
 </body>
 <!--end::Body-->
 </html>
-=======
-</div>
-<!--end::Footer-->
-</div>
->>>>>>> 83bb6b6704fa2e88ce49e00a4c76353de74aba7c

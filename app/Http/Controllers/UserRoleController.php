@@ -30,4 +30,7 @@ class UserRoleController extends Controller
         }
         return view('admin.user-role.index');
     }
+
+
+
 }
