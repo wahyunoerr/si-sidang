@@ -36,8 +36,9 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
 });
 
 
-Route::group(['middleware' => 'role:admin'], function () {
+Route::group(['middleware' => 'auth', 'role:admin'], function () {
     Route::get('/admin/manajemen-user','UserRoleController@index')->name('userrole.index');
-
+    Route::get('/admin/manajemen-role','RoleController@index')->name('role.index');
+    Route::get('/admin/manajemen-permission','PermissionController@index')->name('permission.index');
 });
 
