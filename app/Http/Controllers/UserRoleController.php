@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
+use Spatie\Permission\Models\Role;
 
 class UserRoleController extends Controller
 {
     public function index(){
+        $roles = Role::pluck('name','name')->all();
         $data = User::select(['id', 'name', 'email','serial_user','username'])->with('roles');
         if (Request()->ajax()) {
             return DataTables::of($data)
@@ -28,7 +30,7 @@ class UserRoleController extends Controller
                 ->rawColumns(['action',])
                 ->make(true);
         }
-        return view('admin.user-role.index');
+        return view('admin.user-role.index', compact('roles'));
     }
 
 

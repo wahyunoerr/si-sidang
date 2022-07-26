@@ -33,6 +33,9 @@
 </div>
 
 
+@include('admin.user-role.modal.modal')
+
+
 <script type="text/javascript">
     $(document).ready(function(){
       table = $('#example2').DataTable({
@@ -50,6 +53,19 @@
         order: [[0, 'asc']]
       });
     })
+
+    function tambah(){
+		typeSave = 'tambah';
+		$('#id').val('');
+		$('#form').trigger("reset");
+		$('.help-block').empty();
+		$('#modal-form').modal('show');
+		$('.modal-title').text('Tambah Data Ruangan');
+		$('#foto-sebelumnya').hide();
+		$('#foto-preview').empty();
+	}
 </script>
+
+
 
 @endsection
