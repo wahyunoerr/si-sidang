@@ -14,7 +14,11 @@
                 <!--begin::Wrapper-->
                 <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
+<<<<<<< HEAD
                     <form class="form w-100" action="{{ route('register') }}" method="POST" novalidate="novalidate" id="kt_sign_up_form" enctype="multipart/form-data">
+=======
+                    <form class="form w-100" novalidate="novalidate" method="POST" action="{{ route('register') }}">
+>>>>>>> 83bb6b6704fa2e88ce49e00a4c76353de74aba7c
                         @csrf
                         <!--begin::Heading-->
                         <div class="mb-10 text-center">
@@ -116,18 +120,18 @@
                                     </span>
                                 </div>
                                 <!--end::Input wrapper-->
-                                <!--begin::Meter-->
+                                {{-- <!--begin::Meter-->
                                 <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
                                     <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
                                     <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
                                     <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
                                     <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
                                 </div>
-                                <!--end::Meter-->
+                                <!--end::Meter--> --}}
                             </div>
                             <!--end::Wrapper-->
                             <!--begin::Hint-->
-                            <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
+                            {{-- <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div> --}}
                             <!--end::Hint-->
                         </div>
                         <!--end::Input group=-->
@@ -138,17 +142,24 @@
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
-                        <div class="fv-row mb-10">
+                        {{-- <div class="fv-row mb-10">
                             <label class="form-check form-check-custom form-check-solid form-check-inline">
                                 <input class="form-check-input" type="checkbox" name="toc" value="1" />
                                 <span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
                                 <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
                             </label>
-                        </div>
+                        </div> --}}
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="text-center">
+<<<<<<< HEAD
                             <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">Registrasi
+=======
+                            <button type="submit" class="btn btn-lg btn-primary">
+                                <span class="indicator-label">Submit</span>
+                                <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+>>>>>>> 83bb6b6704fa2e88ce49e00a4c76353de74aba7c
                             </button>
                         </div>
                         <!--end::Actions-->
