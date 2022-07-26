@@ -51,9 +51,12 @@
  <!--end::Page Vendors Javascript-->
  <!--begin::Page Custom Javascript(used by this page)-->
  <script src="{{ asset('backend/js/custom/widgets.js')}}"></script>
- <script src="{{ asset('backend/js/custom/apps/chat/create-app.js')}}"></script>
+ <script src="{{ asset('backend/js/custom/apps/chat/chat.js')}}"></script>
  <script src="{{ asset('backend/js/custom/modals/create-app.js')}}"></script>
  <script src="{{ asset('backend/js/custom/modals/upgrade-plan.js')}}"></script>
+ <script src="{{ asset('backend/js/custom/intro.js')}}"></script>
+ <script src="{{ asset('backend/js/custom/modals/users-search.js')}}"></script>
+
  <script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
  <script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 

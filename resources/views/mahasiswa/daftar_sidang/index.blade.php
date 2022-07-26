@@ -1,12 +1,11 @@
 @extends('backend.template')
-<link href="{{ asset('backend/plugins/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
 @section('halaman-sekarang','Daftar Sidang')
 @section('content')
 
 
 
 
-@include('mahasiswa.daftar_sidang.modal.index')
+
 
 <div class="row g-5 g-xl-8">
     <div class="col-xl-4">
@@ -76,13 +75,14 @@
         <!--end::Statistics Widget 5-->
     </div>
 </div>
+
+@include('mahasiswa.daftar_sidang.modal-kp.index')
+@include('mahasiswa.daftar_sidang.modal-proposal.index')
+@include('mahasiswa.daftar_sidang.modal-semhas.index')
+
+
 <!--end::Row-->
-
-		<script src="{{ asset('backend/js/custom/modals/new-target.js')}}"></script>
-		<script src="{{ asset('backend/js/custom/widgets.js')}}"></script>
-		<script src="{{ asset('backend/js/custom/apps/chat/chat.js')}}"></script>
-		<script src="{{ asset('backend/js/custom/modals/create-app.js')}}"></script>
-		<script src="{{ asset('backend/js/custom/modals/upgrade-plan.js')}}"></script>
-
-
 @endsection
+
+
+

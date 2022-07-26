@@ -34,3 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-sidang', 'DaftarSidangController@index')->name('daftarsidang.index');
 });
+
+
+Route::group(['middleware' => 'role:admin'], function () {
+    Route::get('/admin/manajemen-user','UserRoleController@index')->name('userrole.index');
+
+});
+

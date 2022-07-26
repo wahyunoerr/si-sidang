@@ -66,6 +66,7 @@
                 </a>
              </div>
 
+             @can('mahasiswa')
              <div class="menu-item">
                 <a class="menu-link {{ request()->is('mahasiswa/daftar-sidang') ? 'active' : ''}}" href="{{ url('mahasiswa/daftar-sidang') }}">
                    <span class="menu-icon">
@@ -83,9 +84,10 @@
                    <span class="menu-title">Daftar Sidang</span>
                 </a>
              </div>
+             @endcan
 
              <div class="menu-item">
-                <a class="menu-link {{ request()->is('admin/role') ? 'active' : ''}}" href="#">
+                <a class="menu-link {{ request()->is('admin/manajemen-user') ? 'active' : ''}}" href="{{ url('/admin/manajemen-user') }}">
                    <span class="menu-icon">
                       <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                       <span class="svg-icon svg-icon-2">

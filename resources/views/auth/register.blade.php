@@ -14,7 +14,7 @@
                 <!--begin::Wrapper-->
                 <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
-                    <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
+                    <form class="form w-100" action="{{ route('register') }}" method="POST" novalidate="novalidate" id="kt_sign_up_form" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Heading-->
                         <div class="mb-10 text-center">
@@ -31,7 +31,7 @@
                         <div class="row fv-row mb-7">
                             <!--begin::Col-->
                             <div class="fv-row mb-6">
-                                <label class="form-label fw-bolder text-dark fs-6">Name</label>
+                                <label class="form-label fw-bolder text-dark fs-6">Nama Lengkap</label>
                                 <input class="form-control form-control-lg form-control-solid @error('name') is-invalid @enderror" id="name" type="text" placeholder="" name="name" value="{{ old('name') }}" autocomplete="name" autofocus required />
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -47,6 +47,35 @@
                                 <label class="form-label fw-bolder text-dark fs-6">Username</label>
                                 <input class="form-control form-control-lg form-control-solid @error('username') is-invalid @enderror" id="username" type="text" placeholder="" name="username" autocomplete="username" required/>
                                 @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+
+                        <div class="row fv-row mb-7">
+                            <!--begin::Col-->
+                            <div class="fv-row mb-6">
+                                <label class="form-label fw-bolder text-dark fs-6">NIM</label>
+                                <input class="form-control form-control-lg form-control-solid @error('serial_user') is-invalid @enderror" id="serial_user" type="text" placeholder="" name="serial_user" autocomplete="serial_user" required/>
+                                @error('serial_user')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row fv-row mb-7">
+                            <!--begin::Col-->
+                            <div class="fv-row mb-6">
+                                <label class="form-label fw-bolder text-dark fs-6">No Telepon</label>
+                                <input class="form-control form-control-lg form-control-solid @error('no_telp') is-invalid @enderror" id="no_telp" type="text" placeholder="" name="no_telp" autocomplete="no_telp" required/>
+                                @error('no_telp')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -80,7 +109,7 @@
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
+                                     @enderror
                                     <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                         <i class="bi bi-eye-slash fs-2"></i>
                                         <i class="bi bi-eye fs-2 d-none"></i>
@@ -104,8 +133,8 @@
                         <!--end::Input group=-->
                         <!--begin::Input group-->
                         <div class="fv-row mb-5">
-                            <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                            <input class="form-control form-control-lg form-control-solid" id="password-confirm" type="password" placeholder="" name="password_confirmation" autocomplete="new-password" required />
+                            <label class="form-label fw-bolder text-dark fs-6">Konfirmasi Password</label>
+                            <input class="form-control form-control-lg form-control-solid" id="pass_conf" type="password" placeholder="" name="pass_conf" autocomplete="new-password" required />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -119,10 +148,7 @@
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="text-center">
-                            <button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
-                                <span class="indicator-label">Submit</span>
-                                <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">Registrasi
                             </button>
                         </div>
                         <!--end::Actions-->
@@ -153,7 +179,6 @@
     <script src="{{asset('backend/js/scripts.bundle.js')}}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{asset('backend/js/custom/authentication/sign-up/general.js')}}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 </body>

@@ -70,7 +70,7 @@ class UserController extends Controller
     public function ubah_password(Request $request){
         $request->validate([
             'pass_lama' => 'required|password',
-            'pass_baru' => 'required|same:konf_pass{{ asset($data->foto) }}',
+            'pass_baru' => 'required|same:konf_pass',
             'konf_pass' => 'required'
         ]);
 

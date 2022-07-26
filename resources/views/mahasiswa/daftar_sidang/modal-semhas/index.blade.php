@@ -22,7 +22,7 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form id="kt_modal_new_target_form" class="form" action="#">
+                <form id="modal_semhas" class="form" action="#">
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
