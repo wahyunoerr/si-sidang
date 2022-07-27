@@ -44,6 +44,7 @@
         <script src="{{asset('backend/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{asset('backend/vendor/datatables/jquery.dataTables.js') }}"></script>
         <script src="{{asset('backend/vendor/datatables/datatables.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('backend/vendor/sweetalert/sweetalert2.min.js')}}"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

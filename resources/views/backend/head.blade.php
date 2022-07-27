@@ -26,9 +26,8 @@
       <link href="{{ asset('backend/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" type="text/css" href="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.css') }}">
       <link rel="stylesheet" href="{{ asset('backend/vendor/sweetalert/sweetalert2.min.css') }}">
-
       <script src="{{ asset('backend/vendor/jquery/jquery.min.js') }}"></script>
-
+      <script src="{{asset('backend/vendor/sweetalert/sweetalert2.min.js')}}"></script>
 	</head>
 
 
