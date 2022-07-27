@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right">
-                    <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah User</button>
+                    <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah Role</button>
                 </div>
             </div>
 

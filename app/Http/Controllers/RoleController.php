@@ -38,4 +38,19 @@ class RoleController extends Controller
         }
         return view('admin.role.index');
     }
+
+
+    public function simpan(Request $request){
+        $request->validate([
+            'nama_role' => 'required'
+        ],[
+            'nama_role.required' => 'nama role wajib diisi!'
+        ]);
+
+        Role::create([
+            'name' => $request->nama_role
+        ]);
+
+        echo json_encode(["status" => TRUE]);
+    }
 }
