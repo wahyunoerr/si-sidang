@@ -48,5 +48,9 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
 
 
     Route::get('/admin/manajemen-permission','PermissionController@index')->name('permission.index');
+    Route::post('/admin/simpan-permission','PermissionController@simpan')->name('permission.simpan');
+    Route::get('/admin/edit-permission/{id}','PermissionController@edit')->name('permission.edit');
+    Route::post('/admin/update-permission/{id}','PermissionController@update')->name('permission.update');
+    Route::get('/admin/hapus-permission/{id}','PermissionController@hapus')->name('permission.hapus');
 });
 
