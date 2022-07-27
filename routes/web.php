@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
 
     Route::get('/admin/manajemen-role','RoleController@index')->name('role.index');
     Route::post('/admin/simpan-role','RoleController@simpan')->name('role.simpan');
+    Route::get('/admin/edit-role/{id}','RoleController@edit')->name('role.edit');
+    Route::post('/admin/update-role/{id}','RoleController@update')->name('role.update');
+    Route::get('/admin/hapus-role/{id}','RoleController@hapus')->name('role.hapus');
 
 
 
