@@ -23,11 +23,11 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
                 <form id="form" class="form" action="#" method="POST">
-                    <input type="hidden" value="" name="id" id="id">
+                    <input type="hidden" value="" name="idrole" id="idrole">
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
-                        <h1 class="mb-3">Tambah Data Role</h1>
+                        <h1 class="mb-3 modal-title"></h1>
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-muted fw-bold fs-5">Hanya Admin yang bisa menambahkan Role.
@@ -46,6 +46,15 @@
                         <!--end::Label-->
                         <input type="text" class="form-control form-control-solid" id="nama_role"  name="nama_role" placeholder="Masukkan Nama Role"/>
                         <span class="text-danger" id="nRoleError"></span>
+                    </div>
+
+                    <div class="col-md-12 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Permission</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Silahkan tulis nama lengkap kamu"></i>
+                        </label>
+                            <input type="text"  class="form-control form-control-solid" name="permission" id="permission">
                     </div>
                 </div>
                     <div class="text-center">

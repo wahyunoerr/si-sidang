@@ -81,13 +81,41 @@
             });
         }
 
+
+        function getPermission(id) {
+            typeSave = 'updatePermission';
+            $.ajax({
+                url: "{{ url('admin/get-permission') }}" + "/" + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    $('[name="id"]').val(data.id);
+                    $('[name="permission"]').val(data.name);
+                    $('#modal-form').modal('show');
+                    $('.modal-title').text('Edit Data Role');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+            });
+        }
+
     function simpan() {
             var url;
             var id = $('#id').val();
             if (typeSave == 'tambah') {
                 url = "{{ route('role.simpan') }}";
-            } else {
+            } else if(typeSave == 'update') {
                 url = "{{ url('admin/update-role') }}" + "/" + id;
+            }
+            else {
+                url = "{{ url('admin/get-permission') }}" + "/" + id;
             }
             $.ajax({
                 url: url,
