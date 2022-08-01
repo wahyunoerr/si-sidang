@@ -92,9 +92,9 @@ var data = null;
                 dataType: "JSON",
                 success: function(data) {
                     data['data'].forEach(key=>{
-                       $('ul.permission').append(`
-                       <li><input type="checkbox" class="form-check-input" name="${key.id}" id="${key.id}" value="${key.id}" />
-                       <span class="form-check-label" for="${key.id}">${key.name}</span></li>
+                       $('.check').append(`
+                       <label class="form-check form-check-sm form-check-custom form-check-solid m-5"><input type="checkbox" class="form-check-input" name="${key.id}" id="${key.id}" value="${key.id}" />
+                       <span class="form-check-label">${key.name}</span></label>
                        `);
                     });
                     $('#modal-form').modal('show');
