@@ -54,7 +54,11 @@
                             <span class="required">Permission</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Silahkan tulis nama lengkap kamu"></i>
                         </label>
-                            <input type="text"  class="form-control form-control-solid" name="permission" id="permission">
+                        <div class="card-body">
+                            <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                <ul class="permission" style="list-style-type: none;"></ul>
+                            </label>
+                        </div>
                     </div>
                 </div>
                     <div class="text-center">

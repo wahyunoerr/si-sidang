@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th width="10%">No</th>
-                            <th>Nama Role</th>>
+                            <th>Nama Role</th>
                             <th width="10%">Aksi</th>
                         </tr>
                     </thead>
@@ -32,6 +32,7 @@
 @include('admin.role.modal.index')
 
 <script type="text/javascript">
+var data = null;
     $(document).ready(function(){
         var typeSave;
       table = $('#example2').DataTable({
@@ -66,6 +67,7 @@
                 success: function(data) {
                     $('[name="id"]').val(data.id);
                     $('[name="nama_role"]').val(data.name);
+                    $('[name="permission"]').val(data.name);
                     $('#modal-form').modal('show');
                     $('.modal-title').text('Edit Data Role');
                 },
@@ -82,15 +84,19 @@
         }
 
 
-        function getPermission(id) {
+        function getPermission() {
             typeSave = 'updatePermission';
             $.ajax({
-                url: "{{ url('admin/get-permission') }}" + "/" + id,
+                url: "{{ url('admin/get-permission') }}",
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
-                    $('[name="id"]').val(data.id);
-                    $('[name="permission"]').val(data.name);
+                    data['data'].forEach(key=>{
+                       $('ul.permission').append(`
+                       <li><input type="checkbox" class="form-check-input" name="${key.id}" id="${key.id}" value="${key.id}" />
+                       <span class="form-check-label" for="${key.id}">${key.name}</span></li>
+                       `);
+                    });
                     $('#modal-form').modal('show');
                     $('.modal-title').text('Edit Data Role');
                 },

@@ -12,6 +12,7 @@ class RoleController extends Controller
 {
     public function index(){
         $data = Role::all();
+        $permission = Permission::all();
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -73,10 +74,10 @@ class RoleController extends Controller
         echo json_encode($data);
     }
 
-    public function getPermission($id){
-        $data = Permission::findorfail($id);
+    public function getPermission(){
+        $data = Permission::all();
 
-        echo json_encode($data);
+        echo json_encode(['data'=> $data]);
     }
 
     public function update(Request $request, $id){
@@ -102,5 +103,4 @@ class RoleController extends Controller
 
         echo json_encode(["status" => TRUE]);
     }
-
 }
