@@ -29,10 +29,9 @@
     </div>
 </div>
 
-@include('admin.role.modal.index')
+@include('admin.role.modal-role')
 
 <script type="text/javascript">
-var data = null;
     $(document).ready(function(){
         var typeSave;
       table = $('#example2').DataTable({
@@ -53,64 +52,10 @@ var data = null;
 		$('#id').val('');
 		$('#form').trigger("reset");
 		$('.help-block').empty();
-		$('#modal-form').modal('show');
+		$('#modal-role').modal('show');
 		$('.modal-title').text('Tambah Data Role');
 	}
 
-
-    function get(id) {
-            typeSave = 'update';
-            $.ajax({
-                url: "{{ url('admin/edit-role') }}" + "/" + id,
-                type: "GET",
-                dataType: "JSON",
-                success: function(data) {
-                    $('[name="id"]').val(data.id);
-                    $('[name="nama_role"]').val(data.name);
-                    $('[name="permission"]').val(data.name);
-                    $('#modal-form').modal('show');
-                    $('.modal-title').text('Edit Data Role');
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    swal({
-                        title: 'Terjadi kesalahan',
-                        type: 'error',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey: false,
-                    });
-                }
-            });
-        }
-
-
-        function getPermission() {
-            typeSave = 'updatePermission';
-            $.ajax({
-                url: "{{ url('admin/get-permission') }}",
-                type: "GET",
-                dataType: "JSON",
-                success: function(data) {
-                    data['data'].forEach(key=>{
-                       $('.check').append(`
-                       <label class="form-check form-check-sm form-check-custom form-check-solid m-5"><input type="checkbox" class="form-check-input" name="${key.id}" id="${key.id}" value="${key.id}" />
-                       <span class="form-check-label">${key.name}</span></label>
-                       `);
-                    });
-                    $('#modal-form').modal('show');
-                    $('.modal-title').text('Edit Data Role');
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    swal({
-                        title: 'Terjadi kesalahan',
-                        type: 'error',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey: false,
-                    });
-                }
-            });
-        }
 
     function simpan() {
             var url;
@@ -135,7 +80,7 @@ var data = null;
                 success: function(data) {
                     if (data.status == true) {
                         $('#form').trigger("reset");
-                        $('#modal-form').modal('hide');
+                        $('#modal-role').modal('hide');
                         swal({
                             title: 'Berhasil',
                             type: 'success',

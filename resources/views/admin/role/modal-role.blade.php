@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-form" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal-role" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <!--begin::Modal content-->
@@ -46,16 +46,6 @@
                         <!--end::Label-->
                         <input type="text" class="form-control form-control-solid" id="nama_role"  name="nama_role" placeholder="Masukkan Nama Role"/>
                         <span class="text-danger" id="nRoleError"></span>
-                    </div>
-
-                    <div class="col-md-12 fv-row">
-                        <!--begin::Label-->
-                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                            <span class="required">Permission</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Silahkan tulis nama lengkap kamu"></i>
-                        </label>
-                        <div class="check">
-                        </div>
                     </div>
                 </div>
                     <div class="text-center">
