@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,14 +44,14 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
     Route::post('/admin/update-role/{id}','RoleController@update')->name('role.update');
     Route::post('/admin/assign-role/{id}','RoleController@givePermission')->name('role.permission');
     Route::get('/admin/hapus-role/{id}','RoleController@hapus')->name('role.hapus');
-    Route::get('/admin/hapus-permission/{id}')->name('revoke.permission');
+    Route::get('/admin/hapus-permission/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
-    Route::get('/admin/manajemen-permission','PermissionController@index')->name('permission.index');
-    Route::post('/admin/simpan-permission','PermissionController@simpan')->name('permission.simpan');
-    Route::get('/admin/edit-permission/{id}','PermissionController@edit')->name('permission.edit');
-    Route::post('/admin/update-permission/{id}','PermissionController@update')->name('permission.update');
-    Route::get('/admin/hapus-permission/{id}','PermissionController@hapusPermission')->name('permission.hapus');
+    // Route::get('/admin/manajemen-permission','PermissionController@index')->name('permission.index');
+    // Route::post('/admin/simpan-permission','PermissionController@simpan')->name('permission.simpan');
+    // Route::get('/admin/edit-permission/{id}','PermissionController@edit')->name('permission.edit');
+    // Route::post('/admin/update-permission/{id}','PermissionController@update')->name('permission.update');
+    // Route::get('/admin/hapus-permission/{id}','PermissionController@hapusPermission')->name('permission.hapus');
 });
 

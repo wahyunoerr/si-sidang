@@ -107,13 +107,14 @@ class RoleController extends Controller
         echo json_encode(["status" => TRUE]);
     }
 
-    public function hapusPermission($id){
+    public function hapusPermission(Request $request,$id){
 
        $role = Role::findorfail($id);
-
-        if($role->hasPermissionTo($request->permission)){
+       
+        if($role->hasPermissionTo($permission)){
             $role->revokePermissionTo($permission);
         }
+        $role->revokePermissionTo($request->permission);
 
         echo json_encode(["status" => TRUE]);
     }

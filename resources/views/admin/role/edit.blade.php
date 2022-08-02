@@ -170,7 +170,7 @@
             }).then(function() {
                 $.ajax({
                     url: "{{ url('/admin/hapus-permission') }}" + "/" + id,
-                    type: "get",
+                    type: "POST",
                     dataType: "JSON",
                     success: function() {
                         swal({
