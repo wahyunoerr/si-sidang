@@ -36,10 +36,11 @@
         </label>
             <div class="mt-4 p-2">
             @if($data->permissions)
-            @foreach ($data->permissions as $role_permission )
+            @foreach ($data->permissions as $perm )
             <div class="pt-4"></div>
-            <input type="hidden" value="" name="id" id="id">
-            <button type="button" class="btn btn-danger btn-sm" onclick="hapusPermission()">{{ $role_permission->name }}</button>    
+            <form id="form" method="POST">
+            <button type="button" class="btn btn-danger btn-sm" onclick="hapusPermission()">{{ $perm->name }}</button>
+          </form>    
             @endforeach
             @endif
       </div>
@@ -54,7 +55,7 @@
         <h3 class="card-title align-items-start flex-column">Assign Permission</h3>
         <div class="card-toolbar">
             <form id="form-permission" method="POST">
-            <button type="button" onclick="simpanPermission()" class="btn btn-sm btn-primary">
+            <button type="button" name="permission" onclick="simpanPermission()" class="btn btn-sm btn-primary">
                 Update
             </button>
         </div>
@@ -96,7 +97,7 @@
             allowEnterKey: false,
           })
           .then(function(e){
-           e.preventDefault();
+            window.location.reload();
           })
         },
         error: function (jqXHR, textStatus, errorThrown){
@@ -140,7 +141,7 @@
             allowEnterKey: false,
           })
           .then(function(e){
-           e.preventDefault();
+           window.location.reload();
           })
           }
         },
@@ -169,18 +170,18 @@
                 buttons: true
             }).then(function() {
                 $.ajax({
-                    url: "{{ url('/admin/hapus-permission') }}" + "/" + id,
+                    url: "{{ route('hapus.permission', [ $data->id,$perm->id]) }}",
                     type: "POST",
                     dataType: "JSON",
                     success: function() {
                         swal({
-                            title: 'Pe',
+                            title: 'Berhasil',
                             type: 'success',
                             allowOutsideClick: false,
                             allowEscapeKey: false,
                             allowEnterKey: false,
                         }).then(function() {
-                            reload();
+                          window.location.reload();
                         })
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -193,7 +194,7 @@
                         });
                     }
                 });
-            }, function(dismiss) {
+            }), function(dismiss) {
                 if (dismiss === 'cancel') {
                     swal({
                         title: 'Batal',
@@ -203,7 +204,7 @@
                         allowEnterKey: false,
                     })
                 }
-            });
+            };
         }
 </script>
 
