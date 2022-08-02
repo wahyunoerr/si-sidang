@@ -40,6 +40,7 @@
             <div class="pt-4"></div>
             <button type="button" class="btn btn-danger btn-sm" onclick="hapusPermission()">{{ $perm->name }}</button> 
             @endforeach
+            @elseif(count($perm) < 2)
             @endif
       </div>
         </div>
@@ -168,13 +169,13 @@
                 buttons: true
             }).then(function() {
                 $.ajax({
-                    url: "{{ route('hapus.permission', [ $data->id,$perm->id]) }}",
+                    url: "{{ route('hapus.permission', [$data->id,$perm->id]) }}",
                     type: "GET",
                     dataType: "JSON",
                     success: function(response) {
                       if (response.status == 2) {
             swal({
-            title: 'Data sisa 1 tidak bisa dihapus',
+            title: 'Data sisa 1, tambahkan permission baru hapus lagi!',
             type: 'error',
             allowOutsideClick: false,
             allowEscapeKey: false,

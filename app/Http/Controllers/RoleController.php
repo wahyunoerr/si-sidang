@@ -110,14 +110,18 @@ class RoleController extends Controller
     public function hapusPermission($id,Permission $permission){
         
         $data = Role::findorfail($id);
-        
-        if($data->hasPermissionTo($permission) < 2){
+
+        $role =  DB::table('role_has_permissions')->count();
+
+        if($role < 2){
             return response()->json(['status' => 2] );
         }
+        
         if($data->hasPermissionTo($permission)){
             $data->revokePermissionTo($permission);
             }
 
+       
         echo json_encode(["status" => TRUE]);
     }
 }   
