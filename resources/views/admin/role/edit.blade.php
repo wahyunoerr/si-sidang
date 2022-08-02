@@ -38,9 +38,7 @@
             @if($data->permissions)
             @foreach ($data->permissions as $perm )
             <div class="pt-4"></div>
-            <form id="form" method="POST">
-            <button type="button" class="btn btn-danger btn-sm" onclick="hapusPermission()">{{ $perm->name }}</button>
-          </form>    
+            <button type="button" class="btn btn-danger btn-sm" onclick="hapusPermission()">{{ $perm->name }}</button> 
             @endforeach
             @endif
       </div>
@@ -171,19 +169,31 @@
             }).then(function() {
                 $.ajax({
                     url: "{{ route('hapus.permission', [ $data->id,$perm->id]) }}",
-                    type: "POST",
+                    type: "GET",
                     dataType: "JSON",
-                    success: function() {
-                        swal({
-                            title: 'Berhasil',
-                            type: 'success',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                            allowEnterKey: false,
-                        }).then(function() {
-                          window.location.reload();
-                        })
-                    },
+                    success: function(response) {
+                      if (response.status == 2) {
+            swal({
+            title: 'Data sisa 1 tidak bisa dihapus',
+            type: 'error',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+          });
+        }
+          else{
+            swal({
+            title: 'Berhasil',
+            type: 'success',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+          })
+          .then(function(e){
+           window.location.reload();
+          })
+          }
+        },
                     error: function(jqXHR, textStatus, errorThrown) {
                         swal({
                             title: 'Terjadi kesalahan',

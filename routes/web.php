@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
     Route::post('/admin/update-role/{id}','RoleController@update')->name('role.update');
     Route::post('/admin/assign-role/{id}','RoleController@givePermission')->name('role.permission');
     Route::get('/admin/hapus-role/{id}','RoleController@hapus')->name('role.hapus');
-    Route::post('/admin/hapus-permission/{id}/{permission}', 'RoleController@hapusPermission')->name('hapus.permission');
+    Route::get('/admin/hapus-permission/{id}/{permission}', 'RoleController@hapusPermission')->name('hapus.permission');
 
 
 
