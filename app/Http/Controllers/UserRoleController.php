@@ -44,6 +44,12 @@ class UserRoleController extends Controller
         return view('admin.user-role.index', compact('roles'));
     }
 
+    public function simpan(Request $request){
+        $request->validate([
+            
+        ]);
+    }
+
 
 
 }
