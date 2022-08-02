@@ -29,7 +29,7 @@
     </div>
 </div>
 
-@include('admin.role.modal-role')
+@include('admin.role.create')
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -146,8 +146,6 @@
                 }
             });
         }
-    </script>
-
 
 </script>
 

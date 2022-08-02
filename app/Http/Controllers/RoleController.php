@@ -12,7 +12,6 @@ class RoleController extends Controller
 {
     public function index(){
         $data = Role::all();
-        $permission = Permission::all();
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -61,7 +60,7 @@ class RoleController extends Controller
     public function edit($id){
 
         $data = Role::findorfail($id);
-        $data2 = Permission::all();       
+        $data2 = Permission::all();
         return view('admin.role.edit', compact('data','data2'));
     }
 
@@ -95,7 +94,7 @@ class RoleController extends Controller
             return response()->json(['status' => 2] );
         }
         $data->givePermissionTo($request->permission);
-        
+
         echo json_encode(["status" => TRUE]);
     }
 
@@ -108,7 +107,7 @@ class RoleController extends Controller
     }
 
     public function hapusPermission($id,Permission $permission){
-        
+
         $data = Role::findorfail($id);
 
         $role =  DB::table('role_has_permissions')->count();
@@ -116,12 +115,12 @@ class RoleController extends Controller
         if($role < 2){
             return response()->json(['status' => 2] );
         }
-        
+
         if($data->hasPermissionTo($permission)){
             $data->revokePermissionTo($permission);
             }
 
-       
+
         echo json_encode(["status" => TRUE]);
     }
-}   
+}
