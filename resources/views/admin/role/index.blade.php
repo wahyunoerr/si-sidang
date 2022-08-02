@@ -62,11 +62,6 @@
             var id = $('#id').val();
             if (typeSave == 'tambah') {
                 url = "{{ route('role.simpan') }}";
-            } else if(typeSave == 'update') {
-                url = "{{ url('admin/update-role') }}" + "/" + id;
-            }
-            else {
-                url = "{{ url('admin/get-permission') }}" + "/" + id;
             }
             $.ajax({
                 url: url,

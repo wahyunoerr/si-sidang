@@ -81,10 +81,39 @@ class RoleController extends Controller
 
     }
 
+    public function givePermission(Request $request, $id){
+
+        $request->validate([
+            'permission' => 'required'
+        ],[
+            'permission.required' => 'permission wajib dipilih!'
+        ]);
+
+        $data = Role::findorfail($id);
+
+        if($data->hasPermissionTo($request->permission)){
+            return response()->json(['status' => 2] );
+        }
+        $data->givePermissionTo($request->permission);
+        
+        echo json_encode(["status" => TRUE]);
+    }
+
 
     public function hapus($id){
         $data = Role::findorfail($id);
         $data->delete();
+
+        echo json_encode(["status" => TRUE]);
+    }
+
+    public function hapusPermission($id){
+
+       $role = Role::findorfail($id);
+
+        if($role->hasPermissionTo($request->permission)){
+            $role->revokePermissionTo($permission);
+        }
 
         echo json_encode(["status" => TRUE]);
     }
