@@ -1,63 +1,76 @@
 @extends('backend.template')
-@section('halaman-sekarang','Manajemen Role')
+@section('halaman-sekarang', 'Manajemen Role')
 @section('content')
 
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="float-right">
-                    <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah User</button>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="float-right">
+                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah
+                            User</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th width="10%">No</th>
-                            <th>Nama Role</th>
-                            <th width="10%">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="10%">No</th>
+                                <th>Nama Role</th>
+                                <th width="10%">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@include('admin.role.create')
+    @include('admin.role.create')
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        var typeSave;
-      table = $('#example2').DataTable({
-        processing : true,
-        serverside : true,
-        ajax : "{{ route('role.index') }}",
-        columns: [
-        {data: 'DT_RowIndex', name:'DT_RowIndex'},
-        {data: 'name', name:'name'},
-        {data: 'action', name: 'action', orderable: false, searchable: false},
-        ],
-        order: [[0, 'asc']]
-      });
-    })
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var typeSave;
+            table = $('#example2').DataTable({
+                processing: true,
+                serverside: true,
+                ajax: "{{ route('role.index') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                order: [
+                    [0, 'asc']
+                ]
+            });
+        })
 
-    function tambah(){
-		typeSave = 'tambah';
-		$('#id').val('');
-		$('#form').trigger("reset");
-		$('.help-block').empty();
-		$('#modal-role').modal('show');
-		$('.modal-title').text('Tambah Data Role');
-	}
+        function tambah() {
+            typeSave = 'tambah';
+            $('#id').val('');
+            $('#form').trigger("reset");
+            $('.help-block').empty();
+            $('#modal-role').modal('show');
+            $('.modal-title').text('Tambah Data Role');
+        }
 
 
-    function simpan() {
+        function simpan() {
             var url;
             var id = $('#id').val();
             if (typeSave == 'tambah') {
@@ -89,6 +102,7 @@
                 },
                 error: function(response) {
                     $('#nRoleError').text(response.responseJSON.errors.nama_role);
+                    $('#nPermError').text(response.responseJSON.errors.permission);
                 }
             });
         }
@@ -111,7 +125,7 @@
             }).then(function() {
                 $.ajax({
                     url: "{{ url('admin/hapus-role') }}" + "/" + id,
-                    type: "get",
+                    type: "delete",
                     dataType: "JSON",
                     success: function() {
                         swal({
@@ -146,8 +160,7 @@
                 }
             });
         }
-
-</script>
+    </script>
 
 
 

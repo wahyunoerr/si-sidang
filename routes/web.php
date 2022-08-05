@@ -43,17 +43,13 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
     Route::get('/admin/edit-role/{role}','RoleController@edit')->name('role.edit');
     Route::post('/admin/update-role/{id}','RoleController@update')->name('role.update');
     Route::post('/admin/assign-role/{id}','RoleController@givePermission')->name('role.permission');
-    Route::get('/admin/hapus-role/{id}','RoleController@hapus')->name('role.hapus');
-    Route::get('/admin/hapus-permission/{role}/{permission}', 'RoleController@hapusPermission')->name('hapus.permission');
+    Route::delete('/admin/hapus-role/{id}','RoleController@hapus')->name('role.hapus');
 
 
 
     Route::get('/admin/manajemen-permission','PermissionController@index')->name('permission.index');
     Route::post('/admin/simpan-permission','PermissionController@simpan')->name('permission.simpan');
-    Route::get('/admin/edit-permission/{permission}','PermissionController@edit')->name('permission.edit');
+    Route::get('/admin/edit-permission/{id}','PermissionController@edit')->name('permission.edit');
     Route::post('/admin/update-permission/{id}','PermissionController@update')->name('permission.update');
-    Route::post('/admin/assign-permission/{id}','PermissionController@giveRole')->name('permission.role');
     Route::get('/admin/hapus-permission/{id}','PermissionController@hapus')->name('permission.hapus');
-    Route::get('/admin/hapus-role/{permission}/{role}', 'PermissionController@hapusRole')->name('hapus.role');
 });
-

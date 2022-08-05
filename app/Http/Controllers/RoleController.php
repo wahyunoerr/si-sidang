@@ -11,6 +11,7 @@ use DB;
 class RoleController extends Controller
 {
     public function index(){
+        $permission = Permission::all();
         $data = Role::all();
         if (Request()->ajax()) {
             return DataTables::of($data)
@@ -38,20 +39,24 @@ class RoleController extends Controller
                 ->rawColumns(['action',])
                 ->make(true);
         }
-        return view('admin.role.index');
+        return view('admin.role.index', compact('permission'));
     }
 
 
     public function simpan(Request $request){
         $request->validate([
-            'nama_role' => 'required'
+            'nama_role' => 'required',
+            'permission' => 'required'
         ],[
+            'permission.required' => 'permission wajib dipilih',
             'nama_role.required' => 'nama role wajib diisi!'
         ]);
 
-        Role::create([
+        $role =  Role::create([
             'name' => $request->nama_role
         ]);
+        $role->syncPermissions($request->input('permission'));
+        
 
         echo json_encode(["status" => TRUE]);
     }
@@ -59,9 +64,12 @@ class RoleController extends Controller
 
     public function edit($id){
 
-        $data = Role::findorfail($id);
-        $data2 = Permission::all();
-        return view('admin.role.edit', compact('data','data2'));
+        $role = Role::findorfail($id);
+        $permission = Permission::all();
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+        ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        ->all();
+        return view('admin.role.edit', compact('role','permission','rolePermissions'));
     }
 
     public function update(Request $request, $id){
@@ -76,50 +84,15 @@ class RoleController extends Controller
         $data->name = $request->nama_role;
         $data->save();
 
+        $data->syncPermissions($request->input('permission'));
         echo json_encode(["status" => TRUE]);
 
-    }
-
-    public function givePermission(Request $request, $id){
-
-        $request->validate([
-            'permission' => 'required'
-        ],[
-            'permission.required' => 'permission wajib dipilih!'
-        ]);
-
-        $data = Role::findorfail($id);
-
-        if($data->hasPermissionTo($request->permission)){
-            return response()->json(['status' => 2] );
-        }
-        $data->givePermissionTo($request->permission);
-
-        echo json_encode(["status" => TRUE]);
     }
 
 
     public function hapus($id){
         $data = Role::findorfail($id);
         $data->delete();
-
-        echo json_encode(["status" => TRUE]);
-    }
-
-    public function hapusPermission($id,Permission $permission){
-
-        $data = Role::findorfail($id);
-
-        $role =  DB::table('role_has_permissions')->count();
-
-        if($role < 2){
-            return response()->json(['status' => 2] );
-        }
-
-        if($data->hasPermissionTo($permission)){
-            $data->revokePermissionTo($permission);
-            }
-
 
         echo json_encode(["status" => TRUE]);
     }

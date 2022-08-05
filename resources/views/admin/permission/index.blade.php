@@ -1,66 +1,109 @@
 @extends('backend.template')
-@section('halaman-sekarang','Manajemen Permission')
+@section('halaman-sekarang', 'Manajemen Permission')
 @section('content')
 
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="float-right">
-                    <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah Permission</button>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="float-right">
+                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah
+                            Permission</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th width="10%">No</th>
-                            <th>Nama Permission</th>
-                            <th width="10%">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="10%">No</th>
+                                <th>Nama Permission</th>
+                                <th width="10%">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-@include('admin.permission.create')
+    @include('admin.permission.create')
 
 
-<script type="text/javascript">
-    $(document).ready(function(){
-      table = $('#example2').DataTable({
-        processing : true,
-        serverside : true,
-        ajax : "{{ route('permission.index') }}",
-        columns: [
-        {data: 'DT_RowIndex', name:'DT_RowIndex'},
-        {data: 'name', name:'name'},
-        {data: 'action', name: 'action', orderable: false, searchable: false},
-        ],
-        order: [[0, 'asc']]
-      });
-    })
+    <script type="text/javascript">
+        $(document).ready(function() {
+            table = $('#example2').DataTable({
+                processing: true,
+                serverside: true,
+                ajax: "{{ route('permission.index') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                order: [
+                    [0, 'asc']
+                ]
+            });
+        })
 
-    function tambah(){
-		typeSave = 'tambah';
-		$('#id').val('');
-		$('#form').trigger("reset");
-		$('.help-block').empty();
-		$('#modal-form').modal('show');
-		$('.modal-title').text('Tambah Data Permission');
-	}
-    function simpan() {
+        function tambah() {
+            typeSave = 'tambah';
+            $('#id').val('');
+            $('#form').trigger("reset");
+            $('.help-block').empty();
+            $('#modal-form').modal('show');
+            $('.modal-title').text('Tambah Data Permission');
+        }
+
+
+        function get(id) {
+            typeSave = 'update';
+            $.ajax({
+                url: "{{ url('admin/edit-permission') }}" + "/" + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    $('[name="id"]').val(data.id);
+                    $('[name="nama_permission"]').val(data.name);
+                    $('#modal-form').modal('show');
+                    $('.modal-title').text('Edit Permission');
+                    $('.help-block').empty();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+            });
+        }
+
+
+        function simpan() {
             var url;
             var id = $('#id').val();
             if (typeSave == 'tambah') {
                 url = "{{ route('permission.simpan') }}";
+            } else {
+                url = "{{ url('admin/update-permission') }}" + "/" + id
             }
             $.ajax({
                 url: url,
@@ -145,8 +188,7 @@
                 }
             });
         }
-
-</script>
+    </script>
 
 
 

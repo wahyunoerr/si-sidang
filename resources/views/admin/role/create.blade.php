@@ -9,9 +9,12 @@
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                     <span class="svg-icon svg-icon-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                transform="rotate(45 7.41422 6)" fill="black" />
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
@@ -37,20 +40,42 @@
                     <!--end::Heading-->
                     <!--begin::Input group-->
                     <div class="row g-9 mb-8">
-                    <div class="col-md-12 fv-row">
-                        <!--begin::Label-->
+                        <div class="col-md-12 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                <span class="required">Nama Role</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                    title="Silahkan tulis nama lengkap kamu"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" id="nama_role"
+                                name="nama_role" placeholder="Masukkan Nama Role" />
+                            <span class="text-danger" id="nRoleError"></span>
+                        </div>
+
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                            <span class="required">Nama Role</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Silahkan tulis nama lengkap kamu"></i>
+                            <span class="required">Pilih Permission</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Silahkan Pilih Permission"></i>
                         </label>
-                        <!--end::Label-->
-                        <input type="text" class="form-control form-control-solid" id="nama_role"  name="nama_role" placeholder="Masukkan Nama Role"/>
-                        <span class="text-danger" id="nRoleError"></span>
+                        <!--begin::Checkbox-->
+                        @foreach ($permission as $perm)
+                            <label class="form-check form-check-custom form-check-solid me-10">
+                                <input type="checkbox" name="permission[]" value="{{ $perm->id }}" />
+                                <span class="form-check-label fw-bold">{{ $perm->name }}</span>
+                            </label>
+                        @endforeach
+                        <span class="text-danger" id="nPermError"></span>
+                        <!--end::Checkbox-->
+                        <!--begin::Checkbox-->
+                        <!--end::Checkbox-->
+
+
                     </div>
-                </div>
                     <div class="text-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" id="kt_modal_new_target_submit" onclick="simpan()" class="btn btn-primary">
+                        <button type="button" id="kt_modal_new_target_submit" onclick="simpan()"
+                            class="btn btn-primary">
                             <span class="indicator-label">Simpan</span>
                         </button>
                     </div>
@@ -65,6 +90,3 @@
     <!--end::Modal dialog-->
 </div>
 <!--end::Modal - New Target-->
-
-
-
