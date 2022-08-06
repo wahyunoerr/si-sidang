@@ -52,4 +52,35 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
     Route::get('/admin/edit-permission/{id}','PermissionController@edit')->name('permission.edit');
     Route::post('/admin/update-permission/{id}','PermissionController@update')->name('permission.update');
     Route::get('/admin/hapus-permission/{id}','PermissionController@hapus')->name('permission.hapus');
+
+    //bimbingan kp
+    Route::get('/admin/bimbingan-kp' ,'KpbController@index')->name('kpb.index');
+    Route::post('/admin/bimbingan-kp/simpan', 'KpbController@simpan')->name('kpb.simpan');
+
+    //bimbingan skripsi
+    Route::get('/admin/bimbingan-skripsi' ,'SkripsibController@index')->name('skb.index');
+
+    //bimbingan proposal
+    Route::get('/admin/bimbingan-proposal' ,'ProposalbController@index')->name('pb.index');
+
+
+    //penguji kp
+    Route::get('/admin/penguji-kp' ,'KppController@index')->name('kpp.index');
+
+    //penguji skripsi
+    Route::get('/admin/penguji-skripsi' ,'SkripsipController@index')->name('skp.index');
+
+    //penguji proposal
+    Route::get('/admin/penguji-proposal' ,'ProposalpController@index')->name('pp.index');
+
+
+    //jadwal kp
+    Route::get('/admin/jadwal-kp' ,'KpjController@index')->name('kpj.index');
+
+    //jadwal skripsi
+    Route::get('/admin/jadwal-skripsi' ,'SkripsijController@index')->name('skj.index');
+    
+    //jadwal proposal
+    Route::get('/admin/jadwal-proposal' ,'ProposaljController@index')->name('pj.index');
+    
 });

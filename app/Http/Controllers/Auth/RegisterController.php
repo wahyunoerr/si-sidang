@@ -38,7 +38,7 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        return User::create([
+        return $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'serial_user' => $data['serial_user'],
@@ -47,5 +47,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'foto' => 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
         ]);
+
+        $user->assignRole('mahasiswa');
     }
 }
