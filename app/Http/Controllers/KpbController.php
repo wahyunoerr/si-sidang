@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\KP;
+use App\Models\Dosen;
 use DataTables;
+use DB;
 
 
 class KpbController extends Controller
@@ -18,8 +20,12 @@ class KpbController extends Controller
 
     public function index(){
         $mhs = User::role('mahasiswa')->get();
-        $dosen = User::role('dosen')->get();
-        $data = KP::all();
+        $dosen = Dosen::all();
+        $data = DB::table('tbl_kp')
+                ->join('users','users.id','tbl_kp.nama_mahasiswa')
+                ->join('tbl_dosen','tbl_dosen.id','tbl_kp.dosbing')
+                ->select('tbl_dosen.*','users.name','tbl_dosen.nama')
+                ->get();
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -46,7 +52,7 @@ class KpbController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.kerjapraktekb.index', compact('mhs','dosen'));
+        return view('admin.kerjapraktekb.index', compact('mhs','dosen','data'));
     }
 
 

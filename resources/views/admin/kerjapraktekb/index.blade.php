@@ -44,11 +44,11 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'nama_mahasiswa',
-                        name: 'nama_mahasiswa'
+                        data: 'name',
+                        name: 'name'
                     }, {
-                        data: 'dosbing',
-                        name: 'dosbing'
+                        data: 'nama',
+                        name: 'nama'
                     },
                     {
                         data: 'action',

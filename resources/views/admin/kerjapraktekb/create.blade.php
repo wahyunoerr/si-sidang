@@ -61,7 +61,7 @@
                             <!--end::Label-->
                             <select name="dosbing" class="form-control" id="dosbing">
                                 @foreach ($dosen as $d)
-                                    <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                    <option value="{{ $d->id }}">{{ $d->nama }}</option>
                                 @endforeach
                             </select>
                             <span class="text-danger" id="nDosbing"></span>

@@ -45,7 +45,7 @@ class DosenController extends Controller
     {
         $request->validate([
             'nip' => 'required|unique:tbl_dosen,nip',
-            'nama'=> 'required|unique:table_dosen,nama'
+            'nama'=> 'required|unique:tbl_dosen,nama'
         ]);
 
         Dosen::create([
