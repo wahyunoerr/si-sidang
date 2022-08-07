@@ -10,7 +10,6 @@ class Dosen extends Model
 {
     protected $table = 'tbl_dosen';
     protected $fillable = [
-        'nip',
         'nama'
     ];
 }

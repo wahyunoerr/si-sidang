@@ -30,7 +30,7 @@
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
-                        <h1 class="mb-3">Tambah Data Dosen</h1>
+                        <h1 class="mb-3">Tambah Data Dosen Pembimbing</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-muted fw-bold fs-5">Hanya Admin yang bisa menambahkan Permission untuk Role.
@@ -43,19 +43,14 @@
                         <div class="col-md-12 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">NIP</span>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form form-control" name="nip" id="nip" placeholder="NIP/NIDN">
-                            <span class="text-danger" id="nNip"></span>
-                        </div>
-                        <div class="col-md-12 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Nama Dosen</span>
                             </label>
                             <!--end::Label-->
-                            <input type="text" name="nama" class="form form-control" id="nama" placeholder="Nama Dosen">
+                            <select name="nama" id="nama" class="form form-control">
+                                @foreach ($dosen as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                             <span class="text-danger" id="nNama"></span>
                         </div>
                     </div>

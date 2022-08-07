@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dosen;
+use App\Models\User;
+use DB;
 use DataTables;
 
 class DosenController extends Controller
 {
     public function index()
-    {
-        $data = Dosen::all();
+    {   $dosen = User::role('dosen')->get();
+        $data = DB::table('tbl_dosen')
+        ->join('users','users.id','=','tbl_dosen.nama')
+        ->select('tbl_dosen.*','users.id','users.name')
+        ->get();
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -38,18 +43,16 @@ class DosenController extends Controller
                 ->make(true);
         }
 
-        return view('admin.dosen.index');
+        return view('admin.dosen.index', compact('dosen','data'));
     }
 
     public function simpan(Request $request)
     {
         $request->validate([
-            'nip' => 'required|unique:tbl_dosen,nip',
             'nama'=> 'required|unique:tbl_dosen,nama'
         ]);
 
         Dosen::create([
-            'nip' => $request->nip,
             'nama' => $request->nama
         ]);
 

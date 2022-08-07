@@ -15,7 +15,6 @@ class TblDosen extends Migration
     {
         Schema::create('tbl_dosen', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nip');
             $table->string('nama');
             $table->timestamps();
         });

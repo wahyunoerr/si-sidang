@@ -18,7 +18,6 @@
                         <thead>
                             <tr>
                                 <th width="10%">No</th>
-                                <th>NIP</th>
                                 <th>Nama Dosen</th>
                                 <th width="10%">Aksi</th>
                             </tr>
@@ -42,13 +41,9 @@
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'nip',
-                        name: 'nip'
                     }, {
-                        data: 'nama',
-                        name: 'nama'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
                         data: 'action',
@@ -81,7 +76,6 @@
                 dataType: "JSON",
                 success: function(data) {
                     $('[name="id"]').val(data.id);
-                    $('[name="nip"]').val(data.nip);
                     $('[name="nama"]').val(data.nama);
                     $('#modal-form').modal('show');
                     $('.modal-title').text('Edit Permission');
@@ -133,7 +127,6 @@
                     }
                 },
                 error: function(response) {
-                    $('#nNip').text(response.responseJSON.errors.nip);
                     $('#nNama').text(response.responseJSON.errors.nama);
                 }
             });
