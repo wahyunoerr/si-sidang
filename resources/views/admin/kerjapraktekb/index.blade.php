@@ -8,8 +8,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-right">
-                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Jadwal
-                            Bimbingan KP</button>
+                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>
+                            Pembimbing KP</button>
                     </div>
                 </div>
 
@@ -20,8 +20,6 @@
                                 <th width="10%">No</th>
                                 <th>Nama Mahasiswa</th>
                                 <th>Dosen Pembimbing</th>
-                                <th>Jadwal Bimbingan</th>
-                                <th>Status Bimbingan</th>
                                 <th width="10%">Aksi</th>
                             </tr>
                         </thead>
@@ -34,6 +32,7 @@
     </div>
 
     @include('admin.kerjapraktekb.create')
+
     <script type="text/javascript">
         $(document).ready(function() {
             table = $('#example2').DataTable({
@@ -45,11 +44,11 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'nama_mahasiswa',
+                        name: 'nama_mahasiswa'
                     }, {
-                        data: 'name',
-                        name: 'name'
+                        data: 'dosbing',
+                        name: 'dosbing'
                     },
                     {
                         data: 'action',
@@ -82,7 +81,8 @@
                 dataType: "JSON",
                 success: function(data) {
                     $('[name="id"]').val(data.id);
-                    $('[name="nama_permission"]').val(data.name);
+                    $('[name="nama_mahasiswa"]').val(data.nama_mahasiswa);
+                    $('[name="dosbing"]').val(data.dosbing);
                     $('#modal-form').modal('show');
                     $('.modal-title').text('Edit Permission');
                     $('.help-block').empty();
@@ -134,8 +134,7 @@
                 },
                 error: function(response) {
                     $('#nMhsError').text(response.responseJSON.errors.nama_mahasiswa);
-                    $('#nDosbingSatu').text(response.responseJSON.errors.dosbing_satu);
-                    $('#nDosbingDua').text(response.responseJSON.errors.dosbing_dua);
+                    $('#nDosbing').text(response.responseJSON.errors.dosbing_satu);
                 }
             });
         }

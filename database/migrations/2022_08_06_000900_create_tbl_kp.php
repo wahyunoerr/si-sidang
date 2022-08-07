@@ -16,8 +16,7 @@ class CreateTblKp extends Migration
         Schema::create('tbl_kp', function (Blueprint $table) {
             $table->id();
             $table->string('nama_mahasiswa');
-            $table->string('dosbing_satu');
-            $table->string('dosbing_dua');
+            $table->string('dosbing');
             $table->timestamps();
         });
     }

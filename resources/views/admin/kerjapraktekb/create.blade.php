@@ -56,28 +56,15 @@
                         <div class="col-md-12 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Dosen Pembimbing 1</span>
+                                <span class="required">Dosen Pembimbing</span>
                             </label>
                             <!--end::Label-->
-                            <select name="dosbing_satu" class="form-control" id="dosbing_satu">
+                            <select name="dosbing" class="form-control" id="dosbing">
                                 @foreach ($dosen as $d)
                                     <option value="{{ $d->id }}">{{ $d->name }}</option>
                                 @endforeach
                             </select>
-                            <span class="text-danger" id="nDosbingSatu"></span>
-                        </div>
-                        <div class="col-md-12 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Dosen Pembimbing 2</span>
-                            </label>
-                            <!--end::Label-->
-                            <select name="dosbing_dua" class="form-control" id="dosbing_dua">
-                                @foreach ($dosen as $d)
-                                    <option value="{{ $d->id }}">{{ $d->name }}</option>
-                                @endforeach
-                            </select>
-                            <span class="text-danger" id="nDosbingDua"></span>
+                            <span class="text-danger" id="nDosbing"></span>
                         </div>
                     </div>
                     <div class="text-center">
