@@ -1,25 +1,22 @@
-@include('backend.head')
-<body id="kt_body" class="bg-body">
+@extends('backend.index')
+@section('content')
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-up -->
-        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(backend/media/illustrations/sketchy-1/14.png">
+        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
+            style="background-image: url(backend/media/illustrations/sketchy-1/14.png">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->
-                <a href="{{route('login')}}" class="mb-12">
-                    <img alt="Logo" src="{{asset('backend/media/logos/logo-1.svg')}}" class="h-40px" />
+                <a href="{{ route('login') }}" class="mb-12">
+                    <img alt="Logo" src="{{ asset('backend/media/logos/logo-1.svg') }}" class="h-40px" />
                 </a>
                 <!--end::Logo-->
                 <!--begin::Wrapper-->
                 <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
-<<<<<<< HEAD
-                    <form class="form w-100" action="{{ route('register') }}" method="POST" novalidate="novalidate" id="kt_sign_up_form" enctype="multipart/form-data">
-=======
-                    <form class="form w-100" novalidate="novalidate" method="POST" action="{{ route('register') }}">
->>>>>>> 83bb6b6704fa2e88ce49e00a4c76353de74aba7c
-                        @csrf
+                    <form class="form w-100" id="form" method="POST" novalidate="novalidate" id="kt_sign_up_form"
+                        enctype="multipart/form-data">
                         <!--begin::Heading-->
                         <div class="mb-10 text-center">
                             <!--begin::Title-->
@@ -27,7 +24,8 @@
                             <!--end::Title-->
                             <!--begin::Link-->
                             <div class="text-gray-400 fw-bold fs-4">Sudah Punya Akun?
-                            <a href="{{route('login')}}" class="link-primary fw-bolder">Login Disini</a></div>
+                                <a href="{{ route('login') }}" class="link-primary fw-bolder">Login Disini</a>
+                            </div>
                             <!--end::Link-->
                         </div>
                         <!--end::Heading-->
@@ -36,12 +34,9 @@
                             <!--begin::Col-->
                             <div class="fv-row mb-6">
                                 <label class="form-label fw-bolder text-dark fs-6">Nama Lengkap</label>
-                                <input class="form-control form-control-lg form-control-solid @error('name') is-invalid @enderror" id="name" type="text" placeholder="" name="name" value="{{ old('name') }}" autocomplete="name" autofocus required />
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                <input class="form-control form-control-lg form-control-solid" id="name" type="text"
+                                    placeholder="Nama Lengkap" name="name" autocomplete="name" autofocus required />
+                                <span class="text-danger" id="nNameError"></span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -49,12 +44,9 @@
                             <!--begin::Col-->
                             <div class="fv-row mb-6">
                                 <label class="form-label fw-bolder text-dark fs-6">Username</label>
-                                <input class="form-control form-control-lg form-control-solid @error('username') is-invalid @enderror" id="username" type="text" placeholder="" name="username" autocomplete="username" required/>
-                                @error('username')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                <input class="form-control form-control-lg form-control-solid" id="username" type="text"
+                                    placeholder="Username" name="username" autocomplete="username" required />
+                                <span class="text-danger" id="nUsernameError"></span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -64,12 +56,10 @@
                             <!--begin::Col-->
                             <div class="fv-row mb-6">
                                 <label class="form-label fw-bolder text-dark fs-6">NIM</label>
-                                <input class="form-control form-control-lg form-control-solid @error('serial_user') is-invalid @enderror" id="serial_user" type="text" placeholder="" name="serial_user" autocomplete="serial_user" required/>
-                                @error('serial_user')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                <input class="form-control form-control-lg form-control-solid" id="serial_user"
+                                    type="text" placeholder="NIM" name="serial_user" autocomplete="serial_user"
+                                    required />
+                                <span class="text-danger" id="nSerialUserError"></span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -78,12 +68,9 @@
                             <!--begin::Col-->
                             <div class="fv-row mb-6">
                                 <label class="form-label fw-bolder text-dark fs-6">No Telepon</label>
-                                <input class="form-control form-control-lg form-control-solid @error('no_telp') is-invalid @enderror" id="no_telp" type="text" placeholder="" name="no_telp" autocomplete="no_telp" required/>
-                                @error('no_telp')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                <input class="form-control form-control-lg form-control-solid" id="no_telp" type="text"
+                                    placeholder="No Telepon" name="no_telp" autocomplete="no_telp" required />
+                                <span class="text-danger" id="nNoTelpError"></span>
                             </div>
                             <!--end::Col-->
                         </div>
@@ -91,12 +78,9 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                            <input class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror" id="email" type="email" placeholder="" name="email" autocomplete="email" required/>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <input class="form-control form-control-lg form-control-solid" id="email" type="email"
+                                placeholder="Email" name="email" autocomplete="email" required />
+                            <span class="text-danger" id="nEmailError"></span>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -108,58 +92,30 @@
                                 <!--end::Label-->
                                 <!--begin::Input wrapper-->
                                 <div class="position-relative mb-3">
-                                    <input class="form-control form-control-lg form-control-solid @error('password') is-invalid @enderror" id="password" type="password" placeholder="" name="password" autocomplete="new-password" />
-                                    @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                     @enderror
-                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+                                    <input class="form-control form-control-lg form-control-solid" id="password"
+                                        type="password" placeholder="Password" name="password"
+                                        autocomplete="new-password" />
+                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
+                                        data-kt-password-meter-control="visibility">
                                         <i class="bi bi-eye-slash fs-2"></i>
                                         <i class="bi bi-eye fs-2 d-none"></i>
                                     </span>
+                                    <span class="text-danger" id="nPassConfError"></span>
                                 </div>
-                                <!--end::Input wrapper-->
-                                {{-- <!--begin::Meter-->
-                                <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-                                </div>
-                                <!--end::Meter--> --}}
                             </div>
-                            <!--end::Wrapper-->
-                            <!--begin::Hint-->
-                            {{-- <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div> --}}
-                            <!--end::Hint-->
                         </div>
                         <!--end::Input group=-->
                         <!--begin::Input group-->
                         <div class="fv-row mb-5">
                             <label class="form-label fw-bolder text-dark fs-6">Konfirmasi Password</label>
-                            <input class="form-control form-control-lg form-control-solid" id="pass_conf" type="password" placeholder="" name="pass_conf" autocomplete="new-password" required />
+                            <input class="form-control form-control-lg form-control-solid" id="password-confirm"
+                                type="password" placeholder="Konfirmasi Password" name="password_confirmation" required
+                                autocomplete="new-password">
                         </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        {{-- <div class="fv-row mb-10">
-                            <label class="form-check form-check-custom form-check-solid form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="toc" value="1" />
-                                <span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
-                                <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
-                            </label>
-                        </div> --}}
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="text-center">
-<<<<<<< HEAD
-                            <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">Registrasi
-=======
-                            <button type="submit" class="btn btn-lg btn-primary">
-                                <span class="indicator-label">Submit</span>
-                                <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
->>>>>>> 83bb6b6704fa2e88ce49e00a4c76353de74aba7c
+                            <button type="button" onclick="simpan()" class="btn btn-lg btn-primary">Registrasi
                             </button>
                         </div>
                         <!--end::Actions-->
@@ -183,13 +139,42 @@
         </div>
         <!--end::Authentication - Sign-up-->
     </div>
-    <!--end::Main-->
-    <!--begin::Javascript-->
-    <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="{{asset('backend/plugins/global/plugins.bundle.js')}}"></script>
-    <script src="{{asset('backend/js/scripts.bundle.js')}}"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Page Custom Javascript(used by this page)-->
-    <!--end::Page Custom Javascript-->
-    <!--end::Javascript-->
-</body>
+
+    <script>
+        function simpan() {
+            $.ajax({
+                url: "{{ route('register') }}",
+                data: new FormData($('#form')[0]),
+                type: "POST",
+                dataType: 'JSON',
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    if (data.status == true) {
+                        swal({
+                            title: 'Berhasil',
+                            type: 'success',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                        }).then(function() {
+                            location.reload();
+                        });
+                    }
+                },
+                error: function(response) {
+                    $('#nNameError').text(response.responseJSON.errors.name);
+                    $('#nUsernameError').text(response.responseJSON.errors.username);
+                    $('#nSerialUserError').text(response.responseJSON.errors.serial_user);
+                    $('#nNoTelpError').text(response.responseJSON.errors.no_telp);
+                    $('#nEmailError').text(response.responseJSON.errors.email);
+                    $('#nPasswordError').text(response.responseJSON.errors.password);
+                    $('#nPassConfError').text(response.responseJSON.errors.password_confirmation);
+                }
+            });
+        }
+    </script>
+    </body>
+@endsection
