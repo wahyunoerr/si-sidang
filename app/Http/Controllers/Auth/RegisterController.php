@@ -36,7 +36,7 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        return $user = User::create([
+         $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'serial_user' => $data['serial_user'],
@@ -46,6 +46,7 @@ class RegisterController extends Controller
             'foto' => 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
         ]);
         $user->assignRole('mahasiswa');
+        return $user;
 
         echo json_encode(["status" => TRUE]);
     }

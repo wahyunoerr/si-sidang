@@ -91,7 +91,7 @@
             var url;
             var id = $('#id').val();
             if (typeSave == 'tambah') {
-                url = "{{ route('role.simpan') }}";
+                url = "{{ route('userrole.simpan') }}";
             }
             $.ajax({
                 url: url,
@@ -105,7 +105,7 @@
                 success: function(data) {
                     if (data.status == true) {
                         $('#form').trigger("reset");
-                        $('#modal-role').modal('hide');
+                        $('#modal-form').modal('hide');
                         swal({
                             title: 'Berhasil',
                             type: 'success',
@@ -118,7 +118,66 @@
                     }
                 },
                 error: function(response) {
-                    $('#nRoleError').text(response.responseJSON.errors.nama_role);
+                    $('#nNameError').text(response.responseJSON.errors.name);
+                    $('#nEmailError').text(response.responseJSON.errors.email);
+                    $('#nUserNameError').text(response.responseJSON.errors.username);
+                    $('#nSerialUserError').text(response.responseJSON.errors.serial_user);
+                    $('#nNoTelpError').text(response.responseJSON.errors.no_telp);
+                    $('#nRoleError').text(response.responseJSON.errors.role);
+                }
+            });
+        }
+
+        function reload() {
+            table.ajax.reload(null, false);
+        }
+
+        function hapus(id) {
+            swal({
+                title: 'Apakah kamu yakin?',
+                type: 'warning',
+                showCancelButton: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+                buttons: true
+            }).then(function() {
+                $.ajax({
+                    url: "{{ url('admin/manajemen-user/hapus') }}" + "/" + id,
+                    type: "delete",
+                    dataType: "JSON",
+                    success: function() {
+                        swal({
+                            title: 'Berhasil',
+                            type: 'success',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                        }).then(function() {
+                            reload();
+                        })
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        swal({
+                            title: 'Terjadi kesalahan',
+                            type: 'error',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                        });
+                    }
+                });
+            }, function(dismiss) {
+                if (dismiss === 'cancel') {
+                    swal({
+                        title: 'Batal',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    })
                 }
             });
         }

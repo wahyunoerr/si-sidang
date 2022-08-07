@@ -49,6 +49,7 @@
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid" placeholder="Nama Lengkap"
                                 id="name" name="name" />
+                            <span class="text-danger" id="nNameError"></span>
                         </div>
 
                         <div class="col-md-6 fv-row">
@@ -61,6 +62,7 @@
                             <!--end::Label-->
                             <input type="email" placeholder="Email Kamu" class="form-control form-control-solid"
                                 id="email" name="email" />
+                            <span class="text-danger" id="nEmailError"></span>
                         </div>
                     </div>
                     <div class="row g-9 mb-8">
@@ -69,6 +71,7 @@
                                 <label class="fs-6 fw-bold mb-2">NIP/NIM/NIDN</label>
                                 <input type="text" class="form-control form-control-solid" name="serial_user"
                                     id="serial_user" placeholder="NIP/NIM/NIDN">
+                                <span class="text-danger" id="nSerialUserError"></span>
                             </div>
                         </div>
                         <div class="col-md-6 fv-row">
@@ -77,29 +80,57 @@
                                     <label class="fs-6 fw-bold mb-2">Username</label>
                                     <input type="text" class="form-control form-control-solid" name="username"
                                         id="username" placeholder="username">
+                                    <span class="text-danger" id="nUserNameError"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row g-9 mb-8">
                         <div class="col-md-6 fv-row">
-                            <div class="col-md-6 fv-row">
-                                <div class="d-flex flex-column mb-8">
-                                    <label class="fs-6 fw-bold mb-2">Password</label>
-                                    <input type="password" class="form-control form-control-solid" name="password"
-                                        id="password" placeholder="Password">
-                                </div>
+
+                            <div class="d-flex flex-column mb-8">
+                                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                    <span class="required">Pilih Role</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        title="Silahkan Pilih Permission"></i>
+                                </label>
+                                <!--begin::Checkbox-->
+                                @foreach ($role as $r)
+                                    <label class="form-check form-check-custom form-check-solid me-10">
+                                        <input type="checkbox" name="role[]" value="{{ $r->id }}" />
+                                        <span class="form-check-label fw-bold">{{ $r->name }}</span>
+                                    </label>
+                                @endforeach
+                                <span class="text-danger" id="nRoleError"></span>
+                                <!--end::Checkbox-->
+                                <!--begin::Checkbox-->
+                                <!--end::Checkbox-->
+
                             </div>
                         </div>
-                        <!--end::Input group-->
-                        <!--begin::Actions-->
-                        <div class="text-center">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
-                                <span class="indicator-label">Simpan</span>
-                            </button>
+
+                        <div class="col-md-6 fv-row">
+                            <div class="d-flex flex-column mb-8">
+                                <label class="fs-6 fw-bold mb-2">No Telepon</label>
+                                <input type="text" class="form-control form-control-solid" name="no_telp"
+                                    id="no_telp" placeholder="Password">
+                                <span class="text-danger" id="nNoTelpError"></span>
+                            </div>
                         </div>
-                        <!--end::Actions-->
+
+                    </div>
+
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" id="kt_modal_new_target_submit" class="btn btn-primary"
+                            onclick="simpan()">
+                            <span class="indicator-label">Simpan</span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
                 </form>
                 <!--end:Form-->
             </div>

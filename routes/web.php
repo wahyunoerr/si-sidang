@@ -37,6 +37,8 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
 
 Route::group(['middleware' => 'auth', 'role:admin'], function () {
     Route::get('/admin/manajemen-user','UserRoleController@index')->name('userrole.index');
+    Route::post('/admin/manajemen-user/simpan','UserRoleController@simpan')->name('userrole.simpan');
+    Route::delete('/admin/manajemen-user/hapus/{id}','UserRoleController@hapus')->name('userrole.hapus');
 
     Route::get('/admin/manajemen-role','RoleController@index')->name('role.index');
     Route::post('/admin/simpan-role','RoleController@simpan')->name('role.simpan');
