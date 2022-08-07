@@ -55,6 +55,10 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
     Route::post('/admin/update-permission/{id}','PermissionController@update')->name('permission.update');
     Route::get('/admin/hapus-permission/{id}','PermissionController@hapus')->name('permission.hapus');
 
+    //dosen
+    Route::get('/admin/manajemen-dosen', 'DosenController@index')->name('dosen.index');
+    Route::post('/admin/manajemen-dosen/simpan', 'DosenController@simpan')->name('dosen.simpan');
+
     //bimbingan kp
     Route::get('/admin/bimbingan-kp' ,'KpbController@index')->name('kpb.index');
     Route::post('/admin/bimbingan-kp/simpan', 'KpbController@simpan')->name('kpb.simpan');
@@ -81,8 +85,8 @@ Route::group(['middleware' => 'auth', 'role:admin'], function () {
 
     //jadwal skripsi
     Route::get('/admin/jadwal-skripsi' ,'SkripsijController@index')->name('skj.index');
-    
+
     //jadwal proposal
     Route::get('/admin/jadwal-proposal' ,'ProposaljController@index')->name('pj.index');
-    
+
 });
