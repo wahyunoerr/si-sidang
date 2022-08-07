@@ -100,5 +100,5 @@
     </div>
     <!--end::Header-->
     <!--begin::Content-->
-
+    @include('backend.content')
     <!--end::Content-->

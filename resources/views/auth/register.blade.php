@@ -116,6 +116,8 @@
                         <!--begin::Actions-->
                         <div class="text-center">
                             <button type="button" onclick="simpan()" class="btn btn-lg btn-primary">Registrasi
+                                <span class="indicator-progress">Tunggu Sebentar
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         </div>
                         <!--end::Actions-->
@@ -126,21 +128,13 @@
             </div>
             <!--end::Content-->
             <!--begin::Footer-->
-            <div class="d-flex flex-center flex-column-auto p-10">
-                <!--begin::Links-->
-                <div class="d-flex align-items-center fw-bold fs-6">
-                    <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-                    <a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-                    <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
-                </div>
-                <!--end::Links-->
-            </div>
-            <!--end::Footer-->
         </div>
         <!--end::Authentication - Sign-up-->
     </div>
+    </div>
 
-    <script>
+
+    <script type="text/javascript">
         function simpan() {
             $.ajax({
                 url: "{{ route('register') }}",
@@ -160,7 +154,7 @@
                             allowEscapeKey: false,
                             allowEnterKey: false,
                         }).then(function() {
-                            location.reload();
+                            window.location.href = "{{ route('login') }}";
                         });
                     }
                 },
@@ -176,5 +170,4 @@
             });
         }
     </script>
-    </body>
 @endsection

@@ -15,8 +15,6 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
-
     public function __construct()
     {
         $this->middleware('guest');
@@ -47,7 +45,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'foto' => 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
         ]);
-        
         $user->assignRole('mahasiswa');
 
         echo json_encode(["status" => TRUE]);
