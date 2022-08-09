@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth, Hash;
+use App\Rules\MatchOldPassword;
 
 class UserController extends Controller
 {
@@ -69,15 +70,15 @@ class UserController extends Controller
 
     public function ubah_password(Request $request){
         $request->validate([
-            'pass_lama' => 'required|password',
-            'pass_baru' => 'required|same:konf_pass',
-            'konf_pass' => 'required'
+            'pass_lama' => ['required',new MatchOldPassword],
+            'pass_baru' => ['required'],
+            'konf_pass' => ['same:pass_baru'],
         ]);
 
-        $data_password = [
-            'password' => bcrypt($request->pass_conf)
-        ];
-        User::whereId(Auth::user()->id)->update($data_password);
+        // $data_password = [
+        //     'password' => bcrypt($request->pass_conf)
+        // ];
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->pass_baru)]);
         echo json_encode(["status" => TRUE]);
 
     }

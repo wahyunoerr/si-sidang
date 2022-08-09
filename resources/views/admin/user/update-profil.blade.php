@@ -193,28 +193,29 @@
                 </div>
                 <!--end::Label-->
                 <!--begin::Edit-->
-                <div id="kt_signin_password_edit" class="flex-row-fluid d-none">
+                <div id="kt_signin_password_edit" action="{{ route('password.update') }}" class="flex-row-fluid d-none" method="POST">
+                    @csrf
                     <!--begin::Form-->
                     <form id="kt_signin_change_password" class="form" novalidate="novalidate">
                         <div class="row mb-1">
                             <div class="col-lg-4">
                                 <div class="fv-row mb-0">
                                     <label for="pass_lama" class="form-label fs-6 fw-bolder mb-3">Password Lama</label>
-                                    <input type="password" class="form-control form-control-lg form-control-solid" name="pass_lama" id="currentpassword" />
+                                    <input type="password" class="form-control form-control-lg form-control-solid" name="pass_lama" id="currentpassword" autocomplete="pass_lama" />
                                     <span class="text-danger" id="nPassLama"></span>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="fv-row mb-0">
                                     <label for="pass_baru" class="form-label fs-6 fw-bolder mb-3">Password Baru</label>
-                                    <input type="password" class="form-control form-control-lg form-control-solid" name="pass_baru" id="newpassword" />
+                                    <input type="password" class="form-control form-control-lg form-control-solid" name="pass_baru" id="newpassword" autocomplete="pass_lama" />
                                     <span class="text-danger" id="nPassBaru"></span>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="fv-row mb-0">
                                     <label for="confirmpassword" class="form-label fs-6 fw-bolder mb-3">Konfirmasi Password Baru</label>
-                                    <input type="password" class="form-control form-control-lg form-control-solid" name="konf_pass" id="confirmpassword" />
+                                    <input type="password" class="form-control form-control-lg form-control-solid" name="konf_pass" id="confirmpassword" autocomplete="pass_lama" />
                                     <span class="text-danger" id="nKPassBaru"></span>
                                 </div>
                             </div>
