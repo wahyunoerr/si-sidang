@@ -20,7 +20,7 @@ class KpbController extends Controller
 
     public function index(){
         $mhs = User::role('mahasiswa')->get();
-        $dosen = Dosen::all();
+        $dosen = User::role('dosen')->get();
         $data = DB::table('tbl_kp')
                 ->leftjoin('users as mahasiswa','mahasiswa.id','tbl_kp.nama_mahasiswa')
                 ->leftjoin('users as dosen','dosen.id','tbl_kp.dosbing')

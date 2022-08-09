@@ -30,4 +30,5 @@ class DaftarSidangController extends Controller
 
         echo json_encode(["status" => TRUE]);
     }
+    
 }
