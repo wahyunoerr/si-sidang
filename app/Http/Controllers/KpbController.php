@@ -69,4 +69,23 @@ class KpbController extends Controller
 
         echo json_encode(["status" => TRUE]);
     }
+
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'nama_mahasiswa' => 'required|unique:tbl_kp',
+            'dosbing' => 'required'
+        ]);
+
+       $data = DB::table('tbl_kp')
+                ->leftjoin('users as mahasiswa','mahasiswa.id','tbl_kp.nama_mahasiswa')
+                ->leftjoin('users as dosen','dosen.id','tbl_kp.dosbing')
+                ->where('tbl_kp.id', $id)
+                ->select('tbl_kp.*','dosen.name as nama_dosen','mahasiswa.name as nama_mhs')
+                ->get();
+
+        
+
+        echo json_encode(["status" => TRUE]);
+    }
 }
