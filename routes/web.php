@@ -32,10 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-sidang', 'DaftarSidangController@index')->name('daftarsidang.index');
+    Route::post('/mahasiswa/daftar-sidang/simpan-kp', 'DaftarSidangController@simpankp')->name('daftarsidang.simpankp');
 });
 
 
-Route::group(['middleware' => 'auth', 'role:admin'], function () {
+Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/admin/manajemen-user','UserRoleController@index')->name('userrole.index');
     Route::post('/admin/manajemen-user/simpan','UserRoleController@simpan')->name('userrole.simpan');
     Route::delete('/admin/manajemen-user/hapus/{id}','UserRoleController@hapus')->name('userrole.hapus');

@@ -77,6 +77,7 @@
                                     <option value="{{ $r->id }}">{{ $r->name }}</option>
                                 @endforeach
                             </select>
+                            <span class="text-danger" id="nDospem1Error"></span>
                         </div>
                         <!--end::Col-->
                         <!--begin::Col-->
@@ -87,6 +88,7 @@
                                 <input type="file" class="form-control" name="file_kp" id="file_kp" />
                                 <!--end::Datepicker-->
                             </div>
+                            <span class="text-danger" id="nFileKpError"></span>
                             <!--end::Input-->
                         </div>
                         <!--end::Col-->
@@ -96,12 +98,14 @@
                     <div class="d-flex flex-column mb-8">
                         <label class="fs-6 fw-bold mb-2">Judul Kerja Praktek</label>
                         <textarea class="form-control form-control-solid" rows="3" name="judul_kp" placeholder="Tulis Judul KP Kamu"></textarea>
+                        <span class="text-danger" id="nJudulError"></span>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                        <button type="button" id="kt_modal_new_target_submit" onclick="simpankp()"
+                            class="btn btn-primary">
                             <span class="indicator-label">Simpan</span>
                         </button>
                     </div>

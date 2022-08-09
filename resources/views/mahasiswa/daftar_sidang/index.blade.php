@@ -101,7 +101,55 @@
     @include('mahasiswa.daftar_sidang.modal-semhas.index')
 
 
+    <script>
+        function tambah() {
+            typeSave = 'tambah';
+            $('#id').val('');
+            $('#modal_kp').trigger("reset");
+            $('.help-block').empty();
+            $('#modal_kp').modal('show');
+            $('.modal-title').text('Tambah Data Permission');
+        }
 
+
+        function simpankp() {
+
+            $.ajax({
+                url: "{{ route('daftarsidang.simpankp') }}",
+                data: new FormData($('#form')[0]),
+                type: "POST",
+                dataType: 'JSON',
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    if (data.status == true) {
+                        $('#form').trigger("reset");
+                        $('#modal-form').modal('hide');
+                        swal({
+                            title: 'Berhasil',
+                            type: 'success',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                        }).then(function() {
+                            reload();
+                        });
+                    }
+                },
+                error: function(response) {
+                    $('#nDospem1Error').text(response.responseJSON.errors.dospem1);
+                    $('#nJudulError').text(response.responseJSON.errors.judul_kp);
+                    $('#nFileKpError').text(response.responseJSON.errors.file_kp);
+                }
+            });
+        }
+
+        function reload() {
+            table.ajax.reload(null, false);
+        }
+    </script>
 
 
 
