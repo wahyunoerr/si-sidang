@@ -84,6 +84,8 @@ class KpbController extends Controller
                 ->select('tbl_kp.*','dosen.name as nama_dosen','mahasiswa.name as nama_mhs')
                 ->get();
 
+        
+
         echo json_encode(["status" => TRUE]);
     }
 }
