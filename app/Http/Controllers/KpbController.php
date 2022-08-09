@@ -20,11 +20,11 @@ class KpbController extends Controller
 
     public function index(){
         $mhs = User::role('mahasiswa')->get();
-        $dosen = User::role('dosen')->get();
+        $dosen = Dosen::all();
         $data = DB::table('tbl_kp')
-                ->join('users','users.id','=','tbl_kp.nama_mahasiswa')
-                ->join('tbl_dosen','tbl_dosen.id','=','tbl_kp.dosbing')
-                ->select('tbl_kp.*','tbl_dosen.*','users.name')
+                ->leftjoin('users as mahasiswa','mahasiswa.id','tbl_kp.nama_mahasiswa')
+                ->leftjoin('users as dosen','dosen.id','tbl_kp.dosbing')
+                ->select('tbl_kp.*','dosen.name as nama_dosen','mahasiswa.name as nama_mhs')
                 ->get();
         if (Request()->ajax()) {
             return DataTables::of($data)

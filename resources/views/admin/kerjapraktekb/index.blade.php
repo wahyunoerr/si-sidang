@@ -44,11 +44,11 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'nama_mhs',
+                        name: 'nama_mhs'
                     }, {
-                        data: 'nama',
-                        name: 'nama'
+                        data: 'nama_dosen',
+                        name: 'nama_dosen',
                     },
                     {
                         data: 'action',

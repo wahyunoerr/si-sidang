@@ -12,12 +12,8 @@ class DosenController extends Controller
 {
     public function index()
     {   $dosen = User::role('dosen')->get();
-        $data = DB::table('tbl_dosen')
-        ->join('users','users.id','=','tbl_dosen.nama')
-        ->select('tbl_dosen.*','users.id','users.name')
-        ->get();
         if (Request()->ajax()) {
-            return DataTables::of($data)
+            return DataTables::of($dosen)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
@@ -43,7 +39,7 @@ class DosenController extends Controller
                 ->make(true);
         }
 
-        return view('admin.dosen.index', compact('dosen','data'));
+        return view('admin.dosen.index', compact('dosen'));
     }
 
     public function simpan(Request $request)
