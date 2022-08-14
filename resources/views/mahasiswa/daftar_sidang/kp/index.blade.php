@@ -40,7 +40,7 @@
                     <!--end::Heading-->
                     <!--begin::Input group-->
                     <div class="row g-9 mb-8">
-                        <div class="col-md-6 fv-row">
+                        <div class="col-md-12 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Nama Lengkap</span>
@@ -52,7 +52,7 @@
                                 name="nama_lengkap" value="{{ Auth::user()->name }}" readonly />
                         </div>
 
-                        <div class="col-md-6 fv-row">
+
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">NIM</span>
@@ -62,10 +62,8 @@
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid" id="nim" name="nim"
                                 value="{{ Auth::user()->serial_user }}" readonly />
-                        </div>
+
                     </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
                         <div class="col-md-6 fv-row">

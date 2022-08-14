@@ -38,8 +38,8 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::post('/mahasiswa/daftar-sidang/simpan-kp', 'DaftarSidangController@simpankp')->name('daftarsidang.simpankp');
 
     //Skripsi
-    Route::get('/mahasiswa/daftar_skripsi', 'DaftarSkripsiController@index')->name('daftarskripsi.index');
-    Route::post('/mahasiswa/daftar_skripsi/simpan-skripsi', 'DaftarSkripsiController@simpansk')->name('daftarskripsi.simpansk');
+    Route::get('/mahasiswa/daftar-skripsi', 'DaftarSkripsiController@index')->name('daftarskripsi.index');
+    Route::post('/mahasiswa/daftar-skripsi/simpan-skripsi', 'DaftarSkripsiController@simpansk')->name('daftarskripsi.simpansk');
 });
 
 

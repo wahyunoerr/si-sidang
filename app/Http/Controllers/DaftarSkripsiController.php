@@ -10,7 +10,7 @@ class DaftarSkripsiController extends Controller
 {
     public function index(){
         $user = User::role('dosen')->get();
-        return view('mahasiswa.daftar_sidang.index', compact('user'));
+        return view('mahasiswa.daftar_sidang.proposal.index', compact('user'));
     }
 
     public function simpansk(Request $request){
@@ -19,16 +19,14 @@ class DaftarSkripsiController extends Controller
         //     'dospem2' => 'required|different:dospem1',
         // ]);
 
-       $data = DaftarSkripsi::create([
+        DaftarSkripsi::create([
             'nim' => $request->nim,
             'nama_lengkap' => $request->nama_lengkap,
             'pembimbing_satu' => $request->dospem1,
             'pembimbing_dua' => $request->dospem2,
-            'judul_skripsi' => $request->judul_skripsi,
+            'judul' => $request->judul_skripsi,
 
         ]);
-
-        dd($data);
 
         echo json_encode(["status" => TRUE]);
     }

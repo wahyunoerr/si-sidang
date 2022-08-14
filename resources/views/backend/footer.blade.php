@@ -59,7 +59,7 @@
 <script src="{{ asset('backend/js/custom/modals/upgrade-plan.js') }}"></script>
 <script src="{{ asset('backend/js/custom/intro.js') }}"></script>
 <script src="{{ asset('backend/js/custom/modals/users-search.js') }}"></script>
-
+<script src="{{ asset('backend/js/custom/authentication/sign-in/general.js') }}"></script>
 <script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 

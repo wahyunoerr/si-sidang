@@ -33,8 +33,7 @@
         </div>
         <div class="col-xl-4">
             <!--begin::Statistics Widget 5-->
-            <a href="#" class="card bg-primary hoverable card-xl-stretch mb-xl-8"  data-bs-toggle="modal"
-            data-bs-target="#modal-skripsi">
+            <a href="{{ url('/mahasiswa/daftar-skripsi') }}" class="card bg-primary hoverable card-xl-stretch mb-xl-8">
                 <!--begin::Body-->
                 <div class="card-body">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen008.svg-->
