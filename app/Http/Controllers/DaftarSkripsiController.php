@@ -24,7 +24,7 @@ class DaftarSkripsiController extends Controller
             'nama_lengkap' => $request->nama_lengkap,
             'pembimbing_satu' => $request->dospem1,
             'pembimbing_dua' => $request->dospem2,
-            'judul' => $request->judul_skripsi,
+            'judul_skripsi' => $request->judul,
 
         ]);
 

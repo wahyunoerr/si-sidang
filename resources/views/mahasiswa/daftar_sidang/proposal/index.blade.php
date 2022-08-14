@@ -1,15 +1,13 @@
 @extends('backend.template')
 @section('halaman-sekarang', 'Daftar Skripsi')
 @section('content')
-
-
     <div class="row g-5 g-xl-8">
         <div class="col-xl-12">
             <div class="card shadow-sm">
                 <div class="card-header">
                     <h3 class="card-title">Form Pendaftaran</h3>
                     <div class="card-toolbar">
-                        <form id="form-skripsi" enctype="multipart/form-data" method="POST">
+                        <form id="form" enctype="multipart/form-data" method="POST">
                             <a href="{{ url('/mahasiswa/daftar-sidang') }}" class="btn btn-danger btn-sm">Kembali</a>
                     </div>
                 </div>
@@ -94,7 +92,6 @@
     </div>
 
     <script>
-
         function simpansk() {
             $.ajax({
                 url: "{{ route('daftarskripsi.simpansk') }}",
@@ -116,7 +113,7 @@
                             allowEscapeKey: false,
                             allowEnterKey: false,
                         }).then(function() {
-                            reload();
+                            window.location.href = "{{ route('daftarsidang.index') }}";
                         });
                     }
                 },
@@ -126,10 +123,6 @@
                     $('#nJudulError').text(response.responseJSON.errors.judul_skripsi);
                 }
             });
-        }
-
-        function reload() {
-            table.ajax.reload(null, false);
         }
     </script>
 

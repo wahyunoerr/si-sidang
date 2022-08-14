@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\KerjaPraktek;
+use App\Models\DaftarSkripsi;
+use Auth;
 
 class DaftarSidangController extends Controller
 {
     public function index(){
         $user = User::role('dosen')->get();
-        return view('mahasiswa.daftar_sidang.index', compact('user'));
+        $usr = DaftarSkripsi::where('nama_lengkap', Auth::user()->name)->first();
+        return view('mahasiswa.daftar_sidang.index', compact('user','usr'));
     }
 
     public function simpankp(Request $request){
