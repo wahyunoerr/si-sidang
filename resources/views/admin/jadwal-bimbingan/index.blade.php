@@ -1,5 +1,5 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Manajemen User')
+@section('halaman-sekarang', 'Manajemen Jadwal Bimbingan')
 @section('content')
 
 
@@ -8,8 +8,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-right">
-                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah
-                            User</button>
+                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>
+                            Dosen</button>
                     </div>
                 </div>
 
@@ -18,10 +18,7 @@
                         <thead>
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Nama</th>
-                                <th>NIDN/NIM</th>
-                                <th>Email</th>
-                                <th>Role</th>
+                                <th>Nama Dosen</th>
                                 <th width="10%">Aksi</th>
                             </tr>
                         </thead>
@@ -33,35 +30,20 @@
         </div>
     </div>
 
-
-    @include('admin.user-role.modal')
-
+    @include('admin.jadwal-bimbingan-kp.create')
 
     <script type="text/javascript">
         $(document).ready(function() {
             table = $('#example2').DataTable({
                 processing: true,
                 serverside: true,
-                ajax: "{{ route('userrole.index') }}",
+                ajax: "{{ route('kpj.index) }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
-                    },
-                    {
+                    }, {
                         data: 'name',
                         name: 'name'
-                    },
-                    {
-                        data: 'serial_user',
-                        name: 'serial_user'
-                    },
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
-                    {
-                        data: 'role',
-                        name: 'role'
                     },
                     {
                         data: 'action',
@@ -82,17 +64,44 @@
             $('#form').trigger("reset");
             $('.help-block').empty();
             $('#modal-form').modal('show');
-            $('.modal-title').text('Tambah Data Ruangan');
-            $('#foto-sebelumnya').hide();
-            $('#foto-preview').empty();
+            $('.modal-title').text('Tambah Data Permission');
         }
+
+
+        function get(id) {
+            typeSave = 'update';
+            $.ajax({
+                url: "{{ url('admin/edit-dosen') }}" + "/" + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    $('[name="id"]').val(data.id);
+                    $('[name="nama"]').val(data.nama);
+                    $('#modal-form').modal('show');
+                    $('.modal-title').text('Edit Permission');
+                    $('.help-block').empty();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+            });
+        }
+
 
         function simpan() {
             var url;
             var id = $('#id').val();
             if (typeSave == 'tambah') {
-                url = "{{ route('userrole.simpan') }}";
-            }
+                url = "{{ route('dosen.simpan') }}";
+            } // else {
+            //     url = "{{ url('admin/update-permission') }}" + "/" + id
+            // }
             $.ajax({
                 url: url,
                 data: new FormData($('#form')[0]),
@@ -118,12 +127,7 @@
                     }
                 },
                 error: function(response) {
-                    $('#nNameError').text(response.responseJSON.errors.name);
-                    $('#nEmailError').text(response.responseJSON.errors.email);
-                    $('#nUserNameError').text(response.responseJSON.errors.username);
-                    $('#nSerialUserError').text(response.responseJSON.errors.serial_user);
-                    $('#nNoTelpError').text(response.responseJSON.errors.no_telp);
-                    $('#nRoleError').text(response.responseJSON.errors.role);
+                    $('#nNama').text(response.responseJSON.errors.nama);
                 }
             });
         }
@@ -145,8 +149,8 @@
                 buttons: true
             }).then(function() {
                 $.ajax({
-                    url: "{{ url('admin/manajemen-user/hapus') }}" + "/" + id,
-                    type: "delete",
+                    url: "{{ url('admin/hapus-permission') }}" + "/" + id,
+                    type: "get",
                     dataType: "JSON",
                     success: function() {
                         swal({
@@ -182,7 +186,6 @@
             });
         }
     </script>
-
 
 
 @endsection

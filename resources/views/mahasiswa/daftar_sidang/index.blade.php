@@ -1,11 +1,6 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Daftar Sidang')
+@section('halaman-sekarang', 'Daftar')
 @section('content')
-
-
-
-
-
 
     <div class="row g-5 g-xl-8">
         <div class="col-xl-4">
@@ -29,7 +24,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Daftar Sidang KP</div>
+                    <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Daftar KP</div>
                     <div class="fw-bold text-gray-100">Status : Opened</div>
                 </div>
                 <!--end::Body-->
@@ -38,7 +33,8 @@
         </div>
         <div class="col-xl-4">
             <!--begin::Statistics Widget 5-->
-            <a href="#" class="card bg-primary hoverable card-xl-stretch mb-xl-8">
+            <a href="#" class="card bg-primary hoverable card-xl-stretch mb-xl-8"  data-bs-toggle="modal"
+            data-bs-target="#modal-skripsi">
                 <!--begin::Body-->
                 <div class="card-body">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen008.svg-->
@@ -60,7 +56,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Daftar Seminar Proposal</div>
+                    <div class="text-white fw-bolder fs-2 mb-2 mt-5">Daftar Skripsi</div>
                     <div class="fw-bold text-white">Status : Opened</div>
                 </div>
                 <!--end::Body-->
@@ -102,20 +98,19 @@
 
 
     <script>
-        function tambah() {
-            typeSave = 'tambah';
+        function tambahskripsi() {
+            typeSave = 'tambahskripsi';
             $('#id').val('');
-            $('#modal_kp').trigger("reset");
+            $('#modal-skripsi').trigger("reset");
             $('.help-block').empty();
-            $('#modal_kp').modal('show');
-            $('.modal-title').text('Tambah Data Permission');
+            $('#modal-skripsi').modal('show');
+            $('.modal-title').text('Daftar');
         }
 
-
-        function simpankp() {
+        function simpansk() {
 
             $.ajax({
-                url: "{{ route('daftarsidang.simpankp') }}",
+                url: "{{ route('daftarskripsi.simpansk') }}",
                 data: new FormData($('#form')[0]),
                 type: "POST",
                 dataType: 'JSON',
@@ -140,8 +135,8 @@
                 },
                 error: function(response) {
                     $('#nDospem1Error').text(response.responseJSON.errors.dospem1);
-                    $('#nJudulError').text(response.responseJSON.errors.judul_kp);
-                    $('#nFileKpError').text(response.responseJSON.errors.file_kp);
+                    $('#nDospem2Error').text(response.responseJSON.errors.dospem2);
+                    $('#nJudulError').text(response.responseJSON.errors.judul_skripsi);
                 }
             });
         }

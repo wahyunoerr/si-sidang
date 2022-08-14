@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\KP;
-use App\Models\Dosen;
 use DataTables;
 use DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class KpbController extends Controller
 {
@@ -84,7 +83,7 @@ class KpbController extends Controller
                 ->select('tbl_kp.*','dosen.name as nama_dosen','mahasiswa.name as nama_mhs')
                 ->get();
 
-        
+
 
         echo json_encode(["status" => TRUE]);
     }

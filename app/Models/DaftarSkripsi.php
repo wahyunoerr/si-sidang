@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KerjaPraktek extends Model
+class DaftarSkripsi extends Model
 {
-    protected $table = 'table_sidang_kp';
+    protected $table = 'tbl_daftar_skripsi';
     protected $fillable = [
         'nim',
         'nama_lengkap',
-        'pembimbing',
-        'judul_kp',
-        'file_bukti',
-        'status_kp'
+        'pembimbing_satu',
+        'pembimbing_dua',
+        'judul_skripsi'
     ];
 }

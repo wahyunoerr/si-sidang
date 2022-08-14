@@ -32,7 +32,7 @@
                         <h1 class="mb-3">Daftar Sidang Kerja Praktek</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">Jika sudah disetujui dosen pembimbing silahkan
+                        <div class="text-muted fw-bold fs-5">Jika sudah melakukan pembayaran silahkan
                             mendaftar.
                         </div>
                         <!--end::Description-->
