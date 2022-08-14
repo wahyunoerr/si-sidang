@@ -32,6 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+Route::group(['middleware' => 'role:dosen'], function () {
+    Route::get('/admin/bimbingan-skripsi-dospem1', 'SkripsibController@indexDospem1')->name('dospem1.index');
+    Route::post('/admin/bimbingan-skripsi-dospem1/update/{id}', 'SkripsibController@update')->name('dospem1.update');
+});
+
 Route::group(['middleware' => 'role:mahasiswa'], function () {
     //KP
     Route::get('/mahasiswa/daftar-sidang', 'DaftarSidangController@index')->name('daftarsidang.index');
@@ -41,6 +46,8 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-skripsi', 'DaftarSkripsiController@index')->name('daftarskripsi.index');
     Route::post('/mahasiswa/daftar-skripsi/simpan-skripsi', 'DaftarSkripsiController@simpansk')->name('daftarskripsi.simpansk');
 });
+
+
 
 
 Route::group(['middleware' => 'role:admin'], function () {
@@ -72,7 +79,7 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::post('/admin/bimbingan-kp/simpan', 'KpbController@simpan')->name('kpb.simpan');
 
     //bimbingan skripsi
-    Route::get('/admin/bimbingan-skripsi', 'SkripsibController@index')->name('skb.index');
+    
 
     //bimbingan proposal
     Route::get('/admin/bimbingan-proposal', 'ProposalbController@index')->name('pb.index');
