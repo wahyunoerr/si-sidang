@@ -37,7 +37,7 @@
             table = $('#example2').DataTable({
                 processing: true,
                 serverside: true,
-                ajax: "{{ route('dospem1.index') }}",
+                ajax: "{{ route('dospem.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'

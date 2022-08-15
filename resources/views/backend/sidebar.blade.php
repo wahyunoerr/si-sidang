@@ -194,7 +194,7 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('/admin/bimbingan-skripsi-dospem1') }}">
+                                <a class="menu-link" href="{{ url('/admin/bimbingan-skripsi') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

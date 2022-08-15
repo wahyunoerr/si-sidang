@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'role:dosen'], function () {
 
     //pembimbing skripsi 1
-    Route::get('/admin/bimbingan-skripsi-dospem1', 'SkripsibController@indexDospem1')->name('dospem1.index');
+    Route::get('/admin/bimbingan-skripsi', 'SkripsibController@index')->name('dospem.index');
     Route::post('/admin/bimbingan-skripsi-dospem1/update/{id}', 'SkripsibController@update')->name('dospem1.update');
 
     //pembimbing skripsi 2
