@@ -30,6 +30,25 @@ class SkripsibController extends Controller
         return view('admin.skripsib.index');
     }
 
+    public function indexDospem2(){
+        $sk2 = DaftarSkripsi::where('pembimbing_dua', Auth::id())->get();
+        if(Request()->ajax()){
+            return Datatables::of($sk2)
+            ->addIndexColoumn()
+            ->addColoumn('status', function($tam){
+                if($tam->status_proposal == 0){
+                    $btn1 = '<a href="javascript:void(0)" title="Edit" class="btn btn-warning btn-sm" onclick="update('."'".$tam->id."'".')">Pending</a>';
+                } else if ($tam->status_proposal == 1){
+                    $btn1 = '<a href="javascript:void(0)" title="Edit" class="btn btn-success btn-sm" onclick="update('."'".$tam->id."'".')">Accepted</a>';
+                }
+
+                return $btn1;
+            })
+            ->rowColoumns(['status'])
+            ->make(true);
+        }
+        return view('admin.skripsib.index');
+    }
 
     public function update($id){
         $data = DaftarSkripsi::findOrFail($id);

@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    @include('admin.jadwal-bimbingan-kp.create')
+    @include('admin.jadwal-bimbingan.create')
 
     <script type="text/javascript">
         $(document).ready(function() {

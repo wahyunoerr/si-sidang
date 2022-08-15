@@ -33,8 +33,13 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'role:dosen'], function () {
+
+    //pembimbing skripsi 1
     Route::get('/admin/bimbingan-skripsi-dospem1', 'SkripsibController@indexDospem1')->name('dospem1.index');
     Route::post('/admin/bimbingan-skripsi-dospem1/update/{id}', 'SkripsibController@update')->name('dospem1.update');
+
+    //pembimbing skripsi 2
+    Route::get('/admin/bimbingan-skripsi-dospem2', 'SkripsibController@indexDospem2')->name('dospem2.index');
 });
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
@@ -79,7 +84,7 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::post('/admin/bimbingan-kp/simpan', 'KpbController@simpan')->name('kpb.simpan');
 
     //bimbingan skripsi
-    
+
 
     //bimbingan proposal
     Route::get('/admin/bimbingan-proposal', 'ProposalbController@index')->name('pb.index');

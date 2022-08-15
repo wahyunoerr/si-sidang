@@ -14,10 +14,10 @@ class DaftarSkripsiController extends Controller
     }
 
     public function simpansk(Request $request){
-        // $request->validate([
-        //     'dospem1' => 'required',
-        //     'dospem2' => 'required|different:dospem1',
-        // ]);
+        $request->validate([
+            'dospem1' => 'required',
+            'dospem2' => 'required|different:dospem1',
+        ]);
 
         DaftarSkripsi::create([
             'nim' => $request->nim,
