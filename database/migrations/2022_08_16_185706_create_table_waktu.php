@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToUsers extends Migration
+class CreateTableWaktu extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddStatusToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('status_bimbingan')->default(0);
-            $table->tinyInteger('status_lulus')->default(0);
+        Schema::create('tbl_waktu', function (Blueprint $table) {
+            $table->id();
+            $table->time('waktu_mulai');
+            $table->time('waktu_selesai');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddStatusToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('table_waktu');
     }
 }

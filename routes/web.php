@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Sempro;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'role:dosen'], function () {
     Route::get('/admin/bimbingan-skripsi-dospem1', 'SkripsibController@indexDospem1')->name('dospem1.index');
     Route::post('/admin/bimbingan-skripsi-dospem1/update/{id}', 'SkripsibController@update')->name('dospem1.update');
+
+    Route::get('/admin/bimbingan-skripsi-dospem2', 'SkripsibController@indexDospem2')->name('dospem2.index');
+    Route::post('/admin/bimbingan-skripsi-dospem2/update/{id}', 'SkripsibController@update2')->name('dospem2.update');
+
 });
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
@@ -45,9 +50,24 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     //Skripsi
     Route::get('/mahasiswa/daftar-skripsi', 'DaftarSkripsiController@index')->name('daftarskripsi.index');
     Route::post('/mahasiswa/daftar-skripsi/simpan-skripsi', 'DaftarSkripsiController@simpansk')->name('daftarskripsi.simpansk');
+    
+
+    Route::get('mahasiswa/daftar-sidang-skripsi','DaftarSidangSkripsiController@create')->name('sidangsempro.index');
+    Route::post('mahasiswa/daftar-sidang-skripsi/store','DaftarSidangSkripsiController@store')->name('sidangsempro.store');
 });
 
 
+Route::group(['middleware' => 'role:kaprodi'], function () {
+    Route::get('/kaprodi/manajemen-jadwal/proposal','SkripsijController@index')->name('man-pro.index');
+    Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-file/{id}', function ($id) {
+        $data = Sempro::findorfail($id);
+        return response()->file($data->file_proposal);
+    })->name('sempro.lihat');
+    Route::get('/kaprodi/manajemen-jadwal/proposal/waktu/{id}','SkripsijController@index')->name('man-pro.index');
+
+    Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'SkripsijController@edit')->name('sempro.edit');
+    Route::post('/kaprodi/manajemen-jadwal/proposal/update/{id}', 'SkripsijController@simpanJadwal')->name('sempro.update');
+});
 
 
 Route::group(['middleware' => 'role:admin'], function () {

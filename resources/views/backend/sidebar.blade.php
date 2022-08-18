@@ -99,7 +99,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-title">Daftar Sidang</span>
+                            <span class="menu-title">Daftar</span>
                         </a>
                     </div>
                 @endrole
@@ -347,7 +347,7 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/jadwal-proposal') }}">
+                                <a class="menu-link" href="{{ url('kaprodi/manajemen-jadwal/proposal') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

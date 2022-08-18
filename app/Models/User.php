@@ -26,6 +26,8 @@ class User extends Authenticatable
         'foto',
         'serial_user',
         'password',
+        'status_bimbingan1',
+        'status_bimbingan2'
     ];
 
     /**

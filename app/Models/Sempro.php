@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sempro extends Model
 {
-    protected $table = 'table_sidang_kp';
+    protected $table = 'table_sidang_proposal';
     protected $fillable = [
         'nim',
         'nama_lengkap',

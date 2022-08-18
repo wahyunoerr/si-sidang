@@ -8,8 +8,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-right">
-                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Jadwal Bimbingan
-                            Skripsi</button>
+                        <a href="{{ route('dospem1.index') }}" class="btn btn-sm btn-danger"><i class="fas fa-eye"></i>
+                            Pembimbing 1</a>
                     </div>
                 </div>
 
@@ -37,7 +37,7 @@
             table = $('#example2').DataTable({
                 processing: true,
                 serverside: true,
-                ajax: "{{ route('dospem1.index') }}",
+                ajax: "{{ route('dospem2.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -55,8 +55,8 @@
                         name: 'judul_skripsi'
                     },
                     {
-                        data: 'status',
-                        name: 'status',
+                        data: 'status_bimbingan2',
+                        name: 'status_bimbingan2',
                         orderable: false,
                         searchable: false
                     },
@@ -68,7 +68,7 @@
         })
 
 
-        function update(id) {
+        function update2(id) {
             swal({
                 title: 'Yakin? Data tidak bisa diubah',
                 type: 'warning',
@@ -81,7 +81,7 @@
                 buttons: true
             }).then(function() {
                 $.ajax({
-                    url: "{{ url('admin/bimbingan-skripsi-dospem1/update') }}" + "/" + id,
+                    url: "{{ url('admin/bimbingan-skripsi-dospem2/update') }}" + "/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function() {
