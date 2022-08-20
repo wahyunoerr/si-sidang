@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableWaktu extends Migration
+class AddPembToTblJadwalSempro extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateTableWaktu extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_waktu', function (Blueprint $table) {
-            $table->id();
-            $table->time('waktu_mulai');
-            $table->time('waktu_selesai');
-            $table->timestamps();
+        Schema::table('tbl_jadwal_proposal', function (Blueprint $table) {
+            $table->string('pembimbing_1');
+            $table->string('pembimbing_2');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateTableWaktu extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_waktu');
+        Schema::table('tbl_jadwal_sempro', function (Blueprint $table) {
+            //
+        });
     }
 }

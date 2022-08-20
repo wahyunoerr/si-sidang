@@ -63,10 +63,8 @@ Route::group(['middleware' => 'role:kaprodi'], function () {
         $data = Sempro::findorfail($id);
         return response()->file($data->file_proposal);
     })->name('sempro.lihat');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/waktu/{id}','SkripsijController@index')->name('man-pro.index');
-
     Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'SkripsijController@edit')->name('sempro.edit');
-    Route::post('/kaprodi/manajemen-jadwal/proposal/update/{id}', 'SkripsijController@simpanJadwal')->name('sempro.update');
+    Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal', 'SkripsijController@buatJadwal')->name('sempro.buatjadwal');
 });
 
 
