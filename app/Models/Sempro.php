@@ -15,6 +15,13 @@ class Sempro extends Model
         'pembimbing_dua',
         'judul_proposal',
         'file_proposal',
-        'status_proposal'
+        'status_proposal',
+        'tanggal_sidang',
+        'waktu_mulai',
+        'waktu_selesai',
+        'ketua_sidang',
+        'penguji_1',
+        'penguji_2',
+        'ketua_sidang'
     ];
 }

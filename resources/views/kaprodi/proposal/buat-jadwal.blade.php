@@ -1,132 +1,113 @@
-@extends('backend.template')
-@section('content')
-    <div class="right_col" role="main">
-        <div class="container">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>@yield('title')</h2>
-                    <div class="clearfix"></div>
+<div class="modal fade" id="modal_jadwal_proposal" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                transform="rotate(45 7.41422 6)" fill="black" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
                 </div>
-                <div class="x_content">
-                    <form id="form" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                        <span class="required">Nomor Daftar</span>
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Nomor Daftar"></i>
-                                    </label>
-                                    <input type="text" name="no_daftar" id="no_daftar" value="{{ $tanggal }}"
-                                        class="form-control solid" readonly>
-                                    <span class="text-danger" id="nNoDaftarError"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="required fs-6 fw-bold mb-2">Nama Mahasiswa</label>
-                                    <select class="form-select form-select-solid" data-control="select2"
-                                        data-hide-search="true" data-placeholder="Pilih mahasiswa untuk membuat jadwal"
-                                        name="dospem1" id="Nama Mahasiswa">
-                                        <option value="" holder>Pilih Mahasiswa</option>
-                                        @foreach ($sempro as $s)
-                                            <option value="{{ $s->id }}">{{ $s->nama_lengkap }}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger" id="nMhsError"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="pt-4"></div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                        <span class="required">Penguji 1</span>
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Penguji 1"></i>
-                                    </label>
-                                    <select class="form-select form-select-solid" data-control="select2"
-                                        data-hide-search="true" data-placeholder="Pilih Penguji 1 untuk membuat jadwal"
-                                        name="penguji_1" id="penguji_1">
-                                        <option value="" holder>Pilih Penguji 1</option>
-                                        @foreach ($dosen as $d)
-                                            <option value="{{ $d->id }}">{{ $d->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger" id="nPenguji1Error"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                        <span class="required">Penguji 2</span>
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Penguji 2"></i>
-                                    </label>
-                                    <select class="form-select form-select-solid" data-control="select2"
-                                        data-hide-search="true" data-placeholder="Pilih Penguji 2 untuk membuat jadwal"
-                                        name="penguji_2" id="penguji_2">
-                                        <option value="" holder>Pilih Penguji 2</option>
-                                        @foreach ($dosen as $d)
-                                            <option value="{{ $d->id }}">{{ $d->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger" id="nPenguji2Error"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Diskon</label>
-                                    <input type="number" name="diskon" id="diskon" class="form-control" max="99"
-                                        maxlength="2">
-                                    <div class="help-block text-danger"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Harga Diskon</label>
-                                    <input type="number" name="harga_diskon" id="harga_diskon"
-                                        class="form-control"readonly="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Deskripsi</label>
-                                    <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
-                                    <div class="help-block text-danger"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Thumbnail</label>
-                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control"
-                                        accept=".png, .jpg, .jpeg">
-                                    <div class="help-block text-danger"></div>
-                                </div>
-                                <div id="thumbnail-preview"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Foto</label>
-                                    <input type="file" name="foto[]" id="foto" class="form-control"
-                                        accept=".jpeg, .jpg, .png" multiple>
-                                    <div class="help-block text-danger"></div>
-                                </div>
-                                <div id="foto-preview"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-sm" type="button" onclick="simpan()">Simpan</button>
-                            <a href="#" class="btn btn-warning btn-sm">Kembali</a>
-                        </div>
-                    </form>
-                </div>
+                <!--end::Close-->
             </div>
+            <!--begin::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                <form id="form" class="form" action="#" method="POST">
+                    <input type="hidden" id="id" name="id" value="">
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Atur Jadwal</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-muted fw-bold fs-5">Jika sudah melakukan pembayaran silahkan
+                            mendaftar.
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="row g-9 mb-8">
+                        <!--begin::Col-->
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Tanggal Sidang</label>
+                            <input type="date" name="tanggal_sidang" id="tanggal_sidang"
+                                class="form-control form-control-solid">
+                            <span class="text-danger" id="nTanggalSidangError"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Waktu Mulai Sidang</label>
+                            <input type="time" name="waktu_mulai" id="waktu_mulai"
+                                class="form-control form-control-solid">
+                            <span class="text-danger" id="nWaktuMulaiError"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Waktu Selesai Sidang</label>
+                            <input type="time" name="waktu_selesai" id="waktu_selesai"
+                                class="form-control form-control-solid">
+                            <span class="text-danger" id="nWaktuSelesaiError"></span>
+                        </div>
+                    </div>
+
+                    <div class="row g-9 mb-8">
+                        <!--begin::Col-->
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Penguji 1</label>
+                            <select name="penguji_1" id="penguji_1" class="form-control form-control-solid">
+                                @foreach ($dosen as $d)
+                                    <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="nPenguji1Error"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Penguji 2</label>
+                            <select name="penguji_2" id="penguji_2" class="form-control form-control-solid">
+                                @foreach ($dosen as $d)
+                                    <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="nPenguji2Error"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Ketua Sidang</label>
+                            <select name="ketua_sidang" id="ketua_sidang" class="form-control form-control-solid">
+                                @foreach ($dosen as $d)
+                                    <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="nKetuaSidangError"></span>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" id="kt_modal_new_target_submit" onclick="simpanJadwal()"
+                            class="btn btn-primary">
+                            <span class="indicator-label">Simpan</span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end:Form-->
+            </div>
+            <!--end::Modal body-->
         </div>
+        <!--end::Modal content-->
     </div>
-@endsection
+    <!--end::Modal dialog-->
+</div>
+<!--end::Modal - New Target-->
