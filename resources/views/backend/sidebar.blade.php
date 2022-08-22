@@ -425,7 +425,7 @@
             onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();"
             class="btn btn-danger w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click"
-            title="200+ in-house components and 3rd-party plugins">Log Out</a>
+            title="Apakah Anda yakin ingin keluar??">Log Out</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
