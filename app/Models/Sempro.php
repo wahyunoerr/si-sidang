@@ -22,6 +22,8 @@ class Sempro extends Model
         'ketua_sidang',
         'penguji_1',
         'penguji_2',
-        'ketua_sidang'
+        'ketua_sidang',
+        'catatan_revisi',
+        'catatan_revisi2'
     ];
 }

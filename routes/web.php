@@ -18,6 +18,9 @@ use App\Models\Sempro;
 Route::get('/', 'HomeController@index2');
 Route::get('/kaprodi/manajemen-jadwal/proposal','SkripsijController@index')->name('man-pro.index');
 
+
+
+
 Auth::routes();
 
 
@@ -39,6 +42,19 @@ Route::group(['middleware' => 'role:dosen'], function () {
 
     Route::get('/admin/bimbingan-skripsi-dospem2', 'SkripsibController@indexDospem2')->name('dospem2.index');
     Route::post('/admin/bimbingan-skripsi-dospem2/update/{id}', 'SkripsibController@update2')->name('dospem2.update');
+
+    Route::get('/penguji/manajemen-penguji/', 'ProposalpController@index')->name('pengpro1.index');
+    Route::get('/penguji/manajemen-penguji/info/{id}', 'ProposalpController@infoPenguji1')->name('pengpro1.info');
+    Route::post('/penguji/manajemen-penguji/update-status-proposal/{id}', 'ProposalpController@updatePenguji1')->name('pengpro1.update');
+    Route::get('/admin/penguji-proposal', 'ProposalpController@index')->name('pp.index');
+    Route::get('/penguji/manajemen-penguji/ketua-sidang', 'ProposalpController@index2')->name('pengpro3.index');
+    Route::get('/penguji/manajemen-penguji-3/', 'ProposalpController@index2')->name('ket_sidang.index');
+    Route::get('/penguji/manajemen-penguji/penguji-2', 'ProposalpController@index3')->name('pengpro2.index');
+    Route::get('/penguji/manajemen-penguji-penguji-2/', 'ProposalpController@index3')->name('penguji_2.index');
+    Route::get('/penguji/manajemen-penguji/edit-revisi1/{id}', 'ProposalpController@getRevisi')->name('editRevisi1.edit');
+    Route::post('/penguji/manajemen-penguji/simpanRevisi1/{id}', 'ProposalpController@simpanRevisi1')->name('simpanRevisi1.simpan');
+    Route::get('/penguji/manajemen-penguji/edit-revisi2/{id}', 'ProposalpController@getRevisi2')->name('editRevisi2.edit');
+    Route::post('/penguji/manajemen-penguji/simpanRevisi2/{id}', 'ProposalpController@simpanRevisi2')->name('simpanRevisi2.simpan');
 
 });
 
@@ -112,7 +128,7 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::get('/admin/penguji-skripsi', 'SkripsipController@index')->name('skp.index');
 
     //penguji proposal
-    Route::get('/admin/penguji-proposal', 'ProposalpController@index')->name('pp.index');
+
 
 
     //jadwal kp
@@ -124,6 +140,8 @@ Route::group(['middleware' => 'role:admin'], function () {
     //jadwal proposal
     Route::get('/admin/jadwal-proposal', 'ProposaljController@index')->name('pj.index');
 });
+
+
 
 Route::group(['middleware' => 'role:admin|dosen'], function () {
     //penguji kp
