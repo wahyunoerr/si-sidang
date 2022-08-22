@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('backend.template')
 @section('content')
     <center>
         <img src="{{ asset('backend/media/logos/logo-umri.png') }}" width="100px" height="100px" alt="">

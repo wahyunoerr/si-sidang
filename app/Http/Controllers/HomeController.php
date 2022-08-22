@@ -24,4 +24,10 @@ class HomeController extends Controller
         $data = Sempro::where('tanggal_sidang', Carbon::today()->toDateString())->get();
         return view('home',compact('data'));
     }
+
+    public function index2()
+    {
+        $data = Sempro::where('tanggal_sidang', Carbon::today()->toDateString())->get();
+        return view('welcome',compact('data'));
+    }
 }

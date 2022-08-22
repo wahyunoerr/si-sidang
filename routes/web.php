@@ -15,7 +15,7 @@ use App\Models\Sempro;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index2');
 Route::get('/kaprodi/manajemen-jadwal/proposal','SkripsijController@index')->name('man-pro.index');
 
 Auth::routes();
