@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="float-right">
+                    <div class="d-flex my-6">
                         <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah
                             User</button>
                     </div>

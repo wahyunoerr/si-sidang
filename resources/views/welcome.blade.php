@@ -11,7 +11,10 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link href="{{ asset('backend/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.css') }}">
+    <script src="{{ asset('backend/vendor/jquery/jquery.min.js') }}"></script>
 
     <style>
         body {
@@ -37,38 +40,108 @@
         @endif
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-            </div>
-
-            <div class="mt-8 bg-white light:bg-light-800 overflow-hidden shadow sm:rounded-lg">
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="p-6">
-                        <table class="table table-striped-columns">
-                            <thead>
-                                <tr>
-                                    <td>Tanggal Sidang</td>
-                                    <td>Waktu Mulai</td>
-                                    <td>Waktu Selesai</td>
-                                    <td>Judul Proposal</td>
-                                    <td>Penguji 1</td>
-                                    <td>Penguji 2</td>
-                                    <td>Ketua Sidang</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex my-8">
+                        <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Jadwal Sidang Kerja Praktek</h1>
                     </div>
+                </div>
 
+                <div class="card-body table-responsive">
+                    <table id="tabeljadwal" class="table table-striped-columns">
+                        <thead>
+                            <tr>
+                                <td>Nama Mahasiswa</td>
+                                <td>Nama Mahasiswa</td>
+                                <td>Nama Mahasiswa</td>
+                                <td>NIM</td>
+                                <td>Tanggal Sidang</td>
+                                <td>Waktu Mulai</td>
+                                <td>Waktu Selesai</td>
+                                <td>Ruangan</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
+                                <td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
+                                <td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>GA.01</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex my-8">
+                        <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Jadwal Sidang Proposal</h1>
+                    </div>
+                </div>
 
+                <div class="card-body table-responsive">
+                    <table class="table table-striped-columns">
+                        <thead>
+                            <tr>
+                                <td>Nama Mahasiswa</td>
+                                <td>Tanggal Sidang</td>
+                                <td>Waktu Mulai</td>
+                                <td>Waktu Selesai</td>
+                                <td>Ruangan</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>GA.01</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex my-8">
+                        <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Jadwal Sidang Seminar Hasil</h1>
+                    </div>
+                </div>
 
+                <div class="card-body table-responsive">
+                    <table class="table table-striped-columns">
+                        <thead>
+                            <tr>
+                                <td>Nama Mahasiswa</td>
+                                <td>Tanggal Sidang</td>
+                                <td>Waktu Mulai</td>
+                                <td>Waktu Selesai</td>
+                                <td>Ruangan</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>aa</td>
+                                <td>GA.01</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{ asset('backend/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('backend/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('backend/js/costum/widgets.js') }}"></script>
 </body>
-
 </html>

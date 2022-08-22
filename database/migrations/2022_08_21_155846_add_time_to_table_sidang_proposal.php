@@ -15,8 +15,8 @@ class AddTimeToTableSidangProposal extends Migration
     {
         Schema::table('table_sidang_proposal', function (Blueprint $table) {
             $table->date('tanggal_sidang')->nullable();
-            $table->time('waktu_mulai')->default('BELUM TERJADWAL');
-            $table->time('waktu_selesai')->default('BELUM TERJADWAL');
+            $table->time('waktu_mulai')->nullable();
+            $table->time('waktu_selesai')->nullable();
         });
     }
 
