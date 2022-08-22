@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <a href="{{ route('sempro.printJadwal') }}" class="btn btn-primary btn-sm">Print Jadwal</a>
+                        <a href="{{ route('sempro.printJadwal') }}" class="btn btn-info btn-sm">Print Jadwal</a>
                     </div>
                 </div>
 
