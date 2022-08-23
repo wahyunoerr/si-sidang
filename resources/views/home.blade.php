@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="d-flex my-4">
                         <div class="fs-3 fw-bold align-items-sm-center justify-content-center py-5">
-                            <h1>JADWAL SIDANG HARI INI</h1>
+                            <h1>JADWAL SIDANG</h1>
                         </div>
                     </div>
                 </div>

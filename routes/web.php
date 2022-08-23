@@ -71,11 +71,11 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-proposal/tambah', 'DaftarProposalController@create')->name('proposal.tambah');
     Route::post('mahasiswa/daftar-sidang-proposal/store','DaftarProposalController@store')->name('proposal.store');
 
-    Route::get('mahasiswa/daftar-semhas','DaftarSidangSkripsiController@create')->name('sidangsempro.index'); 
+    Route::get('mahasiswa/daftar-semhas','DaftarSidangSkripsiController@create')->name('sidangsempro.index');
 });
 
 
-Route::group(['middleware' => 'role:kaprodi'], function () {
+Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-file/{id}', function ($id) {
         $data = Sempro::findorfail($id);
         return response()->file($data->file_proposal);
@@ -117,7 +117,7 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::post('/admin/bimbingan-kp/simpan', 'KpbController@simpan')->name('kpb.simpan');
 
     //bimbingan skripsi
-    
+
 
     //bimbingan proposal
     Route::get('/admin/bimbingan-proposal', 'ProposalbController@index')->name('pb.index');
@@ -145,7 +145,7 @@ Route::group(['middleware' => 'role:admin'], function () {
 
 
 
-Route::group(['middleware' => 'role:admin|dosen'], function () {
+Route::group(['middleware' => 'role:admin|dosen|kaprodi'], function () {
     //penguji kp
     Route::get('/admin/penguji-kp', 'KppController@index')->name('kpp.index');
 
@@ -163,4 +163,8 @@ Route::group(['middleware' => 'role:admin|dosen'], function () {
 
     //jadwal proposal
     Route::get('/admin/jadwal-proposal', 'ProposaljController@index')->name('pj.index');
+});
+
+Route::group(['middleware' => 'role:admin|kaprodi'], function (){
+    Route::get('/admin/pendaftar', 'PendaftarController@index')->name('pd.index');
 });

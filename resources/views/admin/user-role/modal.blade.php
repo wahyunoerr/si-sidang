@@ -32,7 +32,7 @@
                         <h1 class="mb-3">Tambah Data User</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">Hanya Admin yang bisa menambahkan user.
+                        <div class="text-muted fw-bold fs-5">Hanya Admin dan Kaprodi yang bisa menambahkan user dan role.
                         </div>
                         <!--end::Description-->
                     </div>
@@ -43,8 +43,8 @@
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Nama Lengkap</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Silahkan tulis nama lengkap kamu"></i>
+                                {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="    "
+                                    title="Silahkan tulis nama lengkap kamu"></i> --}}
                             </label>
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid" placeholder="Nama Lengkap"
@@ -56,8 +56,8 @@
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Email</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Specify a target name for future usage and reference"></i>
+                                {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                    title="Specify a target name for future usage and reference"></i> --}}
                             </label>
                             <!--end::Label-->
                             <input type="email" placeholder="Email Kamu" class="form-control form-control-solid"
@@ -68,22 +68,20 @@
                     <div class="row g-9 mb-8">
                         <div class="col-md-6 fv-row">
                             <div class="d-flex flex-column mb-8">
-                                <label class="fs-6 fw-bold mb-2">NIP/NIM/NIDN</label>
+                                <label class="fs-6 fw-bold mb-2 required">NIP/NIM/NIDN</label>
                                 <input type="text" class="form-control form-control-solid" name="serial_user"
                                     id="serial_user" placeholder="NIP/NIM/NIDN">
                                 <span class="text-danger" id="nSerialUserError"></span>
                             </div>
                         </div>
-                        <div class="col-md-6 fv-row">
                             <div class="col-md-6 fv-row">
                                 <div class="d-flex flex-column mb-8">
-                                    <label class="fs-6 fw-bold mb-2">Username</label>
+                                    <label class="fs-6 fw-bold mb-2 required">Username</label>
                                     <input type="text" class="form-control form-control-solid" name="username"
                                         id="username" placeholder="username">
                                     <span class="text-danger" id="nUserNameError"></span>
                                 </div>
                             </div>
-                        </div>
                     </div>
 
                     <div class="row g-9 mb-8">
@@ -92,8 +90,8 @@
                             <div class="d-flex flex-column mb-8">
                                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                     <span class="required">Pilih Role</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                        title="Silahkan Pilih Permission"></i>
+                                    {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        title="Silahkan Pilih Permission"></i> --}}
                                 </label>
                                 <!--begin::Checkbox-->
                                 @foreach ($role as $r)
@@ -112,9 +110,9 @@
 
                         <div class="col-md-6 fv-row">
                             <div class="d-flex flex-column mb-8">
-                                <label class="fs-6 fw-bold mb-2">No Telepon</label>
+                                <label class="fs-6 fw-bold mb-2 required">No Telepon</label>
                                 <input type="text" class="form-control form-control-solid" name="no_telp"
-                                    id="no_telp" placeholder="Password">
+                                    id="no_telp" placeholder="No Telepon>
                                 <span class="text-danger" id="nNoTelpError"></span>
                             </div>
                         </div>
