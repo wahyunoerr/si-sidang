@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="float-left">
+                    <div class="d-flex my-8">
                         <a href="{{ route('sempro.printJadwal') }}" class="btn btn-info btn-sm">Print Jadwal</a>
                     </div>
                 </div>

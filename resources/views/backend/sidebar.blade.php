@@ -308,6 +308,7 @@
                         </div>
                     </div>
                     @endhasrole
+                    @hasanyrole('admin|kaprodi')
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
                             <span class="menu-icon">
@@ -349,6 +350,7 @@
                             </div>
                         </div>
                     </div>
+                    @endhasanyrole
                 @endhasanyrole
                 <div class="menu-item">
                     <div class="menu-content">

@@ -7,10 +7,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="float-right">
+                    <div class="d-flex my-8">
                         <a href="{{ route('pp.index') }}" class="btn btn-warning btn-sm">Penguji 1</a>
                     </div>
-                    <div class="float-left">
+                    <div class="d-flex my-8">
                         <a href="{{ route('penguji_2.index') }}" class="btn btn-warning btn-sm">Penguji 2</a>
                     </div>
                 </div>

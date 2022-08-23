@@ -16,7 +16,6 @@ use App\Models\Sempro;
 */
 
 Route::get('/', 'HomeController@index2');
-Route::get('/kaprodi/manajemen-jadwal/proposal','SkripsijController@index')->name('man-pro.index');
 
 
 
@@ -85,6 +84,7 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', 'SkripsijController@simpanJadwal')->name('sempro.simpanJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', 'SkripsijController@lihatJadwal')->name('sempro.lihatJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', 'SkripsijController@printJadwal')->name('sempro.printJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/proposal','SkripsijController@index')->name('man-pro.index');
 });
 
 
