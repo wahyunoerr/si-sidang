@@ -26,7 +26,7 @@
 							<!--begin::Input group-->
 							<div class="fv-row mb-10">
 								<!--begin::Label-->
-								<label class="form-label fs-6 fw-bolder text-dark">{{ __('username') }}</label>
+								<label class="form-label fs-6 fw-bolder text-dark">NIM</label>
 								<!--end::Label-->
 								<!--begin::Input-->
 								<input id="email" type="email" class="form-control form-control-lg form-control-solid  @error('username') is-invalid @enderror" name="username" value="{{ old('usesrname') }}" required autocomplete="username" autofocus/>

@@ -7,11 +7,7 @@
             style="background-image: url(backend/media/illustrations/sketchy-1/14.png">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
-                <!--begin::Logo-->
-                <a href="{{ route('login') }}" class="mb-12">
-                    <img alt="Logo" src="{{ asset('backend/media/logos/logo-1.svg') }}" class="h-40px" />
-                </a>
-                <!--end::Logo-->
+
                 <!--begin::Wrapper-->
                 <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
@@ -19,6 +15,9 @@
                         enctype="multipart/form-data">
                         <!--begin::Heading-->
                         <div class="mb-10 text-center">
+                            <a href="{{ route('login') }}" class="mb-12">
+                                <img src="{{ asset('backend/media/logos/logo-umri.png')}}" class="h-200px mb-5" alt="">
+                            </a>
                             <!--begin::Title-->
                             <h1 class="text-dark mb-3">Buat Akun</h1>
                             <!--end::Title-->

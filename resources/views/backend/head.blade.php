@@ -19,7 +19,7 @@
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <!-- <link rel="canonical" href="Https://preview.keenthemes.com/metronic8" /> -->
-    <link rel="shortcut icon" href="{{ asset('backend/media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('backend/media/logos/logo-umri.png') }}" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
