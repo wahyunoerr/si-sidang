@@ -47,6 +47,7 @@
                             </label>
                             <!--end::Label-->
                             <select name="nama" id="nama" class="form form-control">
+                                <option value="">-- Pilih Dosen --</option>
                                 @foreach ($dosen as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
