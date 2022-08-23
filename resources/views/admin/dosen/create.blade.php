@@ -33,7 +33,7 @@
                         <h1 class="mb-3">Tambah Data Dosen Pembimbing</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">Hanya Admin yang bisa menambahkan Permission untuk Role.
+                        <div class="text-muted fw-bold fs-5">Hanya Admin dan Kaprodi yang bisa menambahkan Dosen Pembimbing.
                         </div>
                         <!--end::Description-->
                     </div>
@@ -43,7 +43,7 @@
                         <div class="col-md-12 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Nama Dosen</span>
+                                <span class="required">Pilih Dosen</span>
                             </label>
                             <!--end::Label-->
                             <select name="nama" id="nama" class="form form-control">

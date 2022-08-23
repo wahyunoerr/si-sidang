@@ -33,7 +33,7 @@
                         <h1 class="mb-3 modal-title"></h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">Hanya Admin yang bisa menambahkan Role.
+                        <div class="text-muted fw-bold fs-5">Hanya Admin dan Kaprodi yang bisa menambahkan Role.
                         </div>
                         <!--end::Description-->
                     </div>
@@ -44,8 +44,8 @@
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">Nama Role</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Silahkan tulis nama lengkap kamu"></i>
+                                {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                    title="Silahkan tulis nama lengkap kamu"></i> --}}
                             </label>
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid" id="nama_role"
@@ -55,8 +55,8 @@
 
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                             <span class="required">Pilih Permission</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Silahkan Pilih Permission"></i>
+                            {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Silahkan Pilih Permission"></i> --}}
                         </label>
                         <!--begin::Checkbox-->
                         @foreach ($permission as $perm)

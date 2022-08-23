@@ -41,10 +41,10 @@
                         <!--begin::Label-->
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                             <span class="required">Nama Permission</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Silahkan tulis nama lengkap kamu"></i>
+                            {{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Silahkan tulis nama lengkap kamu"></i> --}}
                         </label>
                         <!--end::Label-->
-                        <input type="text" class="form-control form-control-solid" id="nama_permission"  name="nama_permission" placeholder="Masukkan Nama Role"/>
+                        <input type="text" class="form-control form-control-solid" id="nama_permission"  name="nama_permission" placeholder="Masukkan Nama Permission"/>
                         <span class="text-danger" id="nPermissionError"></span>
                     </div>
                 </div>
