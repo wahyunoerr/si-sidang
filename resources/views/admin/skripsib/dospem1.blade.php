@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="float-right">
+                    <div class="d-flex my-8">
                         <a href="{{ route('dospem2.index') }}" class="btn btn-sm btn-danger"><i class="fas fa-eye"></i>
                             Pembimbing 2</a>
                     </div>
