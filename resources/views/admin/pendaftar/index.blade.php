@@ -1,5 +1,5 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Pendaftar')
+@section('halaman-sekarang', 'Pendaftar Skripsi')
 @section('content')
 
 
@@ -39,7 +39,7 @@
             table = $('#example2').DataTable({
                 processing: true,
                 serverside: true,
-                ajax: "{{ route('permission.index') }}",
+                ajax: "{{ route('pd.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -74,7 +74,7 @@
         function get(id) {
             typeSave = 'update';
             $.ajax({
-                url: "{{ url('admin/edit-permission') }}" + "/" + id,
+                url: "{{ url('') }}" + "/" + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {

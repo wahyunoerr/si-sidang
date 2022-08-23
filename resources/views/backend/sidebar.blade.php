@@ -81,7 +81,7 @@
                 </div>
                 @hasanyrole('admin|kaprodi')
                 <div class="menu-item">
-                    <a class="menu-link {{ request()->is('pendaftar') ? 'active' : '' }}" href="{{ route('pb.index') }}">
+                    <a class="menu-link {{ request()->is('pendaftar') ? 'active' : '' }}" href="{{ route('pd.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -146,7 +146,7 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion">
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/manajemen-user') }}">
+                                <a class="menu-link {{ request()->is('admin/manajemen-user') ? 'active' : '' }}" href="{{ route('userrole.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -154,7 +154,7 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/manajemen-role') }}">
+                                <a class="menu-link  {{ request()->is('admin/manajemen-role') ? 'active' : '' }}" href="{{ url('admin/manajemen-role') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -162,7 +162,7 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/manajemen-permission') }}">
+                                <a class="menu-link  {{ request()->is('admin/manajemen-permission') ? 'active' : '' }}" href="{{ url('admin/manajemen-permission') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -170,7 +170,7 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/manajemen-dosen') }}">
+                                <a class="menu-link  {{ request()->is('admin/manajemen-dosen') ? 'active' : '' }}" href="{{ url('admin/manajemen-dosen') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -213,7 +213,7 @@
                                 </a>
                             </div> --}}
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/bimbingan-proposal') }}">
+                                <a class="menu-link {{ request()->is('admin/bimbingan-proposal') ? 'active' : '' }}" href="{{ url('admin/bimbingan-proposal') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -256,7 +256,7 @@
                                 </a>
                             </div> --}}
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/penguji-proposal') }}">
+                                <a class="menu-link {{ request()->is('admin/penguji-proposal') ? 'active' : '' }}" href="{{ url('admin/penguji-proposal') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -298,7 +298,7 @@
                                 </a>
                             </div> --}}
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('admin/bimbingan-proposal') }}">
+                                <a class="menu-link {{ request()->is('admin/bimbingan-proposal') ? 'active' : '' }}" href="{{ url('admin/bimbingan-proposal') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -340,7 +340,7 @@
                                 </a>
                             </div> --}}
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ url('kaprodi/manajemen-jadwal/proposal') }}">
+                                <a class="menu-link {{ request()->is('kaprodi/manajemen-jadwal/proposal') ? 'active' : '' }}" href="{{ url('kaprodi/manajemen-jadwal/proposal') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
