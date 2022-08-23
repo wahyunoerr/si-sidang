@@ -103,10 +103,10 @@
                     </a>
                 </div>
                 @endhasanyrole
-                @hasrole('mahasiswa')
+                @role('mahasiswa')
                     <div class="menu-item">
-                        <a class="menu-link {{ request()->is('mahasiswa/daftar-sidang') ? 'active' : '' }}"
-                            href="{{ url('mahasiswa/daftar-sidang') }}">
+                        <a class="menu-link {{ request()->is('mahasiswa/daftar-skripsi') ? 'active' : '' }}"
+                            href="{{ url('mahasiswa/daftar-skripsi') }}">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                 <span class="svg-icon svg-icon-2">
@@ -125,7 +125,7 @@
                             <span class="menu-title">Daftar</span>
                         </a>
                     </div>
-                @endhasrole
+                @endrole
                 @hasanyrole('admin|kaprodi')
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
