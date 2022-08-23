@@ -1,16 +1,18 @@
 @extends('backend.template')
 @section('halaman-sekarang', 'Dashboard')
 @section('content')
-    <center>
-        <img src="{{ asset('backend/media/logos/logo-umri.png') }}" width="100px" height="100px" alt="">
-        <div class="pt-4"></div>
-        <h1>JADWAL SIDANG HARI INI</h1>
-    </center>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+                    <div class="d-flex my-4">
+                        <div class="fs-3 fw-bold align-items-sm-center justify-content-center py-5">
+                            <h1>JADWAL SIDANG HARI INI</h1>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -35,7 +37,7 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                </div>
             </div>
         </div>
     </div>
