@@ -60,16 +60,18 @@ Route::group(['middleware' => 'role:dosen'], function () {
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
     //KP
-    Route::get('/mahasiswa/daftar-sidang', 'DaftarSidangController@index')->name('daftarsidang.index');
-    Route::post('/mahasiswa/daftar-sidang/simpan-kp', 'DaftarSidangController@simpankp')->name('daftarsidang.simpankp');
+    // Route::get('/mahasiswa/daftar-sidang', 'DaftarSidangController@index')->name('daftarsidang.index');
+    // Route::post('/mahasiswa/daftar-sidang/simpan-kp', 'DaftarSidangController@simpankp')->name('daftarsidang.simpankp');
 
-    //Skripsi
-    Route::get('/mahasiswa/daftar-skripsi', 'DaftarSkripsiController@index')->name('daftarskripsi.index');
+    // daftar skripsi
+    Route::get('/mahasiswa/daftar-skripsi/tambah', 'DaftarSkripsiController@index')->name('daftarskripsi.index');
     Route::post('/mahasiswa/daftar-skripsi/simpan-skripsi', 'DaftarSkripsiController@simpansk')->name('daftarskripsi.simpansk');
-    
 
-    Route::get('mahasiswa/daftar-sidang-skripsi','DaftarSidangSkripsiController@create')->name('sidangsempro.index');
-    Route::post('mahasiswa/daftar-sidang-skripsi/store','DaftarSidangSkripsiController@store')->name('sidangsempro.store');
+    //Daftar Proposal
+    Route::get('/mahasiswa/daftar-proposal/tambah', 'DaftarProposalController@create')->name('proposal.tambah');
+    Route::post('mahasiswa/daftar-sidang-proposal/store','DaftarProposalController@store')->name('proposal.store');
+
+    Route::get('mahasiswa/daftar-semhas','DaftarSidangSkripsiController@create')->name('sidangsempro.index'); 
 });
 
 

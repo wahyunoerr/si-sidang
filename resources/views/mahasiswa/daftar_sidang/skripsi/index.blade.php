@@ -1,12 +1,8 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Daftar Sidang Proposal')
+@section('halaman-sekarang', 'Daftar Skripsi')
 @section('content')
 
-    @if ($pemb->status_proposal == 0 && $pemb->status_bimbingan2 == 0)
-        <center>
-            <h1>Silahkan Minta Tanda Tangan Pembimbing!</h1>
-        </center>
-    @elseif($pemb->status_proposal == 1 && $pemb->status_bimbingan2 == 1 && empty($pemb))
+    @if (empty($data))
         <div class="row g-5 g-xl-8">
             <div class="col-xl-12">
                 <div class="card shadow-sm">
@@ -43,53 +39,51 @@
                         </div>
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Dosen Pembimbing 1</span>
+                                <span class="required">Pembimbing 1</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Jika belum di isi silahkan isi nama anda"></i>
+                                    title="Pilih Pembimbing 1"></i>
                             </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="pembimbing_satu"
-                                name="pembimbing_satu" placeholder="Masukkan Nama Lengkap" value="{{ $user->pemb_1 }}"
-                                readonly />
-                            <span class="text-danger" id="nNama"></span>
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                                data-placeholder="Pilih Dosen Pembimbing 1" name="dospem1" id="dospem1">
+                                <option value="">Pilih Dosen Pembimbing 1</option>
+                                @foreach ($user as $r)
+                                    <option value="{{ $r->id }}">{{ $r->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="nDospem1Error"></span>
                         </div>
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Dosen Pembimbing 2</span>
+                                <span class="required">Pembimbing 2</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Jika belum di isi silahkan isi nama anda"></i>
+                                    title="Pilih Pembimbing 2 tidak boleh sama dengan Pembimbing 1"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="pembimbing_dua"
-                                name="pembimbing_dua" placeholder="Masukkan Nama Lengkap" value="{{ $user->pemb_2 }}"
-                                readonly />
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                                data-placeholder="Pilih Dosen Pembimbing 2" name="dospem2" id="dospem2">
+                                <option value="">Pilih Dosen Pembimbing 2</option>
+                                @foreach ($user as $a)
+                                    <option value="{{ $a->id }}">{{ $a->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="nDospem2Error"></span>
                         </div>
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Judul Proposal</span>
+                                <span class="required">Judul Skripsi</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                     title="Judul Skripsi yang ingin di ajukan"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="judul_proposal"
-                                name="judul_proposal" placeholder="Judul Skripsi" value="{{ $user->judul_skripsi }}"
-                                readonly />
-
+                            <input type="text" class="form-control form-control-solid" id="judul" name="judul"
+                                placeholder="Judul Skripsi" />
+                            <span class="text-danger" id="nJudul"></span>
                         </div>
 
-                        <div class="mb-10">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">File Proposal</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Judul Skripsi yang ingin di ajukan"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="file" class="form-control form-control-solid" id="file_proposal"
-                                name="file_proposal" />
-                        </div>
+
 
                         <div class="text-center">
-                            <button type="button" onclick="simpan()" class="btn btn-sm btn-primary">
+                            <button type="button" onclick="simpansk()" class="btn btn-sm btn-primary">
                                 Simpan
                             </button>
                         </div>
@@ -100,14 +94,13 @@
         </div>
     @else
         <center>
-            <h1>Anda Sudah Mendaftar, Silahkan Lihat Jadwal!</h1>
+            <h1>Anda Sudah Mendaftar!</h1>
         </center>
     @endif
-
     <script>
-        function simpan() {
+        function simpansk() {
             $.ajax({
-                url: "{{ route('proposal.store') }}",
+                url: "{{ route('daftarskripsi.simpansk') }}",
                 data: new FormData($('#form')[0]),
                 type: "POST",
                 dataType: 'JSON',
@@ -126,20 +119,16 @@
                             allowEscapeKey: false,
                             allowEnterKey: false,
                         }).then(function() {
-                            window.location.href = "{{ route('proposal.tambah') }}";
+                            window.location.href = "{{ url('daftarskripsi.index') }}";
                         });
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    swal({
-                        title: 'Terjadi Kesalahan',
-                        type: 'error',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey: false,
-                    });
+                error: function(response) {
+                    $('#nDospem1Error').text(response.responseJSON.errors.dospem1);
+                    $('#nDospem2Error').text(response.responseJSON.errors.dospem2);
+                    $('#nJudulError').text(response.responseJSON.errors.judul_skripsi);
                 }
-            })
+            });
         }
     </script>
 

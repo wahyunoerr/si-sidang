@@ -10,8 +10,9 @@ use Auth;
 class DaftarSkripsiController extends Controller
 {
     public function index(){
+        $data = DaftarSkripsi::where('nama_lengkap', Auth::user()->name)->first();
         $user = User::role('dosen')->get();
-        return view('mahasiswa.daftar_sidang.proposal.index', compact('user'));
+        return view('mahasiswa.daftar_sidang.skripsi.index', compact('user','data'));
     }
 
     public function simpansk(Request $request){
