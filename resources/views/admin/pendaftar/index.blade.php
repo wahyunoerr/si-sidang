@@ -7,9 +7,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="float-right">
-                        <button class="btn btn-sm btn-danger" onclick="tambah()"><i class="fas fa-plus"></i>Tambah
-                            Permission</button>
+                    <div class="d-flex my-8">
+                        <h1>Mahasiswa Yang Sudah Mendaftar Skripsi</h1>
                     </div>
                 </div>
 
@@ -18,7 +17,11 @@
                         <thead>
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Nama Permission</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>NIM</th>
+                                <th>Judul Proposal</th>
+                                <th>Pembimbing 1</th>
+                                <th>Pembimbing 2</th>
                                 <th width="10%">Aksi</th>
                             </tr>
                         </thead>
@@ -31,7 +34,7 @@
     </div>
 
 
-    @include('admin.permission.create')
+    {{-- @include('admin.pendaftar.edit') --}}
 
 
     <script type="text/javascript">

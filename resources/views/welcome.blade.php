@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>SISIDUM</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
@@ -40,7 +40,7 @@
         @endif
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">
                     <div class="d-flex my-8">
                         <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Jadwal Sidang Kerja Praktek</h1>
@@ -75,7 +75,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
             <br>
             <div class="card">
                 <div class="card-header">

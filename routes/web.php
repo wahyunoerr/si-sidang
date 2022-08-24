@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::group(['middleware' => 'role:dosen'], function () {
+Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
     Route::get('/admin/bimbingan-skripsi-dospem1', 'SkripsibController@indexDospem1')->name('dospem1.index');
     Route::post('/admin/bimbingan-skripsi-dospem1/update/{id}', 'SkripsibController@update')->name('dospem1.update');
 
@@ -55,7 +55,6 @@ Route::group(['middleware' => 'role:dosen'], function () {
     Route::post('/penguji/manajemen-penguji/simpanRevisi1/{id}', 'ProposalpController@simpanRevisi1')->name('simpanRevisi1.simpan');
     Route::get('/penguji/manajemen-penguji/edit-revisi2/{id}', 'ProposalpController@getRevisi2')->name('editRevisi2.edit');
     Route::post('/penguji/manajemen-penguji/simpanRevisi2/{id}', 'ProposalpController@simpanRevisi2')->name('simpanRevisi2.simpan');
-
 });
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
@@ -69,17 +68,17 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
 
     //Daftar Proposal
     Route::get('/mahasiswa/daftar-proposal/tambah', 'DaftarProposalController@create')->name('proposal.tambah');
-    Route::post('mahasiswa/daftar-sidang-proposal/store','DaftarProposalController@store')->name('proposal.store');
+    Route::post('/mahasiswa/daftar-sidang-proposal/store', 'DaftarProposalController@store')->name('proposal.store');
 
-    Route::get('mahasiswa/daftar-semhas','DaftarSemhasController@create')->name('sidangsemhas.index'); 
-    Route::post('mahasiswa/daftar-semhas/store','DaftarSemhasController@store')->name('semhas.store'); 
+    Route::get('/mahasiswa/daftar-semhas', 'DaftarSemhasController@create')->name('sidangsemhas.index');
+    Route::post('/mahasiswa/daftar-semhas/store', 'DaftarSemhasController@store')->name('semhas.store');
 });
 
 
 Route::group(['middleware' => 'role:kaprodi'], function () {
     // sempro
 
-   
+
 });
 
 
@@ -88,8 +87,8 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
         $data = Sempro::findorfail($id);
         return response()->file($data->file_proposal);
     })->name('sempro.lihat');
-    
-    Route::get('/kaprodi/manajemen-jadwal/proposal','JadwalProposalController@index')->name('man-pro.index');
+
+    Route::get('/kaprodi/manajemen-jadwal/proposal', 'JadwalProposalController@index')->name('man-pro.index');
     Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'JadwalProposalController@edit')->name('sempro.edit');
     Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', 'JadwalProposalController@getJadwal')->name('sempro.buatjadwal');
     Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', 'JadwalProposalController@simpanJadwal')->name('sempro.simpanJadwal');
@@ -101,18 +100,18 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
         $data = Semhas::findorfail($id);
         return response()->file($data->file_skripsi);
     })->name('semhas.lihat');
-    Route::get('/kaprodi/manajemen-jadwal/semhas','SemhasjController@index')->name('jadwalsemhas.index');
+    Route::get('/kaprodi/manajemen-jadwal/semhas', 'SemhasjController@index')->name('jadwalsemhas.index');
     Route::get('/kaprodi/manajemen-jadwal/semhas/edit/{id}', 'SemhasjController@edit')->name('jadwalsemhas.edit');
     Route::get('/kaprodi/manajemen-jadwal/semhas/buat-jadwal/{id}', 'SemhasjController@getJadwal')->name('semhas.buatjadwal');
     Route::post('/kaprodi/manajemen-jadwal/semhas/simpan-jadwal/{id}', 'SemhasjController@simpanJadwal')->name('semhas.simpanJadwal');
     Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-jadwal', 'SemhasjController@lihatJadwal')->name('semhas.lihatJadwal');
- 
-    Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'SkripsijController@edit')->name('sempro.edit');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', 'SkripsijController@getJadwal')->name('sempro.buatjadwal');
-    Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', 'SkripsijController@simpanJadwal')->name('sempro.simpanJadwal');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', 'SkripsijController@lihatJadwal')->name('sempro.lihatJadwal');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', 'SkripsijController@printJadwal')->name('sempro.printJadwal');
-    Route::get('/kaprodi/manajemen-jadwal/proposal','SkripsijController@index')->name('man-pro.index');
+
+    Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'SemprojController@edit')->name('sempro.edit');
+    Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', 'SemprojController@getJadwal')->name('sempro.buatjadwal');
+    Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', 'SemprojController@simpanJadwal')->name('sempro.simpanJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', 'SemprojController@lihatJadwal')->name('sempro.lihatJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', 'SemprojController@printJadwal')->name('sempro.printJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/proposal', 'SemprojController@index')->name('man-pro.index');
 });
 
 
@@ -144,51 +143,26 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::get('/admin/bimbingan-kp', 'KpbController@index')->name('kpb.index');
     Route::post('/admin/bimbingan-kp/simpan', 'KpbController@simpan')->name('kpb.simpan');
 
-    //bimbingan skripsi
-
-
-    //bimbingan proposal
-    Route::get('/admin/bimbingan-proposal', 'ProposalbController@index')->name('pb.index');
-
-
     //penguji kp
     Route::get('/admin/penguji-kp', 'KppController@index')->name('kpp.index');
-
-    //penguji skripsi
-    Route::get('/admin/penguji-skripsi', 'SkripsipController@index')->name('skp.index');
-
-    //penguji proposal
 
 
 
     //jadwal kp
     Route::get('/admin/jadwal-kp', 'KpjController@index')->name('kpj.index');
-
-    //jadwal skripsi
-    Route::get('/admin/jadwal-skripsi', 'SkripsijController@index')->name('skj.index');
-
-    //jadwal proposal
 });
 
 
 
 Route::group(['middleware' => 'role:admin|dosen|kaprodi'], function () {
+
     //penguji kp
     Route::get('/admin/penguji-kp', 'KppController@index')->name('kpp.index');
 
-    //penguji skripsi
-    Route::get('/admin/penguji-skripsi', 'SkripsipController@index')->name('skp.index');
-
-    //penguji proposal
-    Route::get('/admin/penguji-proposal', 'ProposalpController@index')->name('pp.index');
-
     //jadwal kp
     Route::get('/admin/jadwal-kp', 'KpjController@index')->name('kpj.index');
-
-    //jadwal skripsi
-
 });
 
-Route::group(['middleware' => 'role:admin|kaprodi'], function (){
+Route::group(['middleware' => 'role:admin|kaprodi'], function () {
     Route::get('/admin/pendaftar', 'PendaftarController@index')->name('pd.index');
 });

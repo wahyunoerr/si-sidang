@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Semhas extends Model
 {
-    protected $table = 'table_sidang_kp';
+    protected $table = 'table_sidang_semhas';
     protected $fillable = [
         'nim',
         'nama_lengkap',
@@ -15,6 +15,12 @@ class Semhas extends Model
         'pembimbing_dua',
         'judul_skripsi',
         'file_skripsi',
-        'status_skripsi'
+        'status_skripsi',
+        'tanggal_sidang',
+        'waktu_mulai',
+        'waktu_selesai',
+        'penguji_1',
+        'penguji_2',
+        'ketua_sidang'
     ];
 }
