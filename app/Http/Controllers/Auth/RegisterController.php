@@ -26,9 +26,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'serial_user' =>['required', 'max:20', 'unique:users'],
-            'email' => ['required', 'string','email', 'max:255', 'unique:users'],
-            'no_telp' => ['required', 'max:21' ,'unique:users'],
+            'serial_user' => ['required', 'max:20', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'no_telp' => ['required', 'max:21', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -36,7 +36,7 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-         $user = User::create([
+        $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'serial_user' => $data['serial_user'],
@@ -45,7 +45,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'foto' => 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
         ]);
-        $user->assignRole('admin');
+        $user->assignRole('mahasiswa');
         return $user;
 
         echo json_encode(["status" => TRUE]);
