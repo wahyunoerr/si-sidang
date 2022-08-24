@@ -1,5 +1,5 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Manajemen Skripsi')
+@section('halaman-sekarang', 'Manajemen Jadwal Seminar Proposal')
 @section('content')
 
 

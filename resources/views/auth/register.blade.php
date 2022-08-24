@@ -3,20 +3,21 @@
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-up -->
-        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-            style="background-image: url(backend/media/illustrations/sketchy-1/14.png">
+        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain"
+            style="background-image: url('backend/media/illustrations/sketchy-1/14.png')">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 
                 <!--begin::Wrapper-->
-                <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+                <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
                     <form class="form w-100" id="form" method="POST" novalidate="novalidate" id="kt_sign_up_form"
                         enctype="multipart/form-data">
                         <!--begin::Heading-->
                         <div class="mb-10 text-center">
                             <a href="{{ route('login') }}" class="mb-12">
-                                <img src="{{ asset('backend/media/logos/logo-umri.png')}}" class="h-200px mb-5" alt="">
+                                <img src="{{ asset('backend/media/logos/logo-umri.png') }}" class="h-200px mb-5"
+                                    alt="">
                             </a>
                             <!--begin::Title-->
                             <h1 class="text-dark mb-3">Buat Akun</h1>
@@ -109,7 +110,7 @@
                             <label class="form-label fw-bolder text-dark fs-6">Konfirmasi Password</label>
                             <input class="form-control form-control-lg form-control-solid" id="password-confirm"
                                 type="password" placeholder="Konfirmasi Password" name="password_confirmation" required
-                                autocomplete="new-password">
+                                autocomplete="password_confirmation">
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->

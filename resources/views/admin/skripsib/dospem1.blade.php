@@ -13,7 +13,7 @@
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -51,8 +51,8 @@
                         name: 'nim'
                     },
                     {
-                        data: 'judul_proposal',
-                        name: 'judul_proposal'
+                        data: 'judul_skripsi',
+                        name: 'judul_skripsi'
                     },
                     {
                         data: 'status',

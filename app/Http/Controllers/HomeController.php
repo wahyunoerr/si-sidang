@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Sempro;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -21,13 +22,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = Sempro::where('tanggal_sidang', Carbon::today()->toDateString())->get();
-        return view('home',compact('data'));
+        $data = Sempro::where('nama_lengkap', Auth::user()->name)->get();
+        return view('home', compact('data'));
     }
 
     public function index2()
     {
         $data = Sempro::where('tanggal_sidang', Carbon::today()->toDateString())->get();
-        return view('welcome',compact('data'));
+        return view('welcome', compact('data'));
     }
 }

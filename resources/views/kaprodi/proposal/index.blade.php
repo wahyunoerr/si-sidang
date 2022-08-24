@@ -1,5 +1,5 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Manajemen Skripsi')
+@section('halaman-sekarang', 'Manajemen Jadwal Seminar Proposal')
 @section('content')
 
 
@@ -13,7 +13,7 @@
 
                 </div>
 
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>

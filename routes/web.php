@@ -115,7 +115,7 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
 });
 
 
-Route::group(['middleware' => 'role:admin'], function () {
+Route::group(['middleware' => 'role:admin|kaprodi'], function () {
     Route::get('/admin/manajemen-user', 'UserRoleController@index')->name('userrole.index');
     Route::post('/admin/manajemen-user/simpan', 'UserRoleController@simpan')->name('userrole.simpan');
     Route::delete('/admin/manajemen-user/hapus/{id}', 'UserRoleController@hapus')->name('userrole.hapus');
