@@ -30,7 +30,7 @@
                 @auth
                     <a href="{{ url('/home') }}" class="btn btn-primary btn-sm">Home</a>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-info btn-sm">Log in</a>
+                    <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Log in</a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Register</a>
@@ -85,24 +85,31 @@
                 </div>
 
                 <div class="card-body table-responsive">
-                    <table class="table table-striped-columns">
+                    <table id="example2" class="table">
                         <thead>
                             <tr>
-                                <td>Nama Mahasiswa</td>
+                                <td>No</td>
                                 <td>Tanggal Sidang</td>
+                                <td>Nama Mahasiswa</td>
                                 <td>Waktu Mulai</td>
                                 <td>Waktu Selesai</td>
                                 <td>Ruangan</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>aa</td>
-                                <td>aa</td>
-                                <td>aa</td>
-                                <td>aa</td>
-                                <td>GA.01</td>
-                            </tr>
+                            @foreach ($data as $d)
+                                <tr>
+                                    <td><a href="#" class="btn btn-info btn-sm">{{ $loop->iteration }}</a></td>
+                                    <td><a href="#" class="btn btn-info btn-sm">{{ $d->tanggal_sidang }}</a>
+                                    </td>
+                                    <td><a href="#" class="btn btn-info btn-sm">{{ $d->nama_lengkap }}</a>
+                                    </td>
+                                    <td><a href="#" class="btn btn-info btn-sm">{{ $d->waktu_mulai }}</a></td>
+                                    <td><a href="#" class="btn btn-info btn-sm">{{ $d->waktu_selesai }}</a>
+                                    </td>
+                                    <td><a href="#" class="btn btn-info btn-sm">GA.01</a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -140,8 +147,11 @@
             </div>
         </div>
     </div>
+
+
     <script src="{{ asset('backend/js/scripts.bundle.js') }}"></script>
     <script src="{{ asset('backend/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('backend/js/costum/widgets.js') }}"></script>
 </body>
+
 </html>
