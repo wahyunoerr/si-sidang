@@ -2,7 +2,13 @@
 @section('halaman-sekarang', 'Daftar Sidang Proposal')
 @section('content')
 
-    @if ($pemb->status_proposal == 0 && $pemb->status_bimbingan2 == 0)
+    @if (empty($pemb))
+        <center>
+            <h1>Silahkan Ajukan Judul</h1>
+        </center>
+    @elseif ($pemb->status_proposal == 0 ||
+        ($pemb->status_proposal == 1 && $pemb->status_bimbingan2 == 0) ||
+        $pemb->status_bimbingan2 == 0)
         <center>
             <h1>Silahkan Minta Tanda Tangan Pembimbing!</h1>
         </center>
@@ -81,7 +87,7 @@
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                 <span class="required">File Proposal</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Judul Skripsi yang ingin di ajukan"></i>
+                                    title="File Proposal"></i>
                             </label>
                             <!--end::Label-->
                             <input type="file" class="form-control form-control-solid" id="file_proposal"
@@ -103,7 +109,6 @@
             <h1>Anda Sudah Mendaftar, Silahkan Lihat Jadwal!</h1>
         </center>
     @endif
-
     <script>
         function simpan() {
             $.ajax({
@@ -130,9 +135,9 @@
                         });
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function(jqXHR, textStatus, errorThrown, response) {
                     swal({
-                        title: 'Terjadi Kesalahan',
+                        title: 'Masukkan File Proposal!!',
                         type: 'error',
                         allowOutsideClick: false,
                         allowEscapeKey: false,

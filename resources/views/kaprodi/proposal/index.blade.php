@@ -21,7 +21,7 @@
                                 <th>Nama Mahasiswa</th>
                                 <th>NIM</th>
                                 <th>Judul Skripsi</th>
-                                <th>Status Proposal</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -9,16 +9,22 @@ use Auth;
 
 class DaftarSkripsiController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = DaftarSkripsi::where('nama_lengkap', Auth::user()->name)->first();
         $user = User::role('dosen')->get();
-        return view('mahasiswa.daftar_sidang.skripsi.index', compact('user','data'));
+        return view('mahasiswa.daftar_sidang.skripsi.index', compact('user', 'data'));
     }
 
-    public function simpansk(Request $request){
+    public function simpansk(Request $request)
+    {
         $request->validate([
             'dospem1' => 'required',
             'dospem2' => 'required|different:dospem1',
+        ], [
+            'different' => 'Pembimbing Tidak Boleh Sama!!',
+            'dospem1.required' => 'Pilih Dosen Pembimbing!!',
+            'dospem2.required' => 'Pilih Dosen Pembimbing!!',
         ]);
 
         DaftarSkripsi::create([

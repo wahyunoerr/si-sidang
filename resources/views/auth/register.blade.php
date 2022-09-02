@@ -100,7 +100,7 @@
                                         <i class="bi bi-eye-slash fs-2"></i>
                                         <i class="bi bi-eye fs-2 d-none"></i>
                                     </span>
-                                    <span class="text-danger" id="nPassConfError"></span>
+                                    <span class="text-danger" id="nPasswordError"></span>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,8 @@
                             <label class="form-label fw-bolder text-dark fs-6">Konfirmasi Password</label>
                             <input class="form-control form-control-lg form-control-solid" id="password-confirm"
                                 type="password" placeholder="Konfirmasi Password" name="password_confirmation" required
-                                autocomplete="password_confirmation">
+                                autocomplete="new-password">
+                            <span class="text-danger" id="nPassConfError"></span>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
@@ -146,17 +147,15 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    if (data.status == true) {
-                        swal({
-                            title: 'Berhasil',
-                            type: 'success',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                            allowEnterKey: false,
-                        }).then(function() {
-                            window.location.href = "{{ route('login') }}";
-                        });
-                    }
+                    swal({
+                        title: 'Berhasil',
+                        type: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    }).then(function() {
+                        window.location.href = "{{ url('/home') }}";
+                    });
                 },
                 error: function(response) {
                     $('#nNameError').text(response.responseJSON.errors.name);
@@ -170,4 +169,5 @@
             });
         }
     </script>
+    <script src="{{ asset('backend/js/custom/authentication/sign-up/general.js') }}"></script>
 @endsection

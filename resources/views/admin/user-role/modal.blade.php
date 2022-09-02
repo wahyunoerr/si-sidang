@@ -32,7 +32,8 @@
                         <h1 class="mb-3">Tambah Data User</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">Hanya Admin dan Kaprodi yang bisa menambahkan user dan role.
+                        <div class="text-muted fw-bold fs-5">Hanya Admin dan Kaprodi yang bisa menambahkan user dan
+                            role.
                         </div>
                         <!--end::Description-->
                     </div>
@@ -74,14 +75,14 @@
                                 <span class="text-danger" id="nSerialUserError"></span>
                             </div>
                         </div>
-                            <div class="col-md-6 fv-row">
-                                <div class="d-flex flex-column mb-8">
-                                    <label class="fs-6 fw-bold mb-2 required">Username</label>
-                                    <input type="text" class="form-control form-control-solid" name="username"
-                                        id="username" placeholder="username">
-                                    <span class="text-danger" id="nUserNameError"></span>
-                                </div>
+                        <div class="col-md-6 fv-row">
+                            <div class="d-flex flex-column mb-8">
+                                <label class="fs-6 fw-bold mb-2 required">Username</label>
+                                <input type="text" class="form-control form-control-solid" name="username"
+                                    id="username" placeholder="username">
+                                <span class="text-danger" id="nUserNameError"></span>
                             </div>
+                        </div>
                     </div>
 
                     <div class="row g-9 mb-8">
@@ -112,7 +113,7 @@
                             <div class="d-flex flex-column mb-8">
                                 <label class="fs-6 fw-bold mb-2 required">No Telepon</label>
                                 <input type="text" class="form-control form-control-solid" name="no_telp"
-                                    id="no_telp" placeholder="No Telepon>
+                                    id="no_telp" placeholder="No Telepon">
                                 <span class="text-danger" id="nNoTelpError"></span>
                             </div>
                         </div>

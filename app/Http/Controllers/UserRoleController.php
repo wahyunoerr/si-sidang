@@ -7,19 +7,21 @@ use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class UserRoleController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $role = Role::all();
-        $roles = Role::pluck('name','name')->all();
-        $data = User::select(['id', 'name', 'email','serial_user','username'])->with('roles');
+        $roles = Role::pluck('name', 'name')->all();
+        $data = User::select(['id', 'name', 'email', 'serial_user', 'username'])->with('roles');
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" title="Edit" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="get(' . "'" . $row->id . "'" . ')"><span class="svg-icon svg-icon-3">
+                    $btn = '<a href=" ' . route('userrole.edit', $row->id) . ' " title="Edit" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="get(' . "'" . $row->id . "'" . ')"><span class="svg-icon svg-icon-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="black" />
                         <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="black" />
@@ -43,10 +45,11 @@ class UserRoleController extends Controller
                 ->rawColumns(['action',])
                 ->make(true);
         }
-        return view('admin.user-role.index', compact('roles','role'));
+        return view('admin.user-role.index', compact('roles', 'role'));
     }
 
-    public function simpan(Request $request){
+    public function simpan(Request $request)
+    {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -61,17 +64,28 @@ class UserRoleController extends Controller
             'no_telp' => $request->no_telp,
             'serial_user' => $request->serial_user,
             'username' => $request->username,
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('default123'),
             'foto' => 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
         ]);
         $role->syncRoles($request->input('role'));
-        
+
 
         echo json_encode(["status" => TRUE]);
     }
 
+    public function edit($id)
+    {
+        $role = Role::all();
+        $data = User::find($id);
+        $rolePermissions = DB::table("model_has_roles")->where("model_has_roles.model_id", $id)
+            ->pluck('model_has_roles.role_id', 'model_has_roles.role_id')
+            ->all();
+        return view('admin.user-role.edit', compact('data', 'role', 'rolePermissions'));
+    }
 
-    public function hapus($id){
+
+    public function hapus($id)
+    {
         $user = User::findorfail($id);
         $user->delete();
         echo json_encode(["status" => TRUE]);

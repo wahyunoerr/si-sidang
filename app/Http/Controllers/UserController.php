@@ -9,22 +9,30 @@ use App\Rules\MatchOldPassword;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = Auth::user();
         return view('admin.user.profil', compact('data'));
     }
 
-    public function editprofil(){
+    public function editprofil()
+    {
         $data = Auth::user();
         return view('admin.user.update-profil', compact('data'));
     }
 
-    public function updateprofil(Request $request, $id){
+    public function updateprofil(Request $request, $id)
+    {
 
         $request->validate([
             'name' => 'required',
             'serial_user' => 'required|numeric',
             'no_telp' => 'required|numeric'
+        ], [
+            'name.required' => 'Nama Tidak Boleh Kosong',
+            'serial_user.required' => 'Nim Tidak Boleh Kosong',
+            'no_telp.required' => 'Nomor Telpon Tidak Boleh Kosong',
+            'numeric' => 'Harus Berupa Angka',
         ]);
 
         if ($request->foto != '') {
@@ -36,8 +44,8 @@ class UserController extends Controller
             $user_data['foto'] = 'uploads/user/' . $new_foto;
             User::whereId($id)->update($user_data);
 
-            if($data->foto){
-             unlink($data->foto);
+            if ($data->foto) {
+                unlink($data->foto);
             }
         }
 
@@ -53,7 +61,8 @@ class UserController extends Controller
     }
 
 
-    public function updateEmail(Request $request){
+    public function updateEmail(Request $request)
+    {
         $request->validate([
             'email' => 'required|email',
             'password_sekarang' => 'password|required'
@@ -68,9 +77,10 @@ class UserController extends Controller
         echo json_encode(["status" => TRUE]);
     }
 
-    public function ubah_password(Request $request){
+    public function ubah_password(Request $request)
+    {
         $request->validate([
-            'pass_lama' => ['required',new MatchOldPassword],
+            'pass_lama' => ['required', new MatchOldPassword],
             'pass_baru' => ['required'],
             'konf_pass' => ['same:pass_baru'],
         ]);
@@ -78,9 +88,7 @@ class UserController extends Controller
         // $data_password = [
         //     'password' => bcrypt($request->pass_conf)
         // ];
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->pass_baru)]);
+        User::find(auth()->user()->id)->update(['password' => Hash::make($request->pass_baru)]);
         echo json_encode(["status" => TRUE]);
-
     }
-
 }

@@ -81,7 +81,7 @@
                 buttons: true
             }).then(function() {
                 $.ajax({
-                    url: "{{ url('/admin/bimbingan-skripsi-dospem2/update') }}" + "/" + id,
+                    url: "{{ url('/admin/bimbingan-skripsi-dospem1/update') }}" + "/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function() {

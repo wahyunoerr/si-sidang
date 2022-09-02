@@ -122,7 +122,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-title">Daftar Skripsi</span>
+                            <span class="menu-title">Daftar Judul Skripsi</span>
                         </a>
                     </div>
                     <div class="menu-item">
@@ -147,7 +147,7 @@
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a class="menu-link {{ request()->is('mahasiswa/daftar-semhas') ? 'active' : '' }}"
+                        <a class="menu-link {{ request()->is('mahasiswa/daftar-semhas/tambah') ? 'active' : '' }}"
                             href="{{ url('mahasiswa/daftar-semhas') }}">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->

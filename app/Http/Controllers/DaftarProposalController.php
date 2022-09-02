@@ -11,19 +11,29 @@ use DB;
 
 class DaftarProposalController extends Controller
 {
-    public function create(){
+    public function create()
+    {
         $pemb = DaftarSkripsi::where('nama_lengkap', Auth::user()->name)->first();
         $user = DB::table('tbl_daftar_skripsi')
-                ->leftjoin('users as dospem1','dospem1.id','tbl_daftar_skripsi.pembimbing_satu')
-                ->leftjoin('users as dospem2','dospem2.id','tbl_daftar_skripsi.pembimbing_dua')
-                ->where('tbl_daftar_skripsi.nama_lengkap', Auth::user()->name)
-                ->select('tbl_daftar_skripsi.*','dospem1.name as pemb_1','dospem2.name as pemb_2')
-                ->first();
-        return view('mahasiswa.daftar_sidang.sempro.index', compact('user','pemb'));
+            ->leftjoin('users as dospem1', 'dospem1.id', 'tbl_daftar_skripsi.pembimbing_satu')
+            ->leftjoin('users as dospem2', 'dospem2.id', 'tbl_daftar_skripsi.pembimbing_dua')
+            ->where('tbl_daftar_skripsi.nama_lengkap', Auth::user()->name)
+            ->select('tbl_daftar_skripsi.*', 'dospem1.name as pemb_1', 'dospem2.name as pemb_2')
+            ->first();
+
+        return view('mahasiswa.daftar_sidang.sempro.index', compact('user', 'pemb'));
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        // $request->validate([
+        //     'file_proposal' => 'required|mimes:pdf'
+        // ], [
+        //     'file_proposal.required' => 'Masukkan File Proposal Anda',
+        //     'mimes' => 'File Harus Berbentuk .pdf'
+        // ]);
+
         $file = $request->file_proposal;
         $new_file = time() . $file->getClientOriginalName();
 
@@ -40,5 +50,4 @@ class DaftarProposalController extends Controller
 
         echo json_encode(["status" => TRUE]);
     }
-    
 }

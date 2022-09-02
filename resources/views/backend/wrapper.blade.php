@@ -5,15 +5,16 @@
         <div class="header-brand">
             <div class="symbol symbol-50px">
                 <img alt="Logo" src="{{ asset('backend/media/logos/logo-umri.png') }}" class="h-50px h-lg-50px" />
-               </div>
+            </div>
             <!--begin::Logo-->
-                <div class="d-flex">
-                    <a href="#">
-                                <div class="text-white text-hover-primary fs-3 fw-bold align-items-sm-center justify-content-center py-5">
-                                    SISIDUM
-                                </div>
-                     </a>
-        </div>
+            <div class="d-flex">
+                <a href="#">
+                    <div
+                        class="text-white text-hover-primary fs-3 fw-bold align-items-sm-center justify-content-center py-5">
+                        SISID
+                    </div>
+                </a>
+            </div>
             <!--end::Logo-->
             <!--begin::Aside minimize-->
             <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-minimize"

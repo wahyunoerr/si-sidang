@@ -25,7 +25,7 @@ class SemprojController extends Controller
                     $btn = '<a href="' . url('kaprodi/manajemen-jadwal/proposal/lihat-file', $row->id) . '" title="Lihat File Proposal" class="edit btn btn-warning btn-sm"><i class="fas fa-file"></i></a>';
 
                     $btn = $btn . ' <a href="javascript:void(0)" title="Lihat Detail" class="btn btn-info btn-sm" onclick="get(' . "'" . $row->id . "'" . ')"><i class="fas fa-eye"></i></a>';
-                    $btn = $btn . ' <a href="javascript:void(0)" title="Lihat Detail" class="btn btn-info btn-sm" onclick="getJadwal(' . "'" . $row->id . "'" . ')"><i class="fas fa-eye"></i></a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" title="Atur Jadwal" class="btn btn-success btn-sm" onclick="getJadwal(' . "'" . $row->id . "'" . ')"><i class="fas fa-calendar-times"></i></a>';
 
                     return $btn;
                 })
@@ -56,8 +56,6 @@ class SemprojController extends Controller
         echo json_encode($data);
     }
 
-
-
     public function simpanJadwal(Request $request, $id)
     {
 
@@ -68,6 +66,16 @@ class SemprojController extends Controller
             'ketua_sidang' => 'required|different:pembimbing_satu,pembimbing_dua,penguji_1,penguji_2',
             'penguji_1' =>  'required|different:pembimbing_satu,pembimbing_dua,penguji_2,ketua_sidang',
             'penguji_2' => 'required|different:pembimbing_satu,pembimbing_dua,penguji_1,ketua_sidang'
+        ], [
+            'tanggal_sidang.required' => 'Tidak Boleh Kosong',
+            'waktu_mulai.required.required' => 'Tidak Boleh Kosong',
+            'waktu_selesai.required' => 'Tidak Boleh Kosong',
+            'ketua_sidang.required' => 'Tidak Boleh Kosong',
+            'penguji_1.required' => 'Tidak Boleh Kosong',
+            'penguji_2.required' => 'Tidak Boleh Kosong',
+            'ketua_sidang.different' => 'Dosen Sudah Terpilih',
+            'penguji_1.different' => 'Dosen Sudah Terpilih',
+            'penguji_2.different' => 'Dosen Sudah Terpilih',
         ]);
 
         $data =  Sempro::findorfail($id);
@@ -103,9 +111,6 @@ class SemprojController extends Controller
 
     public function printJadwal()
     {
-
-
-
         if (Sempro::whereNotNull('tanggal_sidang')) {
             $setPaper = array(0, 0, 1000, 1000);
             $data = DB::table('table_sidang_proposal')

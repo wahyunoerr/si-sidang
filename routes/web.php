@@ -15,7 +15,7 @@ use App\Models\Semhas;
 |
 */
 
-Route::get('/', 'HomeController@index2');
+Route::get('/', 'FrontEndController@index');
 
 
 
@@ -75,13 +75,6 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
 });
 
 
-Route::group(['middleware' => 'role:kaprodi'], function () {
-    // sempro
-
-
-});
-
-
 Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-file/{id}', function ($id) {
         $data = Sempro::findorfail($id);
@@ -118,6 +111,8 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
 Route::group(['middleware' => 'role:admin|kaprodi'], function () {
     Route::get('/admin/manajemen-user', 'UserRoleController@index')->name('userrole.index');
     Route::post('/admin/manajemen-user/simpan', 'UserRoleController@simpan')->name('userrole.simpan');
+    Route::get('/admin/manajemen-user/edit/{id}', 'UserRoleController@edit')->name('userrole.edit');
+    Route::get('/admin/manajemen-user/update/{id}', 'UserRoleController@update')->name('userrole.update');
     Route::delete('/admin/manajemen-user/hapus/{id}', 'UserRoleController@hapus')->name('userrole.hapus');
 
     Route::get('/admin/manajemen-role', 'RoleController@index')->name('role.index');

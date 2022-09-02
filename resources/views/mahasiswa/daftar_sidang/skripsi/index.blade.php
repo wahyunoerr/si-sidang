@@ -119,7 +119,7 @@
                             allowEscapeKey: false,
                             allowEnterKey: false,
                         }).then(function() {
-                            window.location.href = "{{ url('daftarskripsi.index') }}";
+                            window.location.href = "{{ route('daftarskripsi.index') }}";
                         });
                     }
                 },

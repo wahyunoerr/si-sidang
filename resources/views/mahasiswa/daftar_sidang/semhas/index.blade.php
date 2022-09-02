@@ -3,7 +3,7 @@
 @section('content')
 
 
-    @if ($data->status_proposal == 1 && empty($data))
+    @if ($data->status_proposal == 1)
         <div class="row g-5 g-xl-8">
             <div class="col-xl-12">
                 <div class="card shadow-sm">
@@ -95,12 +95,27 @@
                 </div>
             </div>
         </div>
-    @else
+    @elseif ($data->status_proposal == 2)
+        <table class="table">
+            <thead>
+                <th>Nama Mahasiswa</th>
+                <th>Status</th>
+            </thead>
+            <tbody>
+                @foreach ($data2 as $d2)
+                    <td>{{ $d2->nama_lengkap }}</td>
+                    <td><a href="{{ route('revisi.index', $data->id) }}" class="btn btn-primary btn-sm">Revisi Skripsi</a>
+                    </td>
+                @endforeach
+            </tbody>
+        </table>
+    @elseif($semhas->nama_lengkap == Auth::user()->name)
         <center>
             <h1>Anda Sudah Daftar,
                 Silahkan Check Jadwal
             </h1>
         </center>
+    @else
     @endif
 
 

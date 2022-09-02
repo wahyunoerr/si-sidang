@@ -22,13 +22,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = Sempro::where('nama_lengkap', Auth::user()->name)->get();
-        return view('home', compact('data'));
+        if ($data = Sempro::where('nama_lengkap', Auth::user()->name)->get()) {
+            return view('home', compact('data'));
+        }
     }
 
-    public function index2()
-    {
-        $data = Sempro::where('tanggal_sidang', Carbon::today()->toDateString())->get();
-        return view('welcome', compact('data'));
-    }
+    // public function index2()
+    // {
+    //     $data = Sempro::where('tanggal_sidang', Carbon::today()->toDateString())->get();
+    //     return view('welcome', compact('data'));
+    // }
 }
