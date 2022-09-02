@@ -34,7 +34,7 @@
                             <label class="form-label fs-6 fw-bolder text-dark">NIM</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input id="email" type="email"
+                            <input type="text"
                                 class="form-control form-control-lg form-control-solid  @error('username') is-invalid @enderror"
                                 name="username" value="{{ old('username') }}" required autocomplete="username"
                                 autofocus />
@@ -76,9 +76,7 @@
                         <div class="text-center">
                             <!--begin::Submit button-->
                             <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
-                                <span class="indicator-label">Continue</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                Submit
                             </button>
                             <!--end::Submit button-->
                         </div>

@@ -3,6 +3,7 @@
 @section('content')
 
 
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -25,6 +26,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ( $sk as $pemb_1 )
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $pemb_1->nama_lengkap}}</td>
+                                <td>{{ $pemb_1->nim}}</td>
+                                <td>{{ $pemb_1->judul_skripsi}}</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -32,74 +41,7 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            table = $('#example2').DataTable({
-                processing: true,
-                serverside: true,
-                ajax: "{{ route('dospem1.index') }}",
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'nama_lengkap',
-                        name: 'nama_lengkap'
-                    },
-                    {
-                        data: 'nim',
-                        name: 'nim'
-                    },
-                    {
-                        data: 'judul_skripsi',
-                        name: 'judul_skripsi'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
-                        orderable: false,
-                        searchable: false
-                    },
-                ],
-                order: [
-                    [0, 'asc']
-                ]
-            });
-        })
-
-
-        function update(id) {
-            swal({
-                title: 'Yakin? Data tidak bisa diubah',
-                type: 'warning',
-                showCancelButton: true,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Tidak',
-                buttons: true
-            }).then(function() {
-                $.ajax({
-                    url: "{{ url('/admin/bimbingan-skripsi-dospem1/update') }}" + "/" + id,
-                    type: "POST",
-                    dataType: "JSON",
-                    success: function() {
-                        swal({
-                            title: 'Berhasil',
-                            type: 'success',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                            allowEnterKey: false,
-                        }).then(function() {
-                            reload();
-                        })
-                    }
-                })
-            })
-        }
-
-
+        <script>
         function reload() {
             table.ajax.reload(null, false);
         }
