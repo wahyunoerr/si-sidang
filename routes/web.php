@@ -37,8 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
-    Route::get('/admin/bimbingan-skripsi-dospem1', 'SkripsibController@indexDospem1')->name('dospem1.index');
-    Route::post('/admin/bimbingan-skripsi-dospem1/update/{id}', 'SkripsibController@update')->name('dospem1.update');
+    Route::get('/admin/bimbingan-skripsi-dospem', 'SkripsibController@indexDospem1')->name('dospem1.index');
+    Route::post('/admin/bimbingan-skripsi-dospem/update/{id}', 'SkripsibController@update')->name('dospem1.update');
 
     Route::get('/admin/bimbingan-skripsi-dospem2', 'SkripsibController@indexDospem2')->name('dospem2.index');
     Route::post('/admin/bimbingan-skripsi-dospem2/update/{id}', 'SkripsibController@update2')->name('dospem2.update');
@@ -111,8 +111,8 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
 Route::group(['middleware' => 'role:admin|kaprodi'], function () {
     Route::get('/admin/manajemen-user', 'UserRoleController@index')->name('userrole.index');
     Route::post('/admin/manajemen-user/simpan', 'UserRoleController@simpan')->name('userrole.simpan');
-    Route::get('/admin/manajemen-user/edit/{id}', 'UserRoleController@edit')->name('userrole.edit');
-    Route::get('/admin/manajemen-user/update/{id}', 'UserRoleController@update')->name('userrole.update');
+    Route::get('/admin/manajemen-user/edit/{user}', 'UserRoleController@edit')->name('userrole.edit');
+    Route::post('/admin/manajemen-user/update/{id}', 'UserRoleController@update')->name('userrole.update');
     Route::delete('/admin/manajemen-user/hapus/{id}', 'UserRoleController@hapus')->name('userrole.hapus');
 
     Route::get('/admin/manajemen-role', 'RoleController@index')->name('role.index');

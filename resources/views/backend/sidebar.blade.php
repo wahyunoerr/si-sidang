@@ -310,8 +310,8 @@
                                 </a>
                             </div> --}}
                             <div class="menu-item">
-                                <a class="menu-link {{ request()->is('/admin/bimbingan-skripsi-dospem1') ? 'active' : '' }}"
-                                    href="{{ url('/admin/bimbingan-skripsi-dospem1') }}">
+                                <a class="menu-link {{ request()->is('/admin/bimbingan-skripsi-dospem') ? 'active' : '' }}"
+                                    href="{{ url('/admin/bimbingan-skripsi-dospem') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" onclick="simpanRole()" class="btn btn-sm btn-primary">
+                <button type="button" onclick="simpanUser()" class="btn btn-sm btn-primary">
                     Update
                 </button>
                 </form>
@@ -54,9 +54,9 @@
     <script>
         function simpanUser() {
             $.ajax({
-                url: "{{ route('role.update', $role->id) }}",
+                url: "{{ route('userrole.update', $data->id) }}",
                 type: "POST",
-                data: new FormData($('#form-role')[0]),
+                data: new FormData($('#form-user')[0]),
                 dataType: "JSON",
                 async: false,
                 cache: false,

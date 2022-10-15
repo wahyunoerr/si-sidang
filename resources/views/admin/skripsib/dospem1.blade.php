@@ -9,8 +9,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex my-8">
-                        <a href="{{ route('dospem2.index') }}" class="btn btn-sm btn-danger"><i class="fas fa-eye"></i>
-                            Pembimbing 2</a>
+                        <h1>
+                            Manajemen Pembimbing
+                        </h1>
                     </div>
                 </div>
 
@@ -26,13 +27,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $sk as $pemb_1 )
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $pemb_1->nama_lengkap}}</td>
-                                <td>{{ $pemb_1->nim}}</td>
-                                <td>{{ $pemb_1->judul_skripsi}}</td>
-                            </tr>
+                            @foreach ($sk as $pemb_1)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $pemb_1->nama_lengkap }}</td>
+                                    <td>{{ $pemb_1->nim }}</td>
+                                    <td>{{ $pemb_1->judul_skripsi }}</td>
+                                    <td>
+                                        <a href="javascript:void(0)" title="Status"
+                                            class="btn btn-warning btn-sm">Pending</a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -41,7 +46,7 @@
         </div>
     </div>
 
-        <script>
+    <script>
         function reload() {
             table.ajax.reload(null, false);
         }

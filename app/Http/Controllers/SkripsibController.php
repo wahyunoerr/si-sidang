@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DaftarSkripsi;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use DataTables;
 use DB;
 

@@ -83,6 +83,20 @@ class UserRoleController extends Controller
         return view('admin.user-role.edit', compact('data', 'role', 'rolePermissions'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required'
+        ], [
+            'name.required' => 'nama user wajib diisi!'
+        ]);
+
+        $data = User::findorfail($id);
+        $data->save();
+
+        $data->syncRoles($request->input('role'));
+        echo json_encode(["status" => TRUE]);
+    }
 
     public function hapus($id)
     {

@@ -31,14 +31,14 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-10">
                             <!--begin::Label-->
-                            <label class="form-label fs-6 fw-bolder text-dark">NIM</label>
+                            <label class="form-label fs-6 fw-bolder text-dark">NIM/NIDN</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="text"
-                                class="form-control form-control-lg form-control-solid  @error('username') is-invalid @enderror"
-                                name="username" value="{{ old('username') }}" required autocomplete="username"
+                                class="form-control form-control-lg form-control-solid  @error('serial_user') is-invalid @enderror"
+                                name="serial_user" value="{{ old('serial_user') }}" required autocomplete="serial_user"
                                 autofocus />
-                            @error('username')
+                            @error('serial_user')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
