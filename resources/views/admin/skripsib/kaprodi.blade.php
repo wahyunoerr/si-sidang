@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="d-flex my-8">
                         <h1>
-                            Manajemen Pembimbing Kaprodi
+                            Manajemen Pembimbing
                         </h1>
                     </div>
                 </div>
@@ -23,7 +23,8 @@
                                 <th>Nama Mahasiswa</th>
                                 <th>NIM</th>
                                 <th>Judul Skripsi</th>
-                                <th>Status Proposal</th>
+                                <th>Status Pembimbing 1</th>
+                                <th>Status Pembimbing 2</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +58,12 @@
                         name: 'judul_skripsi'
                     },
                     {
+                        data: 'status_proposal',
+                        name: 'status_proposal',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
                         data: 'status_bimbingan2',
                         name: 'status_bimbingan2',
                         orderable: false,
@@ -69,6 +76,38 @@
             });
         })
 
+
+        function update(id) {
+            swal({
+                title: 'Yakin? Data tidak bisa diubah',
+                type: 'warning',
+                showCancelButton: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+                buttons: true
+            }).then(function() {
+                $.ajax({
+                    url: "{{ url('admin/bimbingan-skripsi-dospem/update') }}" + "/" + id,
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function() {
+                        swal({
+                            title: 'Berhasil',
+                            type: 'success',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                        }).then(function() {
+                            reload();
+                        })
+                    }
+                })
+            })
+
+        }
 
         function update2(id) {
             swal({
@@ -100,7 +139,6 @@
                 })
             })
         }
-
 
         function reload() {
             table.ajax.reload(null, false);

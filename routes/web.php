@@ -40,9 +40,9 @@ Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
     Route::get('/admin/bimbingan-skripsi-dospem', 'SkripsibController@indexDospem1')->name('dospem1.index');
     Route::get('/admin/bimbingan-skripsi-kaprodiacc', 'SkripsibController@kaprodiacc')->name('kaprodi.acc');
     Route::post('/admin/bimbingan-skripsi-dospem/update/{id}', 'SkripsibController@update')->name('dospem1.update');
+    Route::post('/admin/bimbingan-skripsi-dospem2/update/{id}', 'SkripsibController@update2')->name('dospem2.update');
 
     Route::get('/admin/bimbingan-skripsi-dospem2', 'SkripsibController@indexDospem2')->name('dospem2.index');
-    Route::post('/admin/bimbingan-skripsi-dospem2/update/{id}', 'SkripsibController@update2')->name('dospem2.update');
 
     Route::get('/penguji/manajemen-penguji/', 'ProposalpController@index')->name('pengpro1.index');
     Route::get('/penguji/manajemen-penguji/info/{id}', 'ProposalpController@infoPenguji1')->name('pengpro1.info');
@@ -161,5 +161,5 @@ Route::group(['middleware' => 'role:admin|dosen|kaprodi'], function () {
 
 Route::group(['middleware' => 'role:admin|kaprodi'], function () {
     Route::get('/admin/pendaftar', 'PendaftarController@index')->name('pd.index');
-    Route::get('/admin/info-pendaftar/{id}','PendaftarController@getInfo');
+    Route::get('/admin/info-pendaftar/{id}', 'PendaftarController@getInfo');
 });

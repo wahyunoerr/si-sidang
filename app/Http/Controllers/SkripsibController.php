@@ -16,38 +16,47 @@ class SkripsibController extends Controller
     {
         $sk = DaftarSkripsi::orWhere('pembimbing_satu', Auth::id())->orWhere('pembimbing_dua', Auth::id())->get();
         if (Request()->ajax()) {
-                    return Datatables::of($sk)
-                        ->addIndexColumn()
-                        ->addColumn('status_bimbingan2', function ($tam) {
-                            if ($tam->status_bimbingan2 == 0) {
-                                $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Pending</a>';
-                            } else if ($tam->status_bimbingan2 == 1) {
-                                $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Accepted</a>';
-                            }
-                            return $btn1;
-                        })
-                        ->rawColumns(['status_bimbingan2'])
-                        ->make(true);
-                }
+            return Datatables::of($sk)
+                ->addIndexColumn()
+                ->addColumn('status_bimbingan2', function ($tam) {
+                    if ($tam->status_bimbingan2 == 0) {
+                        $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Pending</a>';
+                    } else if ($tam->status_bimbingan2 == 1) {
+                        $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Accepted</a>';
+                    }
+                    return $btn1;
+                })
+                ->rawColumns(['status_bimbingan2'])
+                ->make(true);
+        }
         return view('admin.skripsib.dospem1', compact('sk'));
     }
 
-    public function kaprodiacc(){
+    public function kaprodiacc()
+    {
         $sk = DaftarSkripsi::all();
         if (Request()->ajax()) {
-                    return Datatables::of($sk)
-                        ->addIndexColumn()
-                        ->addColumn('status_bimbingan2', function ($tam) {
-                            if ($tam->status_bimbingan2 == 0) {
-                                $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Pending</a>';
-                            } else if ($tam->status_bimbingan2 == 1) {
-                                $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Accepted</a>';
-                            }
-                            return $btn1;
-                        })
-                        ->rawColumns(['status_bimbingan2'])
-                        ->make(true);
-                }
+            return Datatables::of($sk)
+                ->addIndexColumn()
+                ->addColumn('status_proposal', function ($tam) {
+                    if ($tam->status_proposal == 0) {
+                        $btn = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update(' . "'" . $tam->id . "'" . ')">Pending</a>';
+                    } else if ($tam->status_proposal == 1) {
+                        $btn = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update(' . "'" . $tam->id . "'" . ')">Accepted</a>';
+                    }
+                    return $btn;
+                })
+                ->addColumn('status_bimbingan2', function ($tap) {
+                    if ($tap->status_bimbingan2 == 0) {
+                        $btn2 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tap->id . "'" . ')">Pending</a>';
+                    } else if ($tap->status_bimbingan2 == 1) {
+                        $btn2 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tap->id . "'" . ')">Accepted</a>';
+                    }
+                    return $btn2;
+                })
+                ->rawColumns(['status_proposal', 'status_bimbingan2'])
+                ->make(true);
+        }
         return view('admin.skripsib.kaprodi', compact('sk'));
     }
 
