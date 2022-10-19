@@ -22,8 +22,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if( Auth::check()){
         if ($data = Sempro::where('nama_lengkap', Auth::user()->name)->get()) {
             return view('home', compact('data'));
-        }
+         }
+     }else{
+        return redirect('/');
+     }
     }
 }

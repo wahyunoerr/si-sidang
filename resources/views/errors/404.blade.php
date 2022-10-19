@@ -47,7 +47,11 @@
 						<!--end::Message-->
 						<!--begin::Action-->
 						<div class="text-center">
+							@if(Auth::check())
 							<a href="{{ route('home') }}" class="btn btn-lg btn-primary fw-bolder">Kembali ke Beranda</a>
+							@else
+							<a href="{{ url('/') }}" class="btn btn-lg btn-primary fw-bolder">Kembali ke Beranda</a>
+							@endif
 						</div>
 						<!--end::Action-->
 					</div>
