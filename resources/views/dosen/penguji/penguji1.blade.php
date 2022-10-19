@@ -6,14 +6,6 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="d-flex my-8">
-                        <a href="{{ route('pengpro2.index') }}" class="btn btn-warning btn-sm">Penguji 2</a>
-                    </div>
-                    <div class="d-flex my-8">
-                        <a href="{{ route('ket_sidang.index') }}" class="btn btn-warning btn-sm">Ketua Sidang</a>
-                    </div>
-                </div>
 
                 <div class="card-body">
                     <table id="example2" class="table table-bordered table-hover">

@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="d-flex my-8">
                         <h1>
-                            Manajemen Pembimbing
+                            Manajemen Pembimbing Kaprodi
                         </h1>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             table = $('#example2').DataTable({
                 processing: true,
                 serverside: true,
-                ajax: "{{ route('dospem1.index') }}",
+                ajax: "{{ route('kaprodi.acc') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'

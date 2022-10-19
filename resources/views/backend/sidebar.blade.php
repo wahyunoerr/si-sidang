@@ -300,6 +300,28 @@
                             <span class="menu-title">Manajemen Pembimbing</span>
                             <span class="menu-arrow"></span>
                         </span>
+                        @if( Auth::user()->hasRole('kaprodi') )
+                        <div class="menu-sub menu-sub-accordion">
+                            {{-- <div class="menu-item">
+                                <a class="menu-link" href="{{ url('admin/bimbingan-kp') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Kerja Praktek</span>
+                                </a>
+                            </div> --}}
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('/admin/bimbingan-skripsi-dospem') ? 'active' : '' }}"
+                                    href="{{ url('/admin/bimbingan-skripsi-kaprodiacc') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Proposal</span>
+                                </a>
+
+                            </div>
+                        </div>
+                        @else
                         <div class="menu-sub menu-sub-accordion">
                             {{-- <div class="menu-item">
                                 <a class="menu-link" href="{{ url('admin/bimbingan-kp') }}">
@@ -320,6 +342,7 @@
 
                             </div>
                         </div>
+                        @endif
                     @endhasrole
                     @hasanyrole('admin|kaprodi')
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
