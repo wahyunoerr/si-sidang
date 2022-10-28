@@ -441,24 +441,25 @@
                                     </span>
                                     <span class="menu-title">Pengaturan Aplikasi</span>
                                 </a>
-                            @endrole
-                        </div>
-                        <!--end::Menu-->
+                            </div>
+                        @endhasrole
                     </div>
-                    <!--end::Aside Menu-->
+                    <!--end::Menu-->
                 </div>
-                <!--end::Aside menu-->
-                <!--begin::Footer-->
-                <div class="aside-footer flex-column-auto py-5" id="kt_aside_footer">
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();"
-                        class="btn btn-danger w-100" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                        data-bs-dismiss-="click" title="Apakah Anda yakin ingin keluar??">Log Out</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-                <!--end::Footer-->
+                <!--end::Aside Menu-->
             </div>
+            <!--end::Aside menu-->
+            <!--begin::Footer-->
+            <div class="aside-footer flex-column-auto py-5" id="kt_aside_footer">
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();"
+                    class="btn btn-danger w-100" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                    data-bs-dismiss-="click" title="Apakah Anda yakin ingin keluar??">Log Out</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+            <!--end::Footer-->
         </div>
+    </div>
