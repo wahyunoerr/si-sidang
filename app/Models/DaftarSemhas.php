@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DaftarSkripsi extends Model
+class DaftarSemhas extends Model
 {
-    protected $table = 'tbl_daftar_skripsi';
+    protected $table = 'tbl_daftar_semhas';
     protected $fillable = [
         'nim',
         'nama_lengkap',

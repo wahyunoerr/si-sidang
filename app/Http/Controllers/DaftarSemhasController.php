@@ -51,8 +51,6 @@ class DaftarSemhasController extends Controller
 
     public function store(Request $request)
     {
-
-
         $file = $request->file_skripsi;
         $new_file = time() . $file->getClientOriginalName();
         $file->move('/uploads/file_skripsi/', $new_file);

@@ -1,16 +1,25 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Daftar Sidang Proposal')
+@section('halaman-sekarang', 'Daftar Sidang Semhas')
 @section('content')
 
-
-    @if ($data->status_proposal == 1)
+    @if (empty($pemb))
+        <center>
+            <h1>Anda Belum Mendaftar Sempro</h1>
+        </center>
+    @elseif ($pemb->status_proposal == 0 ||
+        ($pemb->status_proposal == 1 && $pemb->status_bimbingan2 == 0) ||
+        $pemb->status_bimbingan2 == 0)
+        <center>
+            <h1>Silahkan Minta Tanda Tangan Pembimbing!</h1>
+        </center>
+    @elseif($pemb->status_proposal == 1 && $pemb->status_bimbingan2 == 1 && empty($daf))
         <div class="row g-5 g-xl-8">
             <div class="col-xl-12">
                 <div class="card shadow-sm">
                     <div class="card-header">
                         <h3 class="card-title">Form Pendaftaran</h3>
                         <div class="card-toolbar">
-                            <form id="form" class="form" enctype="multipart/form-data" method="POST">
+                            <form id="form" enctype="multipart/form-data" method="POST">
                         </div>
                     </div>
                     <div class="card-body">
@@ -63,26 +72,26 @@
                         </div>
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Judul Skripsi</span>
+                                <span class="required">Judul Proposal</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                     title="Judul Skripsi yang ingin di ajukan"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="judul_skripsi"
-                                name="judul_proposal" placeholder="Judul Skripsi" value="{{ $data->judul_skripsi }}"
+                            <input type="text" class="form-control form-control-solid" id="judul_proposal"
+                                name="judul_proposal" placeholder="Judul Skripsi" value="{{ $user->judul_skripsi }}"
                                 readonly />
 
                         </div>
 
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">File Skripsi</span>
+                                <span class="required">File Proposal</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Judul Skripsi yang ingin di ajukan"></i>
+                                    title="File Proposal"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="file" class="form-control form-control-solid" id="file_skripsi"
-                                name="file_skripsi" />
+                            <input type="file" class="form-control form-control-solid" id="file_proposal"
+                                name="file_proposal" />
                         </div>
 
                         <div class="text-center">
@@ -95,35 +104,15 @@
                 </div>
             </div>
         </div>
-    @elseif ($data->status_proposal == 2)
-        <table class="table">
-            <thead>
-                <th>Nama Mahasiswa</th>
-                <th>Status</th>
-            </thead>
-            <tbody>
-                @foreach ($data2 as $d2)
-                    <td>{{ $d2->nama_lengkap }}</td>
-                    <td><a href="{{ route('revisi.index', $data->id) }}" class="btn btn-primary btn-sm">Revisi Skripsi</a>
-                    </td>
-                @endforeach
-            </tbody>
-        </table>
-    @elseif($semhas->nama_lengkap == Auth::user()->name)
-        <center>
-            <h1>Anda Sudah Daftar,
-                Silahkan Check Jadwal
-            </h1>
-        </center>
     @else
+        <center>
+            <h1>Anda Sudah Mendaftar, Silahkan Lihat Jadwal!</h1>
+        </center>
     @endif
-
-
-
     <script>
         function simpan() {
             $.ajax({
-                url: "{{ route('semhas.store') }}",
+                url: "{{ route('proposal.store') }}",
                 data: new FormData($('#form')[0]),
                 type: "POST",
                 dataType: 'JSON',
@@ -142,13 +131,13 @@
                             allowEscapeKey: false,
                             allowEnterKey: false,
                         }).then(function() {
-                            window.location.href = "{{ route('sidangsemhas.index') }}";
+                            window.location.href = "{{ route('proposal.tambah') }}";
                         });
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function(jqXHR, textStatus, errorThrown, response) {
                     swal({
-                        title: 'Terjadi Kesalahan',
+                        title: 'Masukkan File Proposal!!',
                         type: 'error',
                         allowOutsideClick: false,
                         allowEscapeKey: false,
@@ -158,4 +147,5 @@
             })
         }
     </script>
+
 @endsection

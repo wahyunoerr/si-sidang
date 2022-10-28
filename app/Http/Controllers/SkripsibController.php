@@ -20,9 +20,9 @@ class SkripsibController extends Controller
                 ->addIndexColumn()
                 ->addColumn('status_bimbingan2', function ($tam) {
                     if ($tam->status_bimbingan2 == 0) {
-                        $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Pending</a>';
+                        $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Menunggu</a>';
                     } else if ($tam->status_bimbingan2 == 1) {
-                        $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Accepted</a>';
+                        $btn1 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tam->id . "'" . ')">Diterima</a>';
                     }
                     return $btn1;
                 })
@@ -40,17 +40,17 @@ class SkripsibController extends Controller
                 ->addIndexColumn()
                 ->addColumn('status_proposal', function ($tam) {
                     if ($tam->status_proposal == 0) {
-                        $btn = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update(' . "'" . $tam->id . "'" . ')">Pending</a>';
+                        $btn = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update(' . "'" . $tam->id . "'" . ')">Menunggu</a>';
                     } else if ($tam->status_proposal == 1) {
-                        $btn = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update(' . "'" . $tam->id . "'" . ')">Accepted</a>';
+                        $btn = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update(' . "'" . $tam->id . "'" . ')">Diterima</a>';
                     }
                     return $btn;
                 })
                 ->addColumn('status_bimbingan2', function ($tap) {
                     if ($tap->status_bimbingan2 == 0) {
-                        $btn2 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tap->id . "'" . ')">Pending</a>';
+                        $btn2 = '<a href="javascript:void(0)" title="Status" class="btn btn-warning btn-sm" onclick="update2(' . "'" . $tap->id . "'" . ')">Menunggu</a>';
                     } else if ($tap->status_bimbingan2 == 1) {
-                        $btn2 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tap->id . "'" . ')">Accepted</a>';
+                        $btn2 = '<a href="javascript:void(0)" title="Status" class="btn btn-success btn-sm" onclick="update2(' . "'" . $tap->id . "'" . ')">Diterima</a>';
                     }
                     return $btn2;
                 })

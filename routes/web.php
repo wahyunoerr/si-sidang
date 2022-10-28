@@ -35,15 +35,27 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user/ubah-password/', 'UserController@ubah_password')->name('password.update');
 });
 
+Route::group(['middleware' => 'role:admin'], function () {
+    Route::get('/admin/pengaturan-aplikasi', 'SettingsController@index')->name('settings.index');
+});
 
 Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
+
+    //manajemen pembimbing proposal
     Route::get('/admin/bimbingan-skripsi-dospem', 'SkripsibController@indexDospem1')->name('dospem1.index');
     Route::get('/admin/bimbingan-skripsi-kaprodiacc', 'SkripsibController@kaprodiacc')->name('kaprodi.acc');
     Route::post('/admin/bimbingan-skripsi-dospem/update/{id}', 'SkripsibController@update')->name('dospem1.update');
     Route::post('/admin/bimbingan-skripsi-dospem2/update/{id}', 'SkripsibController@update2')->name('dospem2.update');
-
     Route::get('/admin/bimbingan-skripsi-dospem2', 'SkripsibController@indexDospem2')->name('dospem2.index');
 
+    //manajemen pembimbing semhas
+    // Route::get('/admin/bimbingan-semhas-dospem', 'SemhasbController@indexDospem1')->name('dospem1.index');
+    // Route::get('/admin/bimbingan-semhas-kaprodiacc', 'SemhasbController@kaprodiacc')->name('kaprodi.acc');
+    // Route::post('/admin/bimbingan-semhas-dospem/update/{id}', 'SemhasbController@update')->name('dospem1.update');
+    // Route::post('/admin/bimbingan-semhas-dospem2/update/{id}', 'SemhasbController@update2')->name('dospem2.update');
+    // Route::get('/admin/bimbingan-semhas-dospem2', 'SemhasbController@indexDospem2')->name('dospem2.index');
+
+    //manajemen penguji proposal
     Route::get('/penguji/manajemen-penguji/', 'ProposalpController@index')->name('pengpro1.index');
     Route::get('/penguji/manajemen-penguji/info/{id}', 'ProposalpController@infoPenguji1')->name('pengpro1.info');
     Route::post('/penguji/manajemen-penguji/update-status-proposal/{id}', 'ProposalpController@updatePenguji1')->name('pengpro1.update');
@@ -71,7 +83,7 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-proposal/tambah', 'DaftarProposalController@create')->name('proposal.tambah');
     Route::post('/mahasiswa/daftar-sidang-proposal/store', 'DaftarProposalController@store')->name('proposal.store');
 
-    Route::get('/mahasiswa/daftar-semhas', 'DaftarSemhasController@create')->name('sidangsemhas.index');
+    Route::get('/mahasiswa/daftar-semhas/tambah', 'DaftarSemhasController@create')->name('sidangsemhas.index');
     Route::post('/mahasiswa/daftar-semhas/store', 'DaftarSemhasController@store')->name('semhas.store');
 });
 
@@ -82,6 +94,8 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
         return response()->file($data->file_proposal);
     })->name('sempro.lihat');
 
+    //jadwal sempro
+
     Route::get('/kaprodi/manajemen-jadwal/proposal', 'JadwalProposalController@index')->name('man-pro.index');
     Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'JadwalProposalController@edit')->name('sempro.edit');
     Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', 'JadwalProposalController@getJadwal')->name('sempro.buatjadwal');
@@ -89,7 +103,7 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', 'JadwalProposalController@lihatJadwal')->name('sempro.lihatJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', 'JadwalProposalController@printJadwal')->name('sempro.printJadwal');
 
-    // semhas
+    // semhas jadwal
     Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-file/{id}', function ($id) {
         $data = Semhas::findorfail($id);
         return response()->file($data->file_skripsi);
@@ -134,18 +148,6 @@ Route::group(['middleware' => 'role:admin|kaprodi'], function () {
     //dosen
     Route::get('/admin/manajemen-dosen', 'DosenController@index')->name('dosen.index');
     Route::post('/admin/manajemen-dosen/simpan', 'DosenController@simpan')->name('dosen.simpan');
-
-    //bimbingan kp
-    Route::get('/admin/bimbingan-kp', 'KpbController@index')->name('kpb.index');
-    Route::post('/admin/bimbingan-kp/simpan', 'KpbController@simpan')->name('kpb.simpan');
-
-    //penguji kp
-    Route::get('/admin/penguji-kp', 'KppController@index')->name('kpp.index');
-
-
-
-    //jadwal kp
-    Route::get('/admin/jadwal-kp', 'KpjController@index')->name('kpj.index');
 });
 
 

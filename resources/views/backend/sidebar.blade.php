@@ -148,7 +148,7 @@
                     </div>
                     <div class="menu-item">
                         <a class="menu-link {{ request()->is('mahasiswa/daftar-semhas/tambah') ? 'active' : '' }}"
-                            href="{{ url('mahasiswa/daftar-semhas') }}">
+                            href="{{ url('mahasiswa/daftar-semhas/tambah') }}">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                 <span class="svg-icon svg-icon-2">
@@ -274,6 +274,15 @@
                                     <span class="menu-title">Proposal</span>
                                 </a>
                             </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('/') ? 'active' : '' }}"
+                                    href="{{ url('') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Semhas</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endhasrole
@@ -300,9 +309,9 @@
                             <span class="menu-title">Manajemen Pembimbing</span>
                             <span class="menu-arrow"></span>
                         </span>
-                        @if( Auth::user()->hasRole('kaprodi') )
-                        <div class="menu-sub menu-sub-accordion">
-                            {{-- <div class="menu-item">
+                        @if (Auth::user()->hasRole('kaprodi'))
+                            <div class="menu-sub menu-sub-accordion">
+                                {{-- <div class="menu-item">
                                 <a class="menu-link" href="{{ url('admin/bimbingan-kp') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
@@ -310,20 +319,19 @@
                                     <span class="menu-title">Kerja Praktek</span>
                                 </a>
                             </div> --}}
-                            <div class="menu-item">
-                                <a class="menu-link {{ request()->is('/admin/bimbingan-skripsi-dospem') ? 'active' : '' }}"
-                                    href="{{ url('/admin/bimbingan-skripsi-kaprodiacc') }}">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Proposal</span>
-                                </a>
-
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->is('/admin/bimbingan-skripsi-dospem') ? 'active' : '' }}"
+                                        href="{{ url('/admin/bimbingan-skripsi-kaprodiacc') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Proposal</span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
                         @else
-                        <div class="menu-sub menu-sub-accordion">
-                            {{-- <div class="menu-item">
+                            <div class="menu-sub menu-sub-accordion">
+                                {{-- <div class="menu-item">
                                 <a class="menu-link" href="{{ url('admin/bimbingan-kp') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
@@ -331,20 +339,28 @@
                                     <span class="menu-title">Kerja Praktek</span>
                                 </a>
                             </div> --}}
-                            <div class="menu-item">
-                                <a class="menu-link {{ request()->is('/admin/bimbingan-skripsi-dospem') ? 'active' : '' }}"
-                                    href="{{ url('/admin/bimbingan-skripsi-dospem') }}">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Proposal</span>
-                                </a>
-
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->is('/admin/bimbingan-skripsi-dospem') ? 'active' : '' }}"
+                                        href="{{ url('/admin/bimbingan-skripsi-dospem') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Proposal</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->is('/admin/bimbingan-semhas-dospem') ? 'active' : '' }}"
+                                        href="{{ url('/admin/bimbingan-semhas-dospem') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Semhas</span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
                         @endif
                     @endhasrole
-                    @hasanyrole('admin|kaprodi')
+                    @hasanyrole('kaprodi')
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <span class="menu-link">
                                 <span class="menu-icon">
@@ -393,23 +409,56 @@
                             <div class="separator mx-1 my-4"></div>
                         </div>
                     </div>
+                    @hasrole('admin')
+                        <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
+                            id="#kt_aside_menu" data-kt-menu="true">
+                            <div class="menu-item">
+                                <div class="menu-content pb-2">
+                                    <span class="menu-section text-muted text-uppercase fs-8 ls-1">Pengaturan
+                                        Aplikasi</span>
+                                </div>
+                            </div>
+
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/pengaturan-aplikasi/') ? 'active' : '' }}"
+                                    href="{{ url('admin/pengaturan-aplikasi') }}">
+                                    <span class="menu-icon">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                        <span class="svg-icon svg-icon-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <rect x="2" y="2" width="9" height="9"
+                                                    rx="2" fill="black" />
+                                                <rect opacity="0.3" x="13" y="2" width="9"
+                                                    height="9" rx="2" fill="black" />
+                                                <rect opacity="0.3" x="13" y="13" width="9"
+                                                    height="9" rx="2" fill="black" />
+                                                <rect opacity="0.3" x="2" y="13" width="9"
+                                                    height="9" rx="2" fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-title">Pengaturan Aplikasi</span>
+                                </a>
+                            @endrole
+                        </div>
+                        <!--end::Menu-->
+                    </div>
+                    <!--end::Aside Menu-->
                 </div>
-                <!--end::Menu-->
-            </div>
-            <!--end::Aside Menu-->
-        </div>
-        <!--end::Aside menu-->
-        <!--begin::Footer-->
-        <div class="aside-footer flex-column-auto py-5" id="kt_aside_footer">
-            <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
+                <!--end::Aside menu-->
+                <!--begin::Footer-->
+                <div class="aside-footer flex-column-auto py-5" id="kt_aside_footer">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();"
-                class="btn btn-danger w-100" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                data-bs-dismiss-="click" title="Apakah Anda yakin ingin keluar??">Log Out</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
+                        class="btn btn-danger w-100" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                        data-bs-dismiss-="click" title="Apakah Anda yakin ingin keluar??">Log Out</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+                <!--end::Footer-->
+            </div>
         </div>
-        <!--end::Footer-->
-    </div>
-</div>

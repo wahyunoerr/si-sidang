@@ -14,6 +14,7 @@ class DaftarProposalController extends Controller
     public function create()
     {
         $pemb = DaftarSkripsi::where('nama_lengkap', Auth::user()->name)->first();
+        $daf = Sempro::where('nama_lengkap', Auth::user()->name)->first();
         $user = DB::table('tbl_daftar_skripsi')
             ->leftjoin('users as dospem1', 'dospem1.id', 'tbl_daftar_skripsi.pembimbing_satu')
             ->leftjoin('users as dospem2', 'dospem2.id', 'tbl_daftar_skripsi.pembimbing_dua')
@@ -21,7 +22,7 @@ class DaftarProposalController extends Controller
             ->select('tbl_daftar_skripsi.*', 'dospem1.name as pemb_1', 'dospem2.name as pemb_2')
             ->first();
 
-        return view('mahasiswa.daftar_sidang.sempro.index', compact('user', 'pemb'));
+        return view('mahasiswa.daftar_sidang.sempro.index', compact('user', 'pemb', 'daf'));
     }
 
 

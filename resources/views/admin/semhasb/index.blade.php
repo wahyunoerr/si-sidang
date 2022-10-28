@@ -1,5 +1,5 @@
 @extends('backend.template')
-@section('halaman-sekarang', 'Manajemen Skripsi')
+@section('halaman-sekarang', 'Manajemen Semhas')
 @section('content')
 
 
@@ -72,7 +72,7 @@
 
         function update2(id) {
             swal({
-                title: 'Apakah Bapak/Ibu Menyetujui Proposol Mahasiswa?',
+                title: 'Yakin? Data tidak bisa diubah',
                 type: 'warning',
                 showCancelButton: true,
                 allowOutsideClick: false,
@@ -83,7 +83,7 @@
                 buttons: true
             }).then(function() {
                 $.ajax({
-                    url: "{{ url('admin/bimbingan-skripsi-dospem2/update') }}" + "/" + id,
+                    url: "{{ url('admin/bimbingan-semhas-dospem2/update') }}" + "/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function() {

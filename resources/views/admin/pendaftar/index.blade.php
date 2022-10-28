@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex my-8">
-                        <h1>Mahasiswa Yang Sudah Mendaftar Skripsi</h1>
+                        <h1>Mahasiswa Yang Sudah Mendaftar Judul Skripsi</h1>
                     </div>
                 </div>
 
@@ -98,8 +98,6 @@
         function reload() {
             table.ajax.reload(null, false);
         }
-
-     
     </script>
 
 

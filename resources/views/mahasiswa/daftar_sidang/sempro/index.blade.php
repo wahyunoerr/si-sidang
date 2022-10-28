@@ -12,7 +12,7 @@
         <center>
             <h1>Silahkan Minta Tanda Tangan Pembimbing!</h1>
         </center>
-    @elseif($pemb->status_proposal == 1 && $pemb->status_bimbingan2 == 1 && empty($pemb))
+    @elseif($pemb->status_proposal == 1 && $pemb->status_bimbingan2 == 1 && empty($daf))
         <div class="row g-5 g-xl-8">
             <div class="col-xl-12">
                 <div class="card shadow-sm">
