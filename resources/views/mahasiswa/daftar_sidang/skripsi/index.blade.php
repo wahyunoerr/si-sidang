@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="mb-10">
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                            <span class="required">Nim</span>
+                            <span class="required">Nama Anda</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                 title="Jika belum di isi silahkan isi nim anda"></i>
                         </label>
@@ -43,8 +43,8 @@
                                 title="Pilih Pembimbing 1"></i>
                         </label>
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Pilih Dosen Pembimbing 1" name="dospem1" id="dospem1"
-                            {{ isset($data->pembimbing_satu) ? 'disabled' : '' }}>
+                            data-placeholder="Pilih Dosen Pembimbing 1" name="pembimbing_satu" id="pembimbing_satu"
+                            {{ isset($data->pembimbing_satu) ? 'readonly' : '' }}>
                             <option value="">Pilih Dosen Pembimbing 1</option>
                             @foreach ($user as $r)
                                 <option value="{{ $r->id }}"
@@ -63,8 +63,8 @@
                         </label>
                         <!--end::Label-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Pilih Dosen Pembimbing 2" name="dospem2" id="dospem2"
-                            {{ isset($data->pembimbing_dua) ? 'disabled' : '' }}>
+                            data-placeholder="Pilih Dosen Pembimbing 2" name="pembimbing_dua" id="pembimbing_dua"
+                            {{ isset($data->pembimbing_dua) ? 'readonly' : '' }}>
                             <option value="">Pilih Dosen Pembimbing 2</option>
                             @foreach ($user as $a)
                                 <option value="{{ $a->id }}"

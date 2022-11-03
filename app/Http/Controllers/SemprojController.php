@@ -33,7 +33,7 @@ class SemprojController extends Controller
                 ->make(true);
         }
 
-        return view('kaprodi.proposal.index', compact('dosen'));
+        return view('kaprodi.proposal.index', compact('dosen','data'));
     }
 
     public function lihatFile($id)
@@ -65,17 +65,14 @@ class SemprojController extends Controller
             'waktu_selesai' => 'required|after:waktu_mulai',
             'ketua_sidang' => 'required|different:pembimbing_satu,pembimbing_dua,penguji_1,penguji_2',
             'penguji_1' =>  'required|different:pembimbing_satu,pembimbing_dua,penguji_2,ketua_sidang',
-            'penguji_2' => 'required|different:pembimbing_satu,pembimbing_dua,penguji_1,ketua_sidang'
+            'penguji_2' => 'required|unique:table_sidang_proposal'
         ], [
             'tanggal_sidang.required' => 'Tidak Boleh Kosong',
-            'waktu_mulai.required.required' => 'Tidak Boleh Kosong',
+            'waktu_mulai.required' => 'Tidak Boleh Kosong',
             'waktu_selesai.required' => 'Tidak Boleh Kosong',
             'ketua_sidang.required' => 'Tidak Boleh Kosong',
             'penguji_1.required' => 'Tidak Boleh Kosong',
             'penguji_2.required' => 'Tidak Boleh Kosong',
-            'ketua_sidang.different' => 'Dosen Sudah Terpilih',
-            'penguji_1.different' => 'Dosen Sudah Terpilih',
-            'penguji_2.different' => 'Dosen Sudah Terpilih',
         ]);
 
         $data =  Sempro::findorfail($id);

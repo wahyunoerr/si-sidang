@@ -21,6 +21,8 @@
                                 <th>Nama Mahasiswa</th>
                                 <th>NIM</th>
                                 <th>Judul Skripsi</th>
+                                <th>Pembimbing 1</th>
+                                <th>Pembimbing 2</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -57,6 +59,15 @@
                         data: 'judul_proposal',
                         name: 'judul_proposal'
                     },
+                    {
+                        data: 'pembimbing_satu',
+                        name: 'pembimbing_satu'
+                    },
+                    {
+                        data: 'pembimbing_dua',
+                        name: 'pembimbing_dua'
+                    },
+                    
                     {
                         data: 'action',
                         name: 'action',

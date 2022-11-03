@@ -49,26 +49,41 @@
                         </div>
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Dosen Pembimbing 1</span>
+                                <span class="required">Pembimbing 1</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Jika belum di isi silahkan isi nama anda"></i>
+                                    title="Pilih Pembimbing 1"></i>
                             </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="pembimbing_satu"
-                                name="pembimbing_satu" placeholder="Masukkan Nama Lengkap" value="{{ $user->pemb_1 }}"
-                                readonly />
-                            <span class="text-danger" id="nNama"></span>
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                                data-placeholder="Pilih Dosen Pembimbing 1" name="dospem1" id="dospem1"
+                                {{ isset($pemb->pembimbing_satu) ? 'disabled' : '' }}>
+                                <option value="">Pilih Dosen Pembimbing 1</option>
+                                @foreach ($dosen as $r)
+                                    <option value="{{ $r->id }}"
+                                        {{ $r->id == $pemb->pembimbing_satu ? 'selected' : '' }}>
+                                        {{ $r->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="nDospem1Error"></span>
                         </div>
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Dosen Pembimbing 2</span>
+                                <span class="required">Pembimbing 2</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Jika belum di isi silahkan isi nama anda"></i>
+                                    title="Pilih Pembimbing 1"></i>
                             </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="pembimbing_dua"
-                                name="pembimbing_dua" placeholder="Masukkan Nama Lengkap" value="{{ $user->pemb_2 }}"
-                                readonly />
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                                data-placeholder="Pilih Dosen Pembimbing 2" name="dospem2" id="dospem2"
+                                {{ isset($pemb->pembimbing_dua) ? 'disabled' : '' }}>
+                                <option value="">Pilih Dosen Pembimbing 2</option>
+                                @foreach ($dosen as $r)
+                                    <option value="{{ $r->id }}"
+                                        {{ $r->id == $pemb->pembimbing_dua ? 'selected' : '' }}>
+                                        {{ $r->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="nDospem2Error"></span>
                         </div>
                         <div class="mb-10">
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -78,7 +93,7 @@
                             </label>
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid" id="judul_proposal"
-                                name="judul_proposal" placeholder="Judul Skripsi" value="{{ $user->judul_skripsi }}"
+                                name="judul_proposal" placeholder="Judul Skripsi" value="{{ $pemb->judul_skripsi }}"
                                 readonly />
 
                         </div>

@@ -45,7 +45,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'foto' => 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
         ]);
-        $user->assignRole('mahasiswa');
+        $user->assignRole('admin');
         return $user;
 
         echo json_encode(["status" => TRUE]);

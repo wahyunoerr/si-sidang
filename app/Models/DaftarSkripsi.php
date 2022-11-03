@@ -13,6 +13,6 @@ class DaftarSkripsi extends Model
         'nama_lengkap',
         'pembimbing_satu',
         'pembimbing_dua',
-        'judul_skripsi'
+        'judul_skripsi',
     ];
 }
