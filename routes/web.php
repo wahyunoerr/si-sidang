@@ -82,11 +82,11 @@ Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
     Route::get('/penguji/manajemen-penguji/ketua-sidang', [PengujiProposalController::class, 'index2'])->name('pengpro3.index');
     Route::get('/penguji/manajemen-penguji-3/', [PengujiProposalController::class, 'index2'])->name('ket_sidang.index');
     Route::get('/penguji/manajemen-penguji/penguji-2', [PengujiProposalController::class, 'index3'])->name('pengpro2.index');
-    Route::get('/penguji/manajemen-penguji-penguji-2/', [PengujiProposalController::class,'index3'])->name('penguji_2.index');
-    Route::get('/penguji/manajemen-penguji/edit-revisi1/{id}', [PengujiProposalController::class,'getRevisi'])->name('editRevisi1.edit');
-    Route::post('/penguji/manajemen-penguji/simpanRevisi1/{id}', [PengujiProposalController::class,'simpanRevisi1'])->name('simpanRevisi1.simpan');
-    Route::get('/penguji/manajemen-penguji/edit-revisi2/{id}', [PengujiProposalController::class,'getRevisi2'])->name('editRevisi2.edit');
-    Route::post('/penguji/manajemen-penguji/simpanRevisi2/{id}', [PengujiProposalController::class,'simpanRevisi2'])->name('simpanRevisi2.simpan');
+    Route::get('/penguji/manajemen-penguji-penguji-2/', [PengujiProposalController::class, 'index3'])->name('penguji_2.index');
+    Route::get('/penguji/manajemen-penguji/edit-revisi1/{id}', [PengujiProposalController::class, 'getRevisi'])->name('editRevisi1.edit');
+    Route::post('/penguji/manajemen-penguji/simpanRevisi1/{id}', [PengujiProposalController::class, 'simpanRevisi1'])->name('simpanRevisi1.simpan');
+    Route::get('/penguji/manajemen-penguji/edit-revisi2/{id}', [PengujiProposalController::class, 'getRevisi2'])->name('editRevisi2.edit');
+    Route::post('/penguji/manajemen-penguji/simpanRevisi2/{id}', [PengujiProposalController::class, 'simpanRevisi2'])->name('simpanRevisi2.simpan');
 });
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
@@ -95,16 +95,16 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::post('/mahasiswa/daftar-sidang/simpan-kp', [DaftarKpController::class,'simpankp'])->name('daftarkp.simpankp');
 
     // daftar skripsi
-    Route::get('/mahasiswa/daftar-skripsi/tambah', [DaftarSkripsiController::class,'index'])->name('daftarskripsi.index');
-    Route::post('/mahasiswa/daftar-skripsi/simpan-skripsi', [DaftarSkripsiController::class,'simpansk'])->name('daftarskripsi.simpansk');
+    Route::get('/mahasiswa/daftar-skripsi/tambah', [DaftarSkripsiController::class, 'index'])->name('daftarskripsi.index');
+    Route::post('/mahasiswa/daftar-skripsi/simpan-skripsi', [DaftarSkripsiController::class, 'simpansk'])->name('daftarskripsi.simpansk');
 
     //Daftar Proposal
-    Route::get('/mahasiswa/daftar-proposal/tambah', [DaftarProposalController::class,'create'])->name('proposal.tambah');
-    Route::post('/mahasiswa/daftar-sidang-proposal/store', [DaftarProposalController::class,'store'])->name('proposal.store');
+    Route::get('/mahasiswa/daftar-proposal/tambah', [DaftarProposalController::class, 'create'])->name('proposal.tambah');
+    Route::post('/mahasiswa/daftar-sidang-proposal/store', [DaftarProposalController::class, 'store'])->name('proposal.store');
 
     //Daftar Semhas
-    Route::get('/mahasiswa/daftar-semhas/tambah', [DaftarSemhasController::class,'create'])->name('sidangsemhas.index');
-    Route::post('/mahasiswa/daftar-semhas/store', [DaftarSemhasController::class,'store'])->name('semhas.store');
+    Route::get('/mahasiswa/daftar-semhas/tambah', [DaftarSemhasController::class, 'create'])->name('sidangsemhas.index');
+    Route::post('/mahasiswa/daftar-semhas/store', [DaftarSemhasController::class, 'store'])->name('semhas.store');
 });
 
 
@@ -148,30 +148,30 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
 
 
 Route::group(['middleware' => 'role:admin|kaprodi'], function () {
-    Route::get('/admin/manajemen-user', [UserRoleController::class,'index'])->name('userrole.index');
-    Route::post('/admin/manajemen-user/simpan', [UserRoleController::class,'simpan'])->name('userrole.simpan');
-    Route::get('/admin/manajemen-user/edit/{user}', [UserRoleController::class,'edit'])->name('userrole.edit');
-    Route::post('/admin/manajemen-user/update/{id}', [UserRoleController::class,'update'])->name('userrole.update');
-    Route::delete('/admin/manajemen-user/hapus/{id}', [UserRoleController::class,'hapus'])->name('userrole.hapus');
+    Route::get('/admin/manajemen-user', [UserRoleController::class, 'index'])->name('userrole.index');
+    Route::post('/admin/manajemen-user/simpan', [UserRoleController::class, 'simpan'])->name('userrole.simpan');
+    Route::get('/admin/manajemen-user/edit/{user}', [UserRoleController::class, 'edit'])->name('userrole.edit');
+    Route::post('/admin/manajemen-user/update/{id}', [UserRoleController::class, 'update'])->name('userrole.update');
+    Route::delete('/admin/manajemen-user/hapus/{id}', [UserRoleController::class, 'hapus'])->name('userrole.hapus');
 
-    Route::get('/admin/manajemen-role', [RoleController::class,'index'])->name('role.index');
-    Route::post('/admin/simpan-role', [RoleController::class,'simpan'])->name('role.simpan');
-    Route::get('/admin/edit-role/{role}', [RoleController::class,'edit'])->name('role.edit');
-    Route::post('/admin/update-role/{id}', [RoleController::class,'update'])->name('role.update');
-    Route::post('/admin/assign-role/{id}', [RoleController::class,'givePermission'])->name('role.permission');
-    Route::delete('/admin/hapus-role/{id}', [RoleController::class,'hapus'])->name('role.hapus');
+    Route::get('/admin/manajemen-role', [RoleController::class, 'index'])->name('role.index');
+    Route::post('/admin/simpan-role', [RoleController::class, 'simpan'])->name('role.simpan');
+    Route::get('/admin/edit-role/{role}', [RoleController::class, 'edit'])->name('role.edit');
+    Route::post('/admin/update-role/{id}', [RoleController::class, 'update'])->name('role.update');
+    Route::post('/admin/assign-role/{id}', [RoleController::class, 'givePermission'])->name('role.permission');
+    Route::delete('/admin/hapus-role/{id}', [RoleController::class, 'hapus'])->name('role.hapus');
 
 
 
-    Route::get('/admin/manajemen-permission', [PermissionController::class,'index'])->name('permission.index');
-    Route::post('/admin/simpan-permission', [PermissionController::class,'simpan'])->name('permission.simpan');
-    Route::get('/admin/edit-permission/{id}', [PermissionController::class,'edit'])->name('permission.edit');
-    Route::post('/admin/update-permission/{id}', [PermissionController::class,'update'])->name('permission.update');
-    Route::get('/admin/hapus-permission/{id}', [PermissionController::class,'hapus'])->name('permission.hapus');
+    Route::get('/admin/manajemen-permission', [PermissionController::class, 'index'])->name('permission.index');
+    Route::post('/admin/simpan-permission', [PermissionController::class, 'simpan'])->name('permission.simpan');
+    Route::get('/admin/edit-permission/{id}', [PermissionController::class, 'edit'])->name('permission.edit');
+    Route::post('/admin/update-permission/{id}', [PermissionController::class, 'update'])->name('permission.update');
+    Route::get('/admin/hapus-permission/{id}', [PermissionController::class, 'hapus'])->name('permission.hapus');
 
     //dosen
-    Route::get('/admin/manajemen-dosen', [DosenController::class,'index'])->name('dosen.index');
-    Route::post('/admin/manajemen-dosen/simpan', [DosenController::class,'simpan'])->name('dosen.simpan');
+    Route::get('/admin/manajemen-dosen', [DosenController::class, 'index'])->name('dosen.index');
+    Route::post('/admin/manajemen-dosen/simpan', [DosenController::class, 'simpan'])->name('dosen.simpan');
 });
 
 
@@ -179,13 +179,13 @@ Route::group(['middleware' => 'role:admin|kaprodi'], function () {
 Route::group(['middleware' => 'role:admin|dosen|kaprodi'], function () {
 
     //penguji kp
-    Route::get('/admin/penguji-kp', [PengujiKerjaPraktekController::class,'index'])->name('kpp.index');
+    Route::get('/admin/penguji-kp', [PengujiKerjaPraktekController::class, 'index'])->name('kpp.index');
 
     //jadwal kp
-    Route::get('/admin/jadwal-kp', [JadwalKerjaPraktekController::class,'index'])->name('kpj.index');
+    Route::get('/admin/jadwal-kp', [JadwalKerjaPraktekController::class, 'index'])->name('kpj.index');
 });
 
 Route::group(['middleware' => 'role:admin|kaprodi'], function () {
-    Route::get('/admin/pendaftar', [PendaftarController::class,'index'])->name('pd.index');
-    Route::get('/admin/info-pendaftar/{id}', [PendaftarController::class,'getInfo']);
+    Route::get('/admin/pendaftar', [PendaftarController::class, 'index'])->name('pd.index');
+    Route::get('/admin/info-pendaftar/{id}', [PendaftarController::class, 'getInfo']);
 });

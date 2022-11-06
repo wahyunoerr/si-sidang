@@ -18,14 +18,16 @@ class DaftarSkripsiController extends Controller
 
     public function simpansk(Request $request)
     {
-        // $request->validate([
-        //     'dospem1' => 'required',
-        //     'dospem2' => 'required|different:dospem1',
-        // ], [
-        //     'different' => 'Pembimbing Tidak Boleh Sama!!',
-        //     'dospem1.required' => 'Pilih Dosen Pembimbing!!',
-        //     'dospem2.required' => 'Pilih Dosen Pembimbing!!',
-        // ]);
+        $request->validate([
+            'pembimbing_satu' => 'required|different:pembimbing_dua',
+            'pembimbing_dua' => 'required|different:pembimbing_satu',
+            'judul' => 'required',
+        ], [
+            'different' => 'Pembimbing Tidak Boleh Sama!!',
+            'pembimbing_satu.required' => 'Pilih Dosen Pembimbing!!',
+            'pembimbing_dua.required' => 'Pilih Dosen Pembimbing!!',
+            'judul.required' => 'Masukkan Judul Skripsi!!',
+        ]);
 
         DaftarSkripsi::create([
             'nim' => $request->nim,

@@ -61,7 +61,7 @@
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                             <span class="required">Judul Kerja Praktek</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Judul Skripsi yang ingin di ajukan"></i>
+                                title="Judul Kerja Praktek"></i>
                         </label>
                         <!--end::Label-->
                         <input type="text" class="form-control form-control-solid" id="judul" name="judul"
