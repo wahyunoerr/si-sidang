@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Sempro;
 use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 
 
