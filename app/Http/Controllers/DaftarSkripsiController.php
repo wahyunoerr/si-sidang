@@ -11,7 +11,7 @@ class DaftarSkripsiController extends Controller
 {
     public function index()
     {
-        $data = DaftarSkripsi::where('nama_lengkap', Auth::user()->name)->first();
+        $data = DaftarSkripsi::where('nama_lengkap', Auth::id())->first();
         $user = User::role('dosen')->get();
         return view('mahasiswa.daftar_sidang.skripsi.index', compact('user', 'data'));
     }
@@ -29,11 +29,17 @@ class DaftarSkripsiController extends Controller
 
         DaftarSkripsi::create([
             'nim' => $request->nim,
-            'nama_lengkap' => $request->nama_lengkap,
+            'nama_lengkap' => Auth::id(),
             'pembimbing_satu' => $request->dospem1,
             'pembimbing_dua' => $request->dospem2,
-            'judul_skripsi' => $request->judul,
+            'judul_skripsi' => $request->judul
+        ]);
 
+        $user = User::where('id', Auth::id());
+
+        $user->update([
+            'pembimbing_satu' => $request->dospem1,
+            'pembimbing_dua' => $request->dospem2,
         ]);
 
         echo json_encode(["status" => TRUE]);
