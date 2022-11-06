@@ -92,7 +92,7 @@ Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
 Route::group(['middleware' => 'role:mahasiswa'], function () {
     // Daftar KP
     Route::get('/mahasiswa/daftar-kerja-praktek/tambah', [DaftarKpController::class,'index'])->name('daftarkp.index');
-    Route::post('/mahasiswa/daftar-sidang/simpan-kp', [DaftarKpController::class,'simpankp'])->name('daftarsidang.simpankp');
+    Route::post('/mahasiswa/daftar-sidang/simpan-kp', [DaftarKpController::class,'simpankp'])->name('daftarkp.simpankp');
 
     // daftar skripsi
     Route::get('/mahasiswa/daftar-skripsi/tambah', [DaftarSkripsiController::class,'index'])->name('daftarskripsi.index');
@@ -122,11 +122,10 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', [JadwalSemproController::class, 'lihatJadwal'])->name('sempro.lihatJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', [JadwalSemproController::class, 'printJadwal'])->name('sempro.printJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal', [JadwalSemproController::class, 'index'])->name('man-pro.index');
-
     Route::get('/kaprodi/manajemen-jadwal/editJadwal/{id}', [JadwalSemproController::class, 'editJadwal'])->name('jadwal.edit');
-
-    
     Route::post('/kaprodi/manajemen-jadwal/updateJadwal/{id}', [JadwalSemproController::class, 'updateJadwal'])->name('jadwalskripsi.update');
+
+    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek', [JadwalKerjaPraktekController::class, 'index'])->name('kp.index');
 
     // // semhas jadwal
     // Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-file/{id}', function ($id) {

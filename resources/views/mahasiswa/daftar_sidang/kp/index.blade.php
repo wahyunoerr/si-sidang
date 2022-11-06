@@ -2,6 +2,7 @@
 @section('halaman-sekarang', 'Daftar Kerja Praktek')
 @section('content')
 
+
     <div class="row g-5 g-xl-8">
         <div class="col-xl-12">
             <div class="card shadow-sm">
@@ -43,7 +44,7 @@
                         </label>
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
                             data-placeholder="Pilih Dosen Pembimbing" name="dospemkp"
-                            id="dospemkp
+                            id="dospemkp"
                             {{ isset($datakp->pembimbing) ? 'disabled' : '' }}>
                             <option value="">Pilih
                             Dosen Pembimbing Kerja Praktek</option>
@@ -58,7 +59,7 @@
                     </div>
                     <div class="mb-10">
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                            <span class="required">Judul Skripsi</span>
+                            <span class="required">Judul Kerja Praktek</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                 title="Judul Skripsi yang ingin di ajukan"></i>
                         </label>
@@ -78,7 +79,7 @@
                                 title="File Kerja Praktek"></i>
                         </label>
                         <!--end::Label-->
-                        <input type="file" class="form-control form-control-solid" id="file_kp" name="file_kp" />
+                        <input type="file" class="form-control form-control-solid" id="file_kp" name="file_kp" accept=".pdf,.docx,.doc"/>
                         <span class="text-danger" id="nFileKPError"></span>
                     </div>
 
@@ -108,21 +109,7 @@
         </div>
     </div>
 
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#preview-image-before-upload').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $('#foto_transaksi').change(function() {
-            readURL(this);
-        });
-    </script>
+    
     <script>
         function simpankp() {
             $.ajax({
@@ -135,7 +122,7 @@
                 contentType: false,
                 processData: false,
                 success: function(datakp) {
-                    if (data.status == true) {
+                    if (datakp.status == true) {
                         $('#form').trigger("reset");
                         $('#modal-form').modal('hide');
                         swal({
@@ -157,6 +144,20 @@
                 }
             });
         }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#preview-image-before-upload').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $('#foto_transaksi').change(function() {
+            readURL(this);
+        });
     </script>
 
 @endsection

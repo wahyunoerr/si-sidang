@@ -2,7 +2,11 @@
 @section('halaman-sekarang', 'Daftar Skripsi')
 @section('content')
 
-
+@if (empty($data))
+<center>
+    <h1>KP DULU JANCOK</h1>
+</center>
+@else
     <div class="row g-5 g-xl-8">
         <div class="col-xl-12">
             <div class="card shadow-sm">
@@ -101,6 +105,8 @@
             </div>
         </div>
     </div>
+
+    @endif
 
     <script>
         function simpansk() {

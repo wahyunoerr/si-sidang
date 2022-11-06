@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class JadwalKerjaPraktekController extends Controller
 {
     public function index(){
-        $data = true;
+        $data = DB::table('table_sidang_kp')->get();
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -35,6 +36,6 @@ class JadwalKerjaPraktekController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.jadwal-bimbingan-kp.index', compact('data'));
+        return view('kaprodi.kerjapraktek.index', compact('data'));
     }
 }

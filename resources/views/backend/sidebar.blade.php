@@ -405,6 +405,15 @@
                             </span>
                             <div class="menu-sub menu-sub-accordion">
                                 <div class="menu-item">
+                                    <a class="menu-link {{ request()->is('kaprodi/manajemen-jadwal/kerja-praktek') ? 'active' : '' }}"
+                                        href="{{ url('kaprodi/manajemen-jadwal/kerja-praktek') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Kerja Praktek</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
                                     <a class="menu-link {{ request()->is('kaprodi/manajemen-jadwal/proposal') ? 'active' : '' }}"
                                         href="{{ url('kaprodi/manajemen-jadwal/proposal') }}">
                                         <span class="menu-bullet">

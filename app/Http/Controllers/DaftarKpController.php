@@ -11,7 +11,7 @@ class DaftarKpController extends Controller
 {
     public function index()
     {
-        $datakp = KerjaPraktek::where('nama_lengkap', Auth::user()->name)->first();
+        $datakp = KerjaPraktek::where('nama_lengkap', Auth::id())->first();
         $user = User::role('dosen')->get();
         return view('mahasiswa.daftar_sidang.kp.index', compact('user', 'datakp'));
     }
@@ -34,15 +34,15 @@ class DaftarKpController extends Controller
         KerjaPraktek::create([
             'nim' => $request->nim,
             'nama_lengkap' => Auth::id(),
-            'pembimbing' => $request->pembimbing,
-            'judul_kp' => $request->judul_kp,
+            'pembimbing' => $request->dospemkp,
+            'judul_kp' => $request->judul,
             'file_kp' => '/uploads/kp/' . $new_file,
             'foto_transaksi' => '/uploads/kp/bukti_transaksi' . $new_foto,
         ]);
-        $user = User::where('id', Auth::id());
-        $user->update([
-            'pembimbing' => $request->pembimbing,
-        ]);
+        // $user = User::where('id', Auth::id());
+        // $user->update([
+        //     'pembimbing' => $request->pembimbing,
+        // ]);
         $file->move('/uploads/kp/', $new_file);
         $foto->move('/uploads/kp/bukti_transaksi', $new_foto);
 

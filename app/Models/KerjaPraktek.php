@@ -15,6 +15,12 @@ class KerjaPraktek extends Model
         'judul_kp',
         'file_kp',
         'status_kp',
-        'foto_transaksi'
+        'foto_transaksi',
+        'tanggal_sidang',
+        'waktu_mulai',
+        'waktu_selesai',
+        'penguji_1',
+        'penguji_2',
+        'ketua_sidang'
     ];
 }
