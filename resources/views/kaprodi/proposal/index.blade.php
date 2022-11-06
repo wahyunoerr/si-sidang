@@ -18,7 +18,7 @@
                         <thead>
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Nama Mahasiswa</th>
+                                <th>Nama Mahasiswa asdasdsadasdasdasd</th>
                                 <th>NIM</th>
                                 <th>Judul Skripsi</th>
                                 <th>Pembimbing 1</th>
