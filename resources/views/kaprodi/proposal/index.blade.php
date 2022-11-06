@@ -226,6 +226,32 @@
 
         }
 
+          function get(id) {
+            $.ajax({
+                url: "{{ url('/kaprodi/manajemen-jadwal/proposal/edit') }}" + "/" + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    $('[name="id"]').val(data.id);
+                    $('[id="nama_lengkap"]').text(data.nama_lengkap);
+                    $('[id="nim"]').text(data.nim);
+                    $('[id="dospem1"]').text(data.pembimbing_satu);
+                    $('[id="dospem2"]').text(data.pembimbing_dua);
+                    $('[id="judul_proposal"]').text(data.judul_proposal);
+                    $('#modal-info').modal('show');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+            });
+        }
+
         function reload() {
             table.ajax.reload(null, false);
         }
