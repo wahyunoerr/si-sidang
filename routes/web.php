@@ -123,6 +123,11 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', [JadwalSemproController::class, 'printJadwal'])->name('sempro.printJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal', [JadwalSemproController::class, 'index'])->name('man-pro.index');
 
+    Route::get('/kaprodi/manajemen-jadwal/editJadwal/{id}', [JadwalSemproController::class, 'editJadwal'])->name('jadwal.edit');
+
+    
+    Route::post('/kaprodi/manajemen-jadwal/updateJadwal/{id}', [JadwalSemproController::class, 'updateJadwal'])->name('jadwalskripsi.update');
+
     // // semhas jadwal
     // Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-file/{id}', function ($id) {
     //     $data = Semhas::findorfail($id);

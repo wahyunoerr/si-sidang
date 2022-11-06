@@ -102,7 +102,7 @@ class JadwalSemproController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $btn = ' <a href="javascript:void(0)" title="Lihat Detail" class="btn btn-info btn-sm" onclick="detail(' . "'" . $row->id . "'" . ')"><i class="fas fa-eye"></i></a>';
-                    $btn = $btn . ' <a href="javascript:void(0)" title="Edit Jadwal" class="btn btn-info btn-sm" onclick="edit' . "'" . $row->id . "'" . ')"><i class="fas fa-pencil-alt"></i></a>';
+                     $btn = $btn . '<a href="'.route('jadwal.edit', $row->id).'" title="Edit" class="edit btn btn-primary btn-sm" ><i class="fas fa-edit"></i></a>';
 
                     return $btn;
                 })
@@ -129,5 +129,45 @@ class JadwalSemproController extends Controller
         } else {
             echo "TIDAK ADA JADWAL YANG DIATUR.";
         }
+    }
+
+
+    public function editJadwal($id){
+        $data = DB::table('table_sidang_proposal')->where('id', $id)->first();
+        $dosen = User::role('dosen')->get();
+        
+        return view('kaprodi.proposal.edit', compact('data','dosen'));
+    }
+
+    public function updateJadwal(Request $request,$id ){
+
+        // $request->validate([
+        //     'tanggal_sidang' => 'required|after:today',
+        //     'waktu_mulai' => 'required',
+        //     'waktu_selesai' => 'required|after:waktu_mulai',
+        //     'ketua_sidang' => 'required|different:pembimbing_satu,pembimbing_dua,penguji_1,penguji_2',
+        //     'penguji_1' =>  'required|different:pembimbing_satu,pembimbing_dua,penguji_2,ketua_sidang',
+        //     'penguji_2' => 'required|unique:table_sidang_proposal'
+        // ], [
+        //     'tanggal_sidang.required' => 'Tidak Boleh Kosong',
+        //     'waktu_mulai.required' => 'Tidak Boleh Kosong',
+        //     'waktu_selesai.required' => 'Tidak Boleh Kosong',
+        //     'ketua_sidang.required' => 'Tidak Boleh Kosong',
+        //     'penguji_1.required' => 'Tidak Boleh Kosong',
+        //     'penguji_2.required' => 'Tidak Boleh Kosong',
+        // ]);
+
+        $data = Sempro::findorfail($id);
+
+        $data->tanggal_sidang = $request->tanggal_sidang;
+        $data->waktu_mulai = $request->waktu_mulai;
+        $data->waktu_selesai = $request->waktu_selesai;
+        $data->penguji_1 = $request->penguji_1;
+        $data->penguji_2 = $request->penguji_2;
+        $data->ketua_sidang = $request->ketua_sidang;
+        $data->save();
+
+
+        echo json_encode(["status" => TRUE]);
     }
 }

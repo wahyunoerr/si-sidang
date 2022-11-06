@@ -70,5 +70,32 @@
                 ]
             });
         })
+
+        function get(id) {
+            $.ajax({
+                url: "{{ url('/kaprodi/manajemen-jadwal/proposal/edit') }}" + "/" + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    $('[name="id"]').val(data.id);
+                    $('[id="tanggal_sidang"]').val(data.tanggal_sidang);
+                    $('[id="waktu_mulai"]').val(data.waktu_mulai);
+                    $('[id="waktu_selesai"]').val(data.waktu_selesai);
+                    $('[id="nama_lengkap"]').val(data.nama_lengkap);
+                    $('[id="penguji_1"]').val(data.penguji_1);
+                    $('[id="penguji_1"]').val(data.penguji_2);
+                    $('#modal-edit').modal('show');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+            });
+        }
     </script>
 @endsection
