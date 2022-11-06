@@ -32,8 +32,45 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal_jadwal_proposal" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                    rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                    transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <input type="hidden" name="id">
+                    <div id="menu-jadwal"></div>
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - New Target-->
+
+
     @include('kaprodi.proposal.modal-info')
-    @include('kaprodi.proposal.buat-jadwal')
 
     <script>
         $(document).ready(function() {
@@ -77,12 +114,6 @@
                 dataType: "JSON",
                 success: function(data) {
                     $('[name="id"]').val(data.id);
-                    $('[id="nama_lengkap"]').text(data.nama_lengkap);
-                    $('[id="nim"]').text(data.nim);
-                    $('[id="dospem1"]').text(data.pembimbing_satu);
-                    $('[id="dospem2"]').text(data.pembimbing_dua);
-                    $('[id="judul_proposal"]').text(data.judul_proposal);
-                    $('#modal_jadwal_proposal').modal('show');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     swal({
@@ -94,6 +125,30 @@
                     });
                 }
             });
+
+            $.ajax({
+                url: "{{ url('/kaprodi/manajemen-jadwal/proposal/buat-jadwal') }}",
+                type: "POST",
+                dataType: "html",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(res) {
+                    $('#menu-jadwal').html(res);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+            });
+
+            $('#modal_jadwal_proposal').modal('show');
         }
 
 

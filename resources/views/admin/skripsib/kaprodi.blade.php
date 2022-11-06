@@ -79,7 +79,7 @@
 
         function update(id) {
             swal({
-                title: 'Yakin? Data tidak bisa diubah',
+                title: 'Apakah Bapak/Ibu Menyetujui Proposol Mahasiswa?',
                 type: 'warning',
                 showCancelButton: true,
                 allowOutsideClick: false,
@@ -111,7 +111,7 @@
 
         function update2(id) {
             swal({
-                title: 'Yakin? Data tidak bisa diubah',
+                title: 'Apakah Bapak/Ibu Menyetujui Proposol Mahasiswa?',
                 type: 'warning',
                 showCancelButton: true,
                 allowOutsideClick: false,

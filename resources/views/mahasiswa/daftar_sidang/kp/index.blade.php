@@ -1,120 +1,104 @@
-<div class="modal fade" id="modal_kp" tabindex="-1" aria-hidden="true">
-    <!--begin::Modal dialog-->
-    <div class="modal-dialog modal-dialog-centered mw-650px">
-        <!--begin::Modal content-->
-        <div class="modal-content rounded">
-            <!--begin::Modal header-->
-            <div class="modal-header pb-0 border-0 justify-content-end">
-                <!--begin::Close-->
-                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                    <span class="svg-icon svg-icon-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                transform="rotate(45 7.41422 6)" fill="black" />
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
+@extends('backend.template')
+@section('halaman-sekarang', 'Daftar Kerja Praktek')
+@section('content')
+
+    <div class="row g-5 g-xl-8">
+        <div class="col-xl-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Form Pendaftaran</h3>
+                    <div class="card-toolbar">
+                        <form id="form" enctype="multipart/form-data" method="POST">
+                    </div>
                 </div>
-                <!--end::Close-->
-            </div>
-            <!--begin::Modal header-->
-            <!--begin::Modal body-->
-            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                <!--begin:Form-->
-                <form id="modal_kp" class="form" action="#" method="POST">
-                    <!--begin::Heading-->
-                    <div class="mb-13 text-center">
-                        <!--begin::Title-->
-                        <h1 class="mb-3">Daftar Sidang Kerja Praktek</h1>
-                        <!--end::Title-->
-                        <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">Jika sudah melakukan pembayaran silahkan
-                            mendaftar.
-                        </div>
-                        <!--end::Description-->
+                <div class="card-body">
+                    <div class="mb-10">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Nim</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Jika belum di isi silahkan isi nim anda"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" id="nim" name="nim"
+                            placeholder="NIM" value="{{ Auth::user()->serial_user }}" readonly />
+                        <span class="text-danger" id="nNim"></span>
                     </div>
-                    <!--end::Heading-->
-                    <!--begin::Input group-->
-                    <div class="row g-9 mb-8">
-                        <div class="col-md-12 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Nama Lengkap</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Silahkan tulis nama lengkap kamu"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="nama_lengkap"
-                                name="nama_lengkap" value="{{ Auth::user()->name }}" readonly />
-                        </div>
+
+                    <div class="mb-10">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Nama Lengkap</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Jika belum di isi silahkan isi nama anda"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" id="nama_lengkap" name="nama_lengkap"
+                            placeholder="Masukkan Nama Lengkap" value="{{ Auth::user()->name }}" readonly />
+                        <span class="text-danger" id="nNama"></span>
+                    </div>
+                    <div class="mb-10">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Pembimbing Kerja Praktek</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Pilih Pembimbing 1"></i>
+                        </label>
+                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                            data-placeholder="Pilih Dosen Pembimbing" name="dospem1" id="dospem1"
+                            {{ isset($data->pembimbing_satu) ? 'disabled' : '' }}>
+                            <option value="">Pilih Dosen Pembimbing 1</option>
+                            @foreach ($user as $r)
+                                <option value="{{ $r->id }}"
+                                    {{ isset($data->pembimbing_satu) && $r->id == $data->pembimbing_satu ? 'selected' : '' }}>
+                                    {{ $r->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger" id="nDospem1Error"></span>
+                    </div>
+                    <div class="mb-10">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Pembimbing 2</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Pilih Pembimbing 2 tidak boleh sama dengan Pembimbing 1"></i>
+                        </label>
+                        <!--end::Label-->
+                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
+                            data-placeholder="Pilih Dosen Pembimbing 2" name="dospem2" id="dospem2"
+                            {{ isset($data->pembimbing_dua) ? 'disabled' : '' }}>
+                            <option value="">Pilih Dosen Pembimbing 2</option>
+                            @foreach ($user as $a)
+                                <option value="{{ $a->id }}"
+                                    {{ isset($data->pembimbing_dua) && $a->id == $data->pembimbing_dua ? 'selected' : '' }}>
+                                    {{ $a->name }}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger" id="nDospem2Error"></span>
+                    </div>
+                    <div class="mb-10">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Judul Skripsi</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Judul Skripsi yang ingin di ajukan"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" id="judul" name="judul"
+                            placeholder="Judul Skripsi"
+                            @isset($data)
+                        value="{{ $data->judul_skripsi }}"
+                        @endisset />
+                        <span class="text-danger" id="nJudul"></span>
+                    </div>
 
 
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">NIM</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Specify a target name for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" id="nim" name="nim"
-                                value="{{ Auth::user()->serial_user }}" readonly />
 
-                    </div>
-                    <div class="row g-9 mb-8">
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="required fs-6 fw-bold mb-2">Pembimbing</label>
-                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                                data-placeholder="Pilih Dosen Pembimbing" name="dospem1" id="dospem1">
-                                <option value="">Pilih Dosen Pembimbing</option>
-                                @foreach ($user as $r)
-                                    <option value="{{ $r->id }}">{{ $r->name }}</option>
-                                @endforeach
-                            </select>
-                            <span class="text-danger" id="nDospem1Error"></span>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="required fs-6 fw-bold mb-2">File Kerja Praktek</label>
-                            <!--begin::Input-->
-                            <div class="position-relative d-flex align-items-center">
-                                <input type="file" class="form-control" name="file_kp" id="file_kp" />
-                                <!--end::Datepicker-->
-                            </div>
-                            <span class="text-danger" id="nFileKpError"></span>
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="d-flex flex-column mb-8">
-                        <label class="fs-6 fw-bold mb-2">Judul Kerja Praktek</label>
-                        <textarea class="form-control form-control-solid" rows="3" name="judul_kp" placeholder="Tulis Judul KP Kamu"></textarea>
-                        <span class="text-danger" id="nJudulError"></span>
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Actions-->
                     <div class="text-center">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" id="kt_modal_new_target_submit" onclick="simpankp()"
-                            class="btn btn-primary">
-                            <span class="indicator-label">Simpan</span>
+                        <button type="button" onclick="simpansk()" class="btn btn-sm btn-primary">
+                            Simpan
                         </button>
                     </div>
-                    <!--end::Actions-->
+                </div>
                 </form>
-                <!--end:Form-->
             </div>
-            <!--end::Modal body-->
         </div>
-        <!--end::Modal content-->
     </div>
-    <!--end::Modal dialog-->
-</div>
-<!--end::Modal - New Target-->
+
+@endsection

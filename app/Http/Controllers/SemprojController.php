@@ -15,7 +15,6 @@ class SemprojController extends Controller
 {
     public function index()
     {
-        $dosen = User::role('dosen')->get();
         $data = Sempro::where('tanggal_sidang', NULL)->get();
         if (Request()->ajax()) {
             return Datatables::of($data)
@@ -33,7 +32,7 @@ class SemprojController extends Controller
                 ->make(true);
         }
 
-        return view('kaprodi.proposal.index', compact('dosen'));
+        return view('kaprodi.proposal.index');
     }
 
     public function lihatFile($id)
@@ -50,10 +49,13 @@ class SemprojController extends Controller
         echo json_encode($data);
     }
 
-    public function getJadwal($id)
+    public function getJadwal(Request $request)
     {
+        $id = $request->id;
         $data =  Sempro::findorfail($id);
-        echo json_encode($data);
+        $dosen = User::role('dosen')->get();
+
+        return view('kaprodi.proposal.buat-jadwal', compact('data', 'dosen'));
     }
 
     public function simpanJadwal(Request $request, $id)
@@ -99,6 +101,7 @@ class SemprojController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $btn = ' <a href="javascript:void(0)" title="Lihat Detail" class="btn btn-info btn-sm" onclick="detail(' . "'" . $row->id . "'" . ')"><i class="fas fa-eye"></i></a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" title="Edit Jadwal" class="btn btn-info btn-sm" onclick="edit' . "'" . $row->id . "'" . ')"><i class="fas fa-pencil-alt"></i></a>';
 
                     return $btn;
                 })

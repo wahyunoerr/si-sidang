@@ -13,7 +13,7 @@ class KerjaPraktek extends Model
         'nama_lengkap',
         'pembimbing',
         'judul_kp',
-        'file_bukti',
+        'file_kp',
         'status_kp'
     ];
 }

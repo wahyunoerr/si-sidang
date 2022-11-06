@@ -71,9 +71,9 @@ Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
 });
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
-    //KP
-    // Route::get('/mahasiswa/daftar-sidang', 'DaftarSidangController@index')->name('daftarsidang.index');
-    // Route::post('/mahasiswa/daftar-sidang/simpan-kp', 'DaftarSidangController@simpankp')->name('daftarsidang.simpankp');
+    // Daftar KP
+    Route::get('/mahasiswa/daftar-kerja-praktek/tambah', 'DaftarKpController@index')->name('daftarkp.index');
+    Route::post('/mahasiswa/daftar-sidang/simpan-kp', 'DaftarKpController@simpankp')->name('daftarsidang.simpankp');
 
     // daftar skripsi
     Route::get('/mahasiswa/daftar-skripsi/tambah', 'DaftarSkripsiController@index')->name('daftarskripsi.index');
@@ -83,6 +83,7 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-proposal/tambah', 'DaftarProposalController@create')->name('proposal.tambah');
     Route::post('/mahasiswa/daftar-sidang-proposal/store', 'DaftarProposalController@store')->name('proposal.store');
 
+    //Daftar Semhas
     Route::get('/mahasiswa/daftar-semhas/tambah', 'DaftarSemhasController@create')->name('sidangsemhas.index');
     Route::post('/mahasiswa/daftar-semhas/store', 'DaftarSemhasController@store')->name('semhas.store');
 });
@@ -96,12 +97,12 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
 
     //jadwal sempro
 
-    Route::get('/kaprodi/manajemen-jadwal/proposal', 'JadwalProposalController@index')->name('man-pro.index');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'JadwalProposalController@edit')->name('sempro.edit');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', 'JadwalProposalController@getJadwal')->name('sempro.buatjadwal');
-    Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', 'JadwalProposalController@simpanJadwal')->name('sempro.simpanJadwal');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', 'JadwalProposalController@lihatJadwal')->name('sempro.lihatJadwal');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', 'JadwalProposalController@printJadwal')->name('sempro.printJadwal');
+    // Route::get('/kaprodi/manajemen-jadwal/proposal', 'JadwalProposalController@index')->name('man-pro.index');
+    // Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'JadwalProposalController@edit')->name('sempro.edit');
+    // Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', 'JadwalProposalController@getJadwal')->name('sempro.buatjadwal');
+    // Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', 'JadwalProposalController@simpanJadwal')->name('sempro.simpanJadwal');
+    // Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', 'JadwalProposalController@lihatJadwal')->name('sempro.lihatJadwal');
+    // Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', 'JadwalProposalController@printJadwal')->name('sempro.printJadwal');
 
     // semhas jadwal
     Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-file/{id}', function ($id) {
@@ -115,7 +116,7 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-jadwal', 'SemhasjController@lihatJadwal')->name('semhas.lihatJadwal');
 
     Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', 'SemprojController@edit')->name('sempro.edit');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', 'SemprojController@getJadwal')->name('sempro.buatjadwal');
+    Route::post('/kaprodi/manajemen-jadwal/proposal/buat-jadwal', 'SemprojController@getJadwal')->name('sempro.buatjadwal');
     Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', 'SemprojController@simpanJadwal')->name('sempro.simpanJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', 'SemprojController@lihatJadwal')->name('sempro.lihatJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', 'SemprojController@printJadwal')->name('sempro.printJadwal');
