@@ -14,7 +14,12 @@ class JadwalSemproController extends Controller
 {
     public function index()
     {
-        $data = Sempro::where('tanggal_sidang', NULL)->get();
+        $data = DB::table('table_sidang_proposal')
+                ->join('users as dospem1', 'dospem1.id','table_sidang_proposal.pembimbing_satu')
+                ->join('users as dospem2', 'dospem2.id','table_sidang_proposal.pembimbing_dua')
+                ->where('tanggal_sidang', NULL)
+                ->select('table_sidang_proposal.*','dospem1.name as dospem1', 'dospem2.name as dospem2')
+                ->get();
         if (Request()->ajax()) {
             return Datatables::of($data)
                 ->addIndexColumn()

@@ -97,12 +97,12 @@
                         name: 'judul_proposal'
                     },
                     {
-                        data: 'pembimbing_satu',
-                        name: 'pembimbing_satu'
+                        data: 'dospem1',
+                        name: 'dospem1'
                     },
                     {
-                        data: 'pembimbing_dua',
-                        name: 'pembimbing_dua'
+                        data: 'dospem2',
+                        name: 'dospem2'
                     },
                     
                     {
