@@ -19,6 +19,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\DaftarSkripsiController;
 use App\Models\Sempro;
 use App\Models\Semhas;
 /*

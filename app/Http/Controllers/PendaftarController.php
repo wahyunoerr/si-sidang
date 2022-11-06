@@ -11,7 +11,10 @@ use Yajra\DataTables\Facades\DataTables;
 class PendaftarController extends Controller
 {
     public function index(){
-        $data = DaftarSkripsi::all();
+        $data = DB::table('tbl_daftar_skripsi')
+        ->join('users','users.id','tbl_daftar_skripsi.nama_lengkap')
+        ->select('tbl_daftar_skripsi.*','users.name')
+        ->get();
         if (Request()->ajax()) {
             return Datatables::of($data)
                 ->addIndexColumn()

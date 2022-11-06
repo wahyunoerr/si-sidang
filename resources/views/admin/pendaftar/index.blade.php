@@ -44,8 +44,8 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'nama_lengkap',
-                        name: 'nama_lengkap'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
                         data: 'action',
