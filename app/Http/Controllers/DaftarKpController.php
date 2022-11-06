@@ -33,18 +33,14 @@ class DaftarKpController extends Controller
 
         KerjaPraktek::create([
             'nim' => $request->nim,
-            'nama_lengkap' => Auth::id(),
-            'pembimbing' => $request->pembimbing,
-            'judul_kp' => $request->judul_kp,
-            'file_kp' => '/uploads/kp/' . $new_file,
-            'foto_transaksi' => '/uploads/kp/bukti_transaksi' . $new_foto,
+            'nama_lengkap' => $request->nama_lengkap,
+            'pembimbing' => $request->dospemkp,
+            'judul_kp' => $request->judul,
+            'file_kp' => '/uploads/kp/file_kp/' . $new_file,
+            'foto_transaksi' => '/uploads/kp/bukti_transaksi/' . $new_foto,
         ]);
-        $user = User::where('id', Auth::id());
-        $user->update([
-            'pembimbing' => $request->pembimbing,
-        ]);
-        $file->move('/uploads/kp/', $new_file);
-        $foto->move('/uploads/kp/bukti_transaksi', $new_foto);
+        $file->move('/uploads/kp/file_kp/', $new_file);
+        $foto->move('/uploads/kp/bukti_transaksi/', $new_foto);
 
         echo json_encode(["status" => TRUE]);
     }

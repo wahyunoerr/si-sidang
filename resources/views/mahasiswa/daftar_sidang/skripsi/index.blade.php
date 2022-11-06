@@ -44,7 +44,7 @@
                         </label>
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
                             data-placeholder="Pilih Dosen Pembimbing 1" name="pembimbing_satu" id="pembimbing_satu"
-                            {{ isset($data->pembimbing_satu) ? 'readonly' : '' }}>
+                            {{ isset($data->pembimbing_satu) ? 'disabled' : '' }}>
                             <option value="">Pilih Dosen Pembimbing 1</option>
                             @foreach ($user as $r)
                                 <option value="{{ $r->id }}"
@@ -64,7 +64,7 @@
                         <!--end::Label-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
                             data-placeholder="Pilih Dosen Pembimbing 2" name="pembimbing_dua" id="pembimbing_dua"
-                            {{ isset($data->pembimbing_dua) ? 'readonly' : '' }}>
+                            {{ isset($data->pembimbing_dua) ? 'disabled' : '' }}>
                             <option value="">Pilih Dosen Pembimbing 2</option>
                             @foreach ($user as $a)
                                 <option value="{{ $a->id }}"
@@ -86,7 +86,7 @@
                             @isset($data)
                             value="{{ $data->judul_skripsi }}"
                             @endisset />
-                        <span class="text-danger" id="nJudul"></span>
+                        <span class="text-danger" id="nJudulError"></span>
                     </div>
 
 
@@ -129,9 +129,9 @@
                     }
                 },
                 error: function(response) {
-                    $('#nDospem1Error').text(response.responseJSON.errors.dospem1);
-                    $('#nDospem2Error').text(response.responseJSON.errors.dospem2);
-                    $('#nJudulError').text(response.responseJSON.errors.judul_skripsi);
+                    $('#nDospem1Error').text(response.responseJSON.errors.pembimbing_satu);
+                    $('#nDospem2Error').text(response.responseJSON.errors.pembimbing_dua);
+                    $('#nJudulError').text(response.responseJSON.errors.judul);
                 }
             });
         }
