@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sempro;
 use App\Models\User;
-use Auth;
-use DataTables;
-use PDF;
-use DB;
+use Yajra\DataTables\Facades\DataTables;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\DB;
 
 
 class SemprojController extends Controller
@@ -32,11 +31,7 @@ class SemprojController extends Controller
                 ->make(true);
         }
 
-<<<<<<< HEAD
         return view('kaprodi.proposal.index');
-=======
-        return view('kaprodi.proposal.index', compact('dosen','data'));
->>>>>>> 09fb853878e35cc79139e6c0e7e46105047940e2
     }
 
     public function lihatFile($id)
