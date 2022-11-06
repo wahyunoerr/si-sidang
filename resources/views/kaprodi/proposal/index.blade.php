@@ -213,13 +213,14 @@
                         reload();
                     });
                 },
-                error: function(response) {
-                    $('#nTanggalSidangError').text(response.responseJSON.errors.tanggal_sidang);
-                    $('#nWaktuMulaiError').text(response.responseJSON.errors.waktu_mulai);
-                    $('#nWaktuSelesaiError').text(response.responseJSON.errors.waktu_selesai);
-                    $('#nKetuaSidangError').text(response.responseJSON.errors.ketua_sidang);
-                    $('#nPenguji1Error').text(response.responseJSON.errors.penguji_1);
-                    $('#nPenguji2Error').text(response.responseJSON.errors.penguji_2);
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
                 }
             });
 
