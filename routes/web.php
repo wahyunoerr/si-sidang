@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DaftarSkripsiController;
 use App\Http\Controllers\JadwalSemproController;
+use App\Models\KerjaPraktek;
 use App\Models\Sempro;
 use App\Models\Semhas;
 /*
@@ -106,8 +107,6 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-semhas/tambah', [DaftarSemhasController::class, 'create'])->name('sidangsemhas.index');
     Route::post('/mahasiswa/daftar-semhas/store', [DaftarSemhasController::class, 'store'])->name('semhas.store');
 });
-
-
 Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-file/{id}', function ($id) {
         $data = Sempro::findorfail($id);
@@ -125,7 +124,23 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/editJadwal/{id}', [JadwalSemproController::class, 'editJadwal'])->name('jadwal.edit');
     Route::post('/kaprodi/manajemen-jadwal/updateJadwal/{id}', [JadwalSemproController::class, 'updateJadwal'])->name('jadwalskripsi.update');
 
+    // Route::get('/kaprodi/manajemen-jadwal/kerja-praktek', [JadwalKerjaPraktekController::class, 'index'])->name('kp.index');
+
+    // KP JADWAL
+
+    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/lihat-file/{id}', function ($id) {
+        $data = KerjaPraktek::findorfail($id);
+        return response()->file($data->file_kp);
+    })->name('kp.lihat');
+
+    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/edit/{id}', [JadwalKerjaPraktekController::class, 'edit'])->name('kp.edit');
+    Route::post('/kaprodi/manajemen-jadwal/kerja-praktek/buat-jadwal', [JadwalKerjaPraktekController::class, 'getJadwal'])->name('kp.buatjadwal');
+    Route::post('/kaprodi/manajemen-jadwal/kerja-praktek/simpan-jadwal/{id}', [JadwalKerjaPraktekController::class, 'simpanJadwal'])->name('kp.simpanJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/lihat-jadwal', [JadwalKerjaPraktekController::class, 'lihatJadwal'])->name('kp.lihatJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/print-jadwal', [JadwalKerjaPraktekController::class, 'printJadwal'])->name('kp.printJadwal');
     Route::get('/kaprodi/manajemen-jadwal/kerja-praktek', [JadwalKerjaPraktekController::class, 'index'])->name('kp.index');
+    Route::get('/kaprodi/manajemen-jadwal/editJadwal/{id}', [JadwalKerjaPraktekController::class, 'editJadwal'])->name('jadwal.edit');
+    Route::post('/kaprodi/manajemen-jadwal/updateJadwal/{id}', [JadwalKerjaPraktekController::class, 'updateJadwal'])->name('jadwalkp.update');
 
     // // semhas jadwal
     // Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-file/{id}', function ($id) {

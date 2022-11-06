@@ -33,14 +33,12 @@
                         <td id="nim" width="25%"></td>
                     </tr>
                     <tr>
-                        <th width="25%"><b>Pembimbing 1 :</b></th>
-                        <td id="dospem1"></td>
-                        <th width="25%"><b>Pembimbing 2 :</b></th>
-                        <td id="dospem2"></td>
+                        <th width="25%"><b>Pembimbing: </b></th>
+                        <td id="pembimbing"></td>
                     </tr>
                     <tr>
-                        <th width="25%"><b>Judul Proposal :</b></th>
-                        <td id="judul_proposal"></td>
+                        <th width="25%"><b>Judul Kp :</b></th>
+                        <td id="judul_kp"></td>
                     </tr>
 
                 </table>

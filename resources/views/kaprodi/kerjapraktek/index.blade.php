@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex my-8">
-                        <a href="#" class="btn btn-primary btn-sm">Lihat Jadwal Kerja Praktek</a>
+                        <a href="{{ route('kp.lihatJadwal') }}" class="btn btn-primary btn-sm">Lihat Jadwal Kerja Praktek</a>
                     </div>
 
                 </div>
@@ -59,7 +59,7 @@
                 <!--begin::Modal header-->
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <input type="hidden" name="id">
+                    <input type="hidden" name="id" id="id">
                     <div id="menu-jadwal"></div>
                 </div>
                 <!--end::Modal body-->
@@ -114,7 +114,7 @@
 
         function getJadwal(id) {
             $.ajax({
-                url: "{{ url('/kaprodi/manajemen-jadwal/proposal/edit') }}" + "/" + id,
+                url: "{{ url('/kaprodi/manajemen-jadwal/kerja-praktek/edit') }}" + "/" + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
@@ -132,7 +132,7 @@
             });
 
             $.ajax({
-                url: "{{ url('/kaprodi/manajemen-jadwal/proposal/buat-jadwal') }}",
+                url: "{{ url('/kaprodi/manajemen-jadwal/kerja-praktek/buat-jadwal') }}",
                 type: "POST",
                 dataType: "html",
                 cache: false,
@@ -153,22 +153,21 @@
                 }
             });
 
-            $('#modal_jadwal_proposal').modal('show');
+            $('#modal_jadwal_kp').modal('show');
         }
 
 
         function get(id) {
             $.ajax({
-                url: "{{ url('/kaprodi/manajemen-jadwal/proposal/edit') }}" + "/" + id,
+                url: "{{ url('/kaprodi/manajemen-jadwal/kerja-praktek/edit') }}" + "/" + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
                     $('[name="id"]').val(data.id);
                     $('[id="nama_lengkap"]').text(data.nama_lengkap);
                     $('[id="nim"]').text(data.nim);
-                    $('[id="dospem1"]').text(data.pembimbing_satu);
-                    $('[id="dospem2"]').text(data.pembimbing_dua);
-                    $('[id="judul_proposal"]').text(data.judul_proposal);
+                    $('[id="pembimbing"]').text(data.pembimbing);
+                    $('[id="judul_kp"]').text(data.judul_kp);
                     $('#modal-info').modal('show');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -186,7 +185,7 @@
         function simpanJadwal() {
             var id = $('#id').val();
             $.ajax({
-                url: "{{ url('kaprodi/manajemen-jadwal/proposal/simpan-jadwal') }}" + "/" + id,
+                url: "{{ url('kaprodi/manajemen-jadwal/kerja-praktek/simpan-jadwal') }}" + "/" + id,
                 data: new FormData($('#form')[0]),
                 type: "POST",
                 dataType: 'JSON',
@@ -196,7 +195,7 @@
                 processData: false,
                 success: function(data) {
                     $('#form').trigger("reset");
-                    $('#modal_jadwal_proposal').modal('hide');
+                    $('#modal_jadwal_kp').modal('hide');
                     swal({
                         title: 'Berhasil',
                         type: 'success',
@@ -222,16 +221,14 @@
 
           function get(id) {
             $.ajax({
-                url: "{{ url('/kaprodi/manajemen-jadwal/proposal/edit') }}" + "/" + id,
+                url: "{{ url('/kaprodi/manajemen-jadwal/kerja-praktek/edit') }}" + "/" + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
-                    $('[name="id"]').val(data.id);
                     $('[id="nama_lengkap"]').text(data.nama_lengkap);
                     $('[id="nim"]').text(data.nim);
-                    $('[id="dospem1"]').text(data.pembimbing_satu);
-                    $('[id="dospem2"]').text(data.pembimbing_dua);
-                    $('[id="judul_proposal"]').text(data.judul_proposal);
+                    $('[id="pembimbing"]').text(data.pembimbing);
+                    $('[id="judul_kp"]').text(data.judul_kp);
                     $('#modal-info').modal('show');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -246,6 +243,7 @@
             });
         }
 
+       
         function reload() {
             table.ajax.reload(null, false);
         }
