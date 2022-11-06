@@ -114,14 +114,14 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
         return response()->file($data->file_proposal);
     })->name('sempro.lihat');
 
-    //jadwal sempro
 
-    Route::get('/kaprodi/manajemen-jadwal/proposal', [JadwalSemproController::class, 'index'])->name('man-pro.index');
+
     Route::get('/kaprodi/manajemen-jadwal/proposal/edit/{id}', [JadwalSemproController::class, 'edit'])->name('sempro.edit');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/buat-jadwal/{id}', [JadwalSemproController::class, 'getJadwal'])->name('sempro.buatjadwal');
+    Route::post('/kaprodi/manajemen-jadwal/proposal/buat-jadwal', [JadwalSemproController::class, 'getJadwal'])->name('sempro.buatjadwal');
     Route::post('/kaprodi/manajemen-jadwal/proposal/simpan-jadwal/{id}', [JadwalSemproController::class, 'simpanJadwal'])->name('sempro.simpanJadwal');
-    Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', [JadwalSemproController::class,'lihatJadwal'])->name('sempro.lihatJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal', [JadwalSemproController::class, 'lihatJadwal'])->name('sempro.lihatJadwal');
     Route::get('/kaprodi/manajemen-jadwal/proposal/print-jadwal', [JadwalSemproController::class, 'printJadwal'])->name('sempro.printJadwal');
+    Route::get('/kaprodi/manajemen-jadwal/proposal', [JadwalSemproController::class, 'index'])->name('man-pro.index');
 
     // // semhas jadwal
     // Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-file/{id}', function ($id) {
