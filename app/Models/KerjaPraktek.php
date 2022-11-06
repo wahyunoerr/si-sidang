@@ -14,6 +14,7 @@ class KerjaPraktek extends Model
         'pembimbing',
         'judul_kp',
         'file_kp',
-        'status_kp'
+        'status_kp',
+        'foto_transaksi'
     ];
 }

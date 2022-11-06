@@ -39,39 +39,22 @@
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                             <span class="required">Pembimbing Kerja Praktek</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Pilih Pembimbing 1"></i>
+                                title="Pilih Pembimbing Kerja Praktek"></i>
                         </label>
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Pilih Dosen Pembimbing" name="dospem1" id="dospem1"
-                            {{ isset($data->pembimbing_satu) ? 'disabled' : '' }}>
-                            <option value="">Pilih Dosen Pembimbing 1</option>
+                            data-placeholder="Pilih Dosen Pembimbing" name="dospemkp"
+                            id="dospemkp
+                            {{ isset($datakp->pembimbing) ? 'disabled' : '' }}>
+                            <option value="">Pilih
+                            Dosen Pembimbing Kerja Praktek</option>
                             @foreach ($user as $r)
                                 <option value="{{ $r->id }}"
-                                    {{ isset($data->pembimbing_satu) && $r->id == $data->pembimbing_satu ? 'selected' : '' }}>
+                                    {{ isset($datakp->pembimbing) && $r->id == $datakp->pembimbing ? 'selected' : '' }}>
                                     {{ $r->name }}
                                 </option>
                             @endforeach
                         </select>
-                        <span class="text-danger" id="nDospem1Error"></span>
-                    </div>
-                    <div class="mb-10">
-                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                            <span class="required">Pembimbing 2</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Pilih Pembimbing 2 tidak boleh sama dengan Pembimbing 1"></i>
-                        </label>
-                        <!--end::Label-->
-                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Pilih Dosen Pembimbing 2" name="dospem2" id="dospem2"
-                            {{ isset($data->pembimbing_dua) ? 'disabled' : '' }}>
-                            <option value="">Pilih Dosen Pembimbing 2</option>
-                            @foreach ($user as $a)
-                                <option value="{{ $a->id }}"
-                                    {{ isset($data->pembimbing_dua) && $a->id == $data->pembimbing_dua ? 'selected' : '' }}>
-                                    {{ $a->name }}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger" id="nDospem2Error"></span>
+                        <span class="text-danger" id="nDospemKPError"></span>
                     </div>
                     <div class="mb-10">
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -81,17 +64,41 @@
                         </label>
                         <!--end::Label-->
                         <input type="text" class="form-control form-control-solid" id="judul" name="judul"
-                            placeholder="Judul Skripsi"
-                            @isset($data)
-                        value="{{ $data->judul_skripsi }}"
+                            placeholder="Judul Kerja Praktek"
+                            @isset($datakp)
+                        value="{{ $datakp->judul_kp }}"
                         @endisset />
-                        <span class="text-danger" id="nJudul"></span>
+                        <span class="text-danger" id="nJudulError"></span>
                     </div>
 
+                    <div class="mb-10">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">File Kerja Praktek</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="File Kerja Praktek"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="file" class="form-control form-control-solid" id="file_kp" name="file_kp" />
+                        <span class="text-danger" id="nFileKPError"></span>
+                    </div>
 
+                    <div class="mb-10">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Bukti Transaksi</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Bukti Transaksi"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="file" class="form-control form-control-solid" id="foto_transaksi"
+                            name="foto_transaksi" accept=".png, .jpg, .jpeg" />
+                        <span class="text-danger" id="nFotoError"></span>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <img id="preview-image-before-upload" src="#" alt="preview image" style="max-height: 250px;">
+                    </div>
 
                     <div class="text-center">
-                        <button type="button" onclick="simpansk()" class="btn btn-sm btn-primary">
+                        <button type="button" onclick="simpankp()" class="btn btn-sm btn-primary">
                             Simpan
                         </button>
                     </div>
@@ -100,5 +107,56 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#preview-image-before-upload').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $('#foto_transaksi').change(function() {
+            readURL(this);
+        });
+    </script>
+    <script>
+        function simpankp() {
+            $.ajax({
+                url: "{{ route('daftarkp.simpankp') }}",
+                data: new FormData($('#form')[0]),
+                type: "POST",
+                dataType: 'JSON',
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(datakp) {
+                    if (data.status == true) {
+                        $('#form').trigger("reset");
+                        $('#modal-form').modal('hide');
+                        swal({
+                            title: 'Berhasil',
+                            type: 'success',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                        }).then(function() {
+                            window.location.href = "{{ route('daftarkp.index') }}";
+                        });
+                    }
+                },
+                error: function(response) {
+                    $('#nDospemKPError').text(responseJSON.errors.dospemkp);
+                    $('#nFotoError').text(responseJSON.errors.foto_transaksi);
+                    $('#nJudulError').text(responseJSON.errors.judul);
+                    $('#nFileKPError').text(responseJSON.errors.file_kp);
+                }
+            });
+        }
+    </script>
 
 @endsection
