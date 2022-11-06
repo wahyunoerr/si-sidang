@@ -39,7 +39,7 @@
             <select name="penguji_1" id="penguji_1" class="form-select form-select-solid" data-control="select2"
                 data-hide-search="true">
                 @foreach ($dosen as $d)
-                    @if ($data->pembimbing_satu != $d->name && $data->pembimbing_dua != $d->name)
+                    @if ($data->pembimbing_satu != $d->id && $data->pembimbing_dua  != $d->id)
                         <option value="{{ $d->id }}">{{ $d->name }}
                         </option>
                     @endif
@@ -52,7 +52,7 @@
             <select name="penguji_2" id="penguji_2" class="form-control form-control-solid" data-control="select2"
                 data-hide-search="true">
                 @foreach ($dosen as $d)
-                    @if ($data->pembimbing_satu != $d->name && $data->pembimbing_dua != $d->name)
+                    @if ($data->pembimbing_satu != $d->id && $data->pembimbing_dua != $d->id)
                         <option value="{{ $d->id }}">{{ $d->name }}</option>
                     @endif
                 @endforeach
