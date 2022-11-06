@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\DaftarSemhas;
 
 
-class SemhasbController extends Controller
+class BimbinganSemhasController extends Controller
 {
     public function indexDospem1()
     {

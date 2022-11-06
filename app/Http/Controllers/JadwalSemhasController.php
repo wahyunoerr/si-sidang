@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Semhas;
+use App\Models\Sempro;
 use App\Models\User;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\DB;
 
-class SemhasjController extends Controller
+class JadwalSemhasController extends Controller
 {
     public function index(){
         $dosen = User::role('dosen')->get();

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\DaftarSkripsi;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use DataTables;
-use DB;
+use Yajra\DataTables\DataTables;
 
 
-class SkripsibController extends Controller
+class BimbinganSkripsiController extends Controller
 {
     public function indexDospem1()
     {

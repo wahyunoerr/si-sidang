@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Semhas;
 use App\Models\Sempro;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class DaftarSemhasController extends Controller
 {

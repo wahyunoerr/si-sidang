@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sempro;
-use Auth;
-use DataTables;
-use DB;
+use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 
-class ProposalpController extends Controller
+class PengujiProposalController extends Controller
 {
     public function index()
     {

@@ -7,7 +7,7 @@ use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class UserRoleController extends Controller
 {

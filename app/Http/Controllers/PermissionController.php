@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use DataTables;
-use DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class PermissionController extends Controller
 {

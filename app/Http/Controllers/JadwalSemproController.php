@@ -10,7 +10,7 @@ use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\DB;
 
 
-class SemprojController extends Controller
+class JadwalSemproController extends Controller
 {
     public function index()
     {

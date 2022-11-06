@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\DaftarSkripsi;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DaftarSkripsiController extends Controller
 {

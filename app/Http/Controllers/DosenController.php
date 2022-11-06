@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Models\User;
-use DB;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class DosenController extends Controller
 {

@@ -3,28 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\KP;
-use DataTables;
-use DB;
-use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
-class KpbController extends Controller
+class JadwalKerjaPraktekController extends Controller
 {
-
-
-    public function __construct(){
-        $this->data = new KP();
-    }
-
     public function index(){
-        $mhs = User::role('mahasiswa')->get();
-        $dosen = User::role('dosen')->get();
-        $data = DB::table('tbl_kp')
-                ->leftjoin('users as mahasiswa','mahasiswa.id','tbl_kp.nama_mahasiswa')
-                ->leftjoin('users as dosen','dosen.id','tbl_kp.dosbing')
-                ->select('tbl_kp.*','dosen.name as nama_dosen','mahasiswa.name as nama_mhs')
-                ->get();
+        $data = true;
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -51,40 +35,6 @@ class KpbController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.kerjapraktekb.index', compact('mhs','dosen','data'));
-    }
-
-
-    public function simpan(Request $request){
-        $request->validate([
-            'nama_mahasiswa' => 'required|unique:tbl_kp',
-            'dosbing' => 'required'
-        ]);
-
-        KP::create([
-            'nama_mahasiswa' => $request->nama_mahasiswa,
-            'dosbing' => $request->dosbing
-        ]);
-
-        echo json_encode(["status" => TRUE]);
-    }
-
-
-    public function update(Request $request, $id){
-        $request->validate([
-            'nama_mahasiswa' => 'required|unique:tbl_kp',
-            'dosbing' => 'required'
-        ]);
-
-       $data = DB::table('tbl_kp')
-                ->leftjoin('users as mahasiswa','mahasiswa.id','tbl_kp.nama_mahasiswa')
-                ->leftjoin('users as dosen','dosen.id','tbl_kp.dosbing')
-                ->where('tbl_kp.id', $id)
-                ->select('tbl_kp.*','dosen.name as nama_dosen','mahasiswa.name as nama_mhs')
-                ->get();
-
-
-
-        echo json_encode(["status" => TRUE]);
+        return view('admin.jadwal-bimbingan-kp.index', compact('data'));
     }
 }
