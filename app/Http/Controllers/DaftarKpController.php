@@ -20,21 +20,31 @@ class DaftarKpController extends Controller
     {
 
         $file = $request->file_kp;
+        $foto = $request->foto_transaksi;
         $new_file  = time() . $file->getClientOriginalName();
+        $new_foto = time() . $foto->getClientOriginalName();
         $request->validate([
             'dospemkp' => 'required',
+            'foto_transaksi' => 'required'
         ], [
-            'dospemkp.required' => "Pilih Dosen Pembimbing Kerja Praktek!!"
+            'dospemkp.required' => "Pilih Dosen Pembimbing Kerja Praktek!!",
+            'foto_transaksi.required' => "images|mimes:jpeg,png|max:2048"
         ]);
 
         KerjaPraktek::create([
             'nim' => $request->nim,
-            'nama_lengkap' => $request->nama_lengkap,
+            'nama_lengkap' => Auth::id(),
             'pembimbing' => $request->pembimbing,
             'judul_kp' => $request->judul_kp,
-            'file_kp' => '/uploads/kp/' . $new_file
+            'file_kp' => '/uploads/kp/' . $new_file,
+            'foto_transaksi' => '/uploads/kp/bukti_transaksi' . $new_foto,
+        ]);
+        $user = User::where('id', Auth::id());
+        $user->update([
+            'pembimbing' => $request->pembimbing,
         ]);
         $file->move('/uploads/kp/', $new_file);
+        $foto->move('/uploads/kp/bukti_transaksi', $new_foto);
 
         echo json_encode(["status" => TRUE]);
     }
