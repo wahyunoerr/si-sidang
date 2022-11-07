@@ -54,7 +54,6 @@ class JadwalSemhasController extends Controller
 
     public function edit($id){
         $data = Semhas::findorfail($id);
-
        echo json_encode($data);
     }
 

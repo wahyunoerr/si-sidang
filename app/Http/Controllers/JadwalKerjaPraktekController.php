@@ -40,7 +40,6 @@ class JadwalKerjaPraktekController extends Controller
         return view('kaprodi.kerjapraktek.index', compact('data'));
     }
 
-
     public function lihatFile($id)
     {
         $data = KerjaPraktek::findorfail($id);
@@ -49,9 +48,7 @@ class JadwalKerjaPraktekController extends Controller
 
 
     public function edit($id)
-    {
-
-        
+    {        
         $data = DB::table('table_sidang_kp')
         ->join('users as nama_lengkap','nama_lengkap.id','table_sidang_kp.nama_lengkap')
         ->join('users as pembimbing','pembimbing.id','table_sidang_kp.pembimbing')
@@ -59,7 +56,7 @@ class JadwalKerjaPraktekController extends Controller
         ->select('table_sidang_kp.*', 'nama_lengkap.name as nama_lengkap', 'pembimbing.name as pembimbing')
         ->first();
 
-        return view('kaprodi.kerjapraktek.edit', compact('data'));
+        echo json_encode($data);
     }
 
     public function getJadwal(Request $request)
@@ -79,7 +76,7 @@ class JadwalKerjaPraktekController extends Controller
             'waktu_selesai' => 'required|after:waktu_mulai',
             'ketua_sidang' => 'required|different:pembimbing_satu,pembimbing_dua,penguji_1,penguji_2',
             'penguji_1' =>  'required|different:pembimbing_satu,pembimbing_dua,penguji_2,ketua_sidang',
-            'penguji_2' => 'required|unique:table_sidang_proposal'
+            'penguji_2' => 'required|unique:table_sidang_kp'
         ], [
             'tanggal_sidang.required' => 'Tidak Boleh Kosong',
             'waktu_mulai.required' => 'Tidak Boleh Kosong',
@@ -104,7 +101,11 @@ class JadwalKerjaPraktekController extends Controller
 
     public function lihatJadwal()
     {
-        $data = KerjaPraktek::orderBy('id', 'DESC')->get();
+        $data = DB::table('table_sidang_kp')
+        ->join('users as nama_lengkap','nama_lengkap.id','table_sidang_kp.nama_lengkap')
+        ->join('users as pembimbing','pembimbing.id','table_sidang_kp.pembimbing')
+        ->select('table_sidang_kp.*', 'nama_lengkap.name as nama_lengkap', 'pembimbing.name as pembimbing')
+        ->get();
         if (Request()->ajax()) {
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -125,12 +126,12 @@ class JadwalKerjaPraktekController extends Controller
     {
         if (KerjaPraktek::whereNotNull('tanggal_sidang')) {
             $setPaper = array(0, 0, 1000, 1000);
-            $data = DB::table('table_sidang_proposal')
-                ->join('users as ketua_sidang', 'ketua_sidang.id', 'table_sidang_proposal.ketua_sidang')
-                ->join('users as penguji_1', 'penguji_1.id', 'table_sidang_proposal.penguji_1')
-                ->join('users as penguji_2', 'penguji_2.id', 'table_sidang_proposal.penguji_2')
-                ->where('status_proposal', 0)
-                ->select('table_sidang_proposal.*', 'ketua_sidang.name as ketuasidang', 'penguji_1.name as penguji1', 'penguji_2.name as penguji2')
+            $data = DB::table('table_sidang_kp')
+                ->join('users as ketua_sidang', 'ketua_sidang.id', 'table_sidang_kp.ketua_sidang')
+                ->join('users as penguji_1', 'penguji_1.id', 'table_sidang_kp.penguji_1')
+                ->join('users as penguji_2', 'penguji_2.id', 'table_sidang_kp.penguji_2')
+                ->where('status_kp', 0)
+                ->select('table_sidang_kp.*', 'ketua_sidang.name as ketuasidang', 'penguji_1.name as penguji1', 'penguji_2.name as penguji2')
                 ->get();
             $pdf = PDF::loadview('kaprodi.kerjapraktek.jadwalpdf', compact('data'))->setPaper($setPaper);
             return $pdf->stream("jadwal-kerjapraktek.pdf", array("Attachment" => false));
@@ -141,10 +142,10 @@ class JadwalKerjaPraktekController extends Controller
 
 
     public function editJadwal($id){
-        $data = DB::table('table_sidang_proposal')->where('id', $id)->first();
+        $data = DB::table('table_sidang_kp')->where('id', $id)->first();
         $dosen = User::role('dosen')->get();
         
-        return view('kaprodi.proposal.edit', compact('data','dosen'));
+        return view('kaprodi.kerjapraktek.edit', compact('data','dosen'));
     }
 
     public function updateJadwal(Request $request,$id ){
@@ -155,7 +156,7 @@ class JadwalKerjaPraktekController extends Controller
             'waktu_selesai' => 'required|after:waktu_mulai',
             'ketua_sidang' => 'required|different:pembimbing_satu,pembimbing_dua,penguji_1,penguji_2',
             'penguji_1' =>  'required|different:pembimbing_satu,pembimbing_dua,penguji_2,ketua_sidang',
-            'penguji_2' => 'required|unique:table_sidang_proposal'
+            'penguji_2' => 'required|unique:table_sidang_kp'
         ], [
             'tanggal_sidang.required' => 'Tidak Boleh Kosong',
             'waktu_mulai.required' => 'Tidak Boleh Kosong',
@@ -179,5 +180,19 @@ class JadwalKerjaPraktekController extends Controller
 
 
         echo json_encode(["status" => TRUE]);
+    }
+
+    public function detail($id){
+        $data = DB::table('table_sidang_kp')
+        ->join('users as nama_lengkap','nama_lengkap.id','table_sidang_kp.nama_lengkap')
+        ->join('users as pembimbing','pembimbing.id','table_sidang_kp.pembimbing')
+        ->join('users as penguji_1','penguji_1.id','table_sidang_kp.penguji_1')
+        ->join('users as penguji_2','penguji_2.id','table_sidang_kp.penguji_2')
+        ->join('users as ketua_sidang','ketua_sidang.id','table_sidang_kp.ketua_sidang')
+        ->where('table_sidang_kp.id', $id)
+        ->select('table_sidang_kp.*', 'nama_lengkap.name as nama_lengkap', 'pembimbing.name as pembimbing','penguji_1.name as penguji_1','penguji_2.name as penguji_2','ketua_sidang.name as ketua_sidang')
+        ->first();
+
+        echo json_encode($data);
     }
 }

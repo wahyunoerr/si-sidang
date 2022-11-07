@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex my-8">
-                        <a href="{{ route('kp.lihatJadwal') }}" class="btn btn-primary btn-sm">Lihat Jadwal Kerja Praktek</a>
+                        <a href="{{ route('kp.lihatJadwal') }}" class="btn btn-primary btn-sm">Lihat Jadwal Kerja Praktek</aj>
                     </div>
 
                 </div>

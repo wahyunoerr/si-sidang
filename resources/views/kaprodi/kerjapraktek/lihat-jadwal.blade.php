@@ -32,6 +32,11 @@
         </div>
     </div>
 
+
+
+
+    @include('kaprodi.kerjapraktek.modal-detail')
+
     <script>
         $(document).ready(function() {
             table = $('#example2').DataTable({
@@ -85,6 +90,33 @@
                     $('[id="penguji_1"]').val(data.penguji_1);
                     $('[id="penguji_1"]').val(data.penguji_2);
                     $('#modal-edit').modal('show');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    swal({
+                        title: 'Terjadi kesalahan',
+                        type: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+            });
+        }
+
+        function detail(id) {
+            $.ajax({
+                url: "{{ url('/kaprodi/manajemen-jadwal/kerja-praktek/detail') }}" + "/" + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    $('[id="nama_lengkap"]').text(data.nama_lengkap);
+                    $('[id="nim"]').text(data.nim);
+                    $('[id="pembimbing"]').text(data.pembimbing);
+                    $('[id="judul_kp"]').text(data.judul_kp);
+                    $('[id="penguji_1"]').text(data.penguji_1);
+                    $('[id="penguji_2"]').text(data.penguji_2);
+                    $('[id="ketua_sidang"]').text(data.ketua_sidang);
+                    $('#modal-detail').modal('show');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     swal({

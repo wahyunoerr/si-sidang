@@ -133,14 +133,15 @@ Route::group(['middleware' => 'role:kaprodi|admin'], function () {
         return response()->file($data->file_kp);
     })->name('kp.lihat');
 
-    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/edit/{id}', [JadwalKerjaPraktekController::class, 'edit'])->name('kp.edit');
+    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/edit/{id}', [JadwalKerjaPraktekController::class, 'editJadwal'])->name('kp.edit');
     Route::post('/kaprodi/manajemen-jadwal/kerja-praktek/buat-jadwal', [JadwalKerjaPraktekController::class, 'getJadwal'])->name('kp.buatjadwal');
     Route::post('/kaprodi/manajemen-jadwal/kerja-praktek/simpan-jadwal/{id}', [JadwalKerjaPraktekController::class, 'simpanJadwal'])->name('kp.simpanJadwal');
     Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/lihat-jadwal', [JadwalKerjaPraktekController::class, 'lihatJadwal'])->name('kp.lihatJadwal');
     Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/print-jadwal', [JadwalKerjaPraktekController::class, 'printJadwal'])->name('kp.printJadwal');
     Route::get('/kaprodi/manajemen-jadwal/kerja-praktek', [JadwalKerjaPraktekController::class, 'index'])->name('kp.index');
-    Route::get('/kaprodi/manajemen-jadwal/editJadwal/{id}', [JadwalKerjaPraktekController::class, 'editJadwal'])->name('jadwal.edit');
+    Route::get('/kaprodi/manajemen-jadwal/editJadwal/{id}', [JadwalKerjaPraktekController::class, 'editJadwal'])->name('jadwalkp.edit');
     Route::post('/kaprodi/manajemen-jadwal/updateJadwal/{id}', [JadwalKerjaPraktekController::class, 'updateJadwal'])->name('jadwalkp.update');
+    Route::get('/kaprodi/manajemen-jadwal/kerja-praktek/detail/{id}', [JadwalKerjaPraktekController::class, 'detail'])->name('jadwalkp.detail');
 
     // // semhas jadwal
     // Route::get('/kaprodi/manajemen-jadwal/semhas/lihat-file/{id}', function ($id) {

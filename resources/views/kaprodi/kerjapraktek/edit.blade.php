@@ -14,7 +14,7 @@
   
           <div class="row justify-content-center">
             <div class="col-md-8">
-                <form id="form" action="{{ route('', $data->id) }}" class="form" enctype="multipart/form-data" method="POST">
+                <form id="form" action="" class="form" enctype="multipart/form-data" method="POST">
                     <input type="hidden" id="id" name="id" value="">
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
@@ -54,7 +54,7 @@
                             <select name="penguji_1" id="penguji_1" class="form-select form-select-solid" data-control="select2"
                                 data-hide-search="true">
                                 @foreach ($dosen as $d)
-                                    @if ($data->pembimbing_satu != $d->id && $data->pembimbing_dua  != $d->id)
+                                    @if ($data->pembimbing != $d->id && $data->pembimbing != $d->id)
                                         <option value="{{ $d->id }}">{{ $d->name }}
                                         </option>
                                     @endif
@@ -67,7 +67,7 @@
                             <select name="penguji_2" id="penguji_2" class="form-control form-control-solid" data-control="select2"
                                 data-hide-search="true">
                                 @foreach ($dosen as $d)
-                                    @if ($data->pembimbing_satu != $d->id && $data->pembimbing_dua != $d->id)
+                                    @if ($data->pembimbing != $d->id && $data->pembimbing != $d->id)
                                         <option value="{{ $d->id }}">{{ $d->name }}</option>
                                     @endif
                                 @endforeach
@@ -78,7 +78,7 @@
                             <label class="required fs-6 fw-bold mb-2">Ketua Sidang</label>
                             <select name="ketua_sidang" id="ketua_sidang" class="form-control form-control-solid">
                                 @foreach ($dosen as $d)
-                                    @if ($data->pembimbing_satu != $d->name && $data->pembimbing_dua != $d->name)
+                                    @if ($data->pembimbing != $d->name && $data->pembimbing != $d->name)
                                         <option value="{{ $d->id }}">{{ $d->name }}</option>
                                     @endif
                                 @endforeach
@@ -107,7 +107,7 @@
   <script>
      function simpanJadwal(){
       $.ajax({
-        url : "{{ route('jadwalskripsi.update', $data->id) }}",
+        url : "{{ route('jadwalkp.update', $data->id) }}",
         type : "POST",
         data: new FormData($('#form')[0]),
         dataType: "JSON",
@@ -124,7 +124,7 @@
             allowEnterKey: false,
           })
           .then(function(){
-            window.location.href = "{{ url('/kaprodi/manajemen-jadwal/proposal/lihat-jadwal') }}";
+            window.location.href = "{{ url('/kaprodi/manajemen-jadwal/kerja-praktek/lihat-jadwal') }}";
           })
         },
         error: function (jqXHR, textStatus, errorThrown){
@@ -138,6 +138,8 @@
         }
       })
     }
+
+    
   </script>
 
 
