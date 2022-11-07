@@ -122,7 +122,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-title">Daftar Kerja Praktek</span>
+                            <span class="menu-title">Daftar Kerja Praktik</span>
                         </a>
                     </div>
                     <div class="menu-item">
@@ -185,7 +185,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-title">Daftar Semhas</span>
+                            <span class="menu-title">Daftar Seminar Hasil</span>
                         </a>
                     </div>
                 @endrole
@@ -410,7 +410,7 @@
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Kerja Praktek</span>
+                                        <span class="menu-title">Kerja Praktik</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
