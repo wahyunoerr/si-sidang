@@ -39,7 +39,7 @@
             <select name="penguji_1" id="penguji_1" class="form-select form-select-solid" data-control="select2"
                 data-hide-search="true">
                 @foreach ($dosen as $d)
-                    @if ($data->pembimbing_satu != $d->id && $data->pembimbing_dua  != $d->id)
+                    @if ($data->pembimbing != $d->id )
                         <option value="{{ $d->id }}">{{ $d->name }}
                         </option>
                     @endif
@@ -52,7 +52,7 @@
             <select name="penguji_2" id="penguji_2" class="form-control form-control-solid" data-control="select2"
                 data-hide-search="true">
                 @foreach ($dosen as $d)
-                    @if ($data->pembimbing_satu != $d->id && $data->pembimbing_dua != $d->id)
+                    @if ($data->pembimbing != $d->id)
                         <option value="{{ $d->id }}">{{ $d->name }}</option>
                     @endif
                 @endforeach
@@ -62,10 +62,8 @@
         <div class="col-md-4 fv-row">
             <label class="required fs-6 fw-bold mb-2">Ketua Sidang</label>
             <select name="ketua_sidang" id="ketua_sidang" class="form-control form-control-solid">
-                @foreach ($dosen as $d)
-                    @if ($data->pembimbing_satu != $d->name && $data->pembimbing_dua != $d->name)
+                @foreach ($dosen as $d)               
                         <option value="{{ $d->id }}">{{ $d->name }}</option>
-                    @endif
                 @endforeach
             </select>
             <span class="text-danger" id="nKetuaSidangError"></span>

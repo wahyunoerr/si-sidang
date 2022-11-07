@@ -193,6 +193,6 @@ class JadwalKerjaPraktekController extends Controller
         ->select('table_sidang_kp.*', 'nama_lengkap.name as nama_lengkap', 'pembimbing.name as pembimbing','penguji_1.name as penguji_1','penguji_2.name as penguji_2','ketua_sidang.name as ketua_sidang')
         ->first();
 
-        echo json_encode($data);
+        echo json_encode($data); 
     }
 }
