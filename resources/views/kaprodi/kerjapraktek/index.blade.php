@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex my-8">
-                        <a href="{{ route('kp.lihatJadwal') }}" class="btn btn-primary btn-sm">Lihat Jadwal Kerja Praktek</aj>
+                        <a href="{{ route('kp.lihatJadwal') }}" class="btn btn-primary btn-sm">Lihat Jadwal Kerja Praktek</a>
                     </div>
 
                 </div>
@@ -219,7 +219,7 @@
 
         }
 
-          function get(id) {
+        function get(id) {
             $.ajax({
                 url: "{{ url('/kaprodi/manajemen-jadwal/kerja-praktek/edit') }}" + "/" + id,
                 type: "GET",
@@ -243,7 +243,7 @@
             });
         }
 
-       
+
         function reload() {
             table.ajax.reload(null, false);
         }

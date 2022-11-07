@@ -43,11 +43,10 @@
                                 title="Pilih Pembimbing Kerja Praktek"></i>
                         </label>
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Pilih Dosen Pembimbing" name="dospemkp"
-                            id="dospemkp"
+                            data-placeholder="Pilih Dosen Pembimbing" name="dospemkp" id="dospemkp"
                             {{ isset($datakp->pembimbing) ? 'disabled' : '' }}>
                             <option value="">Pilih
-                            Dosen Pembimbing Kerja Praktek</option>
+                                Dosen Pembimbing Kerja Praktek</option>
                             @foreach ($user as $r)
                                 <option value="{{ $r->id }}"
                                     {{ isset($datakp->pembimbing) && $r->id == $datakp->pembimbing ? 'selected' : '' }}>
@@ -67,7 +66,7 @@
                         <input type="text" class="form-control form-control-solid" id="judul" name="judul"
                             placeholder="Judul Kerja Praktek"
                             @isset($datakp)
-                        value="{{ $datakp->judul_kp }}"
+                            value="{{ $datakp->judul_kp }}"
                         @endisset />
                         <span class="text-danger" id="nJudulError"></span>
                     </div>
@@ -79,7 +78,8 @@
                                 title="File Kerja Praktek"></i>
                         </label>
                         <!--end::Label-->
-                        <input type="file" class="form-control form-control-solid" id="file_kp" name="file_kp" accept=".pdf,.docx,.doc"/>
+                        <input type="file" class="form-control form-control-solid" id="file_kp" name="file_kp"
+                            accept=".pdf,.docx,.doc" />
                         <span class="text-danger" id="nFileKPError"></span>
                     </div>
 
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    
+
     <script>
         function simpankp() {
             $.ajax({
