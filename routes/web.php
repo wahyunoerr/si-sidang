@@ -20,7 +20,9 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DaftarSkripsiController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JadwalSemproController;
+use App\Models\JadwalSidang;
 use App\Models\KerjaPraktek;
 use App\Models\Sempro;
 use App\Models\Semhas;
@@ -92,8 +94,8 @@ Route::group(['middleware' => 'role:dosen|admin|kaprodi'], function () {
 
 Route::group(['middleware' => 'role:mahasiswa'], function () {
     // Daftar KP
-    Route::get('/mahasiswa/daftar-kerja-praktek/tambah', [DaftarKpController::class,'index'])->name('daftarkp.index');
-    Route::post('/mahasiswa/daftar-sidang/simpan-kp', [DaftarKpController::class,'simpankp'])->name('daftarkp.simpankp');
+    Route::get('/mahasiswa/daftar-kerja-praktek/tambah', [DaftarKpController::class, 'index'])->name('daftarkp.index');
+    Route::post('/mahasiswa/daftar-sidang/simpan-kp', [DaftarKpController::class, 'simpankp'])->name('daftarkp.simpankp');
 
     // daftar skripsi
     Route::get('/mahasiswa/daftar-skripsi/tambah', [DaftarSkripsiController::class, 'index'])->name('daftarskripsi.index');
@@ -107,6 +109,10 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
     Route::get('/mahasiswa/daftar-semhas/tambah', [DaftarSemhasController::class, 'create'])->name('sidangsemhas.index');
     Route::post('/mahasiswa/daftar-semhas/store', [DaftarSemhasController::class, 'store'])->name('semhas.store');
 });
+
+
+Route::get('/kaprodi/manajemen-jadwal/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+
 Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-file/{id}', function ($id) {
         $data = Sempro::findorfail($id);

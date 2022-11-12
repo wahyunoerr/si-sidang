@@ -14,5 +14,6 @@ class DaftarSkripsi extends Model
         'pembimbing_satu',
         'pembimbing_dua',
         'judul_skripsi',
+        'jenis_sidang',
     ];
 }

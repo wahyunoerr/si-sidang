@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sempro extends Model
+class JadwalSidang extends Model
 {
-    protected $table = 'table_sidang_proposal';
+    protected $table = 'table_jadwal_sidang';
     protected $fillable = [
         'nim',
         'nama_lengkap',

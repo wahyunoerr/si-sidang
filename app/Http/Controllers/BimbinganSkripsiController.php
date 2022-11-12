@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DaftarSkripsi;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 
 
 class BimbinganSkripsiController extends Controller
@@ -32,6 +33,11 @@ class BimbinganSkripsiController extends Controller
     public function kaprodiacc()
     {
         $sk = DaftarSkripsi::all();
+        // $data = DB::table('table_sidang_proposal')
+        // ->join('users as nama_lengkap','nama_lengkap.id','table_sidang_proposal.nama_lengkap')
+        // ->join('users as dospem1', 'dospem1.id','table_sidang_proposal.pembimbing_satu')
+        // ->join('users as dospem2')
+        // ->get();
         if (Request()->ajax()) {
             return Datatables::of($sk)
                 ->addIndexColumn()

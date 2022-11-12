@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\DaftarSkripsi;
 use App\Models\Sempro;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class DaftarProposalController extends Controller
@@ -33,13 +33,14 @@ class DaftarProposalController extends Controller
         $new_file = time() . $file->getClientOriginalName();
         $pemb = DaftarSkripsi::where('nama_lengkap', Auth::id())->first();
 
-        $test =  Sempro::create([
+        Sempro::create([
             'nim' => $request->nim,
             'nama_lengkap' => $request->nama_lengkap,
             'pembimbing_satu' => $pemb->pembimbing_satu,
             'pembimbing_dua' => $pemb->pembimbing_dua,
             'judul_proposal' => $pemb->judul_skripsi,
-            'file_proposal' => '/uploads/proposal/' . $new_file
+            'file_proposal' => '/uploads/proposal/' . $new_file,
+            'jenis_sidang' => 'proposal'
         ]);
 
         $file->move('/uploads/proposal/', $new_file);

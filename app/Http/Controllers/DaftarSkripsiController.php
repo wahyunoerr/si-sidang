@@ -34,15 +34,11 @@ class DaftarSkripsiController extends Controller
             'nama_lengkap' => Auth::id(),
             'pembimbing_satu' => $request->pembimbing_satu,
             'pembimbing_dua' => $request->pembimbing_dua,
-            'judul_skripsi' => $request->judul
+            'judul_skripsi' => $request->judul,
+            'jenis_sidang' => 'skripsi',
         ]);
 
         $user = User::where('id', Auth::id());
-
-        $user->update([
-            'pembimbing_satu' => $request->pembimbing_satu,
-            'pembimbing_dua' => $request->pembimbing_dua,
-        ]);
 
         echo json_encode(["status" => TRUE]);
     }
