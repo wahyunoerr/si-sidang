@@ -112,6 +112,8 @@ Route::group(['middleware' => 'role:mahasiswa'], function () {
 
 
 Route::get('/kaprodi/manajemen-jadwal/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+Route::get('/kaprodi/manajemen-jadwal/getMahasiswa', [JadwalController::class, 'getMahasiswa']);
+Route::get('/kaprodi/manajemen-jadwal/getPembimbing', [JadwalController::class, 'getPembimbing']);
 
 Route::group(['middleware' => 'role:kaprodi|admin'], function () {
     Route::get('/kaprodi/manajemen-jadwal/proposal/lihat-file/{id}', function ($id) {

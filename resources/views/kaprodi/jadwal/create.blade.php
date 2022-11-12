@@ -30,29 +30,84 @@
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
-                        <h1 class="mb-3">Tambah Data Dosen Pembimbing</h1>
+                        <h1 class="mb-3">Atur Jadwal</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">Hanya Admin dan Kaprodi yang bisa menambahkan Dosen Pembimbing.
+                        <div class="text-muted fw-bold fs-5">Berdasarkan Mahasiswa
                         </div>
                         <!--end::Description-->
                     </div>
                     <!--end::Heading-->
                     <!--begin::Input group-->
                     <div class="row g-9 mb-8">
-                        <div class="col-md-12 fv-row">
+                        <div class="col-md-6 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Pilih Dosen</span>
+                                <span class="required">Jenis Jadwal</span>
+                            </label>
+                            <!--end::Label-->
+                            <select name="jenis" id="jenis" class="form form-control">
+                                <option value="">-- Pilih --</option>
+                                <option value="KP">KP</option>
+                                <option value="Sempro">Seminar Proposal</option>
+                                <option value="Skripsi">Seminar Hasil</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                <span class="required">Pilih Mahasiswa</span>
                             </label>
                             <!--end::Label-->
                             <select name="nama" id="nama" class="form form-control">
-                                <option value="">-- Pilih Dosen --</option>
-                                @foreach ($dosen as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endforeach
+                                <option value="">-- Mahasiswa --</option>
                             </select>
                             <span class="text-danger" id="nNama"></span>
+                        </div>
+                    </div>
+                    <div class="row g-9 mb-8">
+                        <!--begin::Col-->
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Penguji 1</label>
+                            <select name="penguji_1" id="penguji_1" class="form-control">
+                                <option value="">-- Pilih --</option>
+                            </select>
+                            <span class="text-danger" id="nPenguji1Error"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Penguji 2</label>
+                            <select name="penguji_2" id="penguji_2" class="form-control">
+                                <option value="">-- Pilih --</option>
+                            </select>
+                            <span class="text-danger" id="nPenguji2Error"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Ketua Sidang</label>
+                            <select name="ketua_sidang" id="ketua_sidang" class="form-control">
+                                <option value="">-- Pilih --</option>
+                            </select>
+                            <span class="text-danger" id="nKetuaSidangError"></span>
+                        </div>
+                    </div>
+                    <div class="row g-9 mb-8">
+                        <!--begin::Col-->
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Tanggal Sidang</label>
+                            <input type="date" name="tanggal_sidang" id="tanggal_sidang"
+                                class="form-control form-control-solid">
+                            <span class="text-danger" id="nTanggalSidangError"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Waktu Mulai Sidang</label>
+                            <input type="time" name="waktu_mulai" id="waktu_mulai"
+                                class="form-control form-control-solid">
+                            <span class="text-danger" id="nWaktuMulaiError"></span>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label class="required fs-6 fw-bold mb-2">Waktu Selesai Sidang</label>
+                            <input type="time" name="waktu_selesai" id="waktu_selesai"
+                                class="form-control form-control-solid">
+                            <span class="text-danger" id="nWaktuSelesaiError"></span>
                         </div>
                     </div>
                     <div class="text-center">
@@ -73,3 +128,42 @@
     <!--end::Modal dialog-->
 </div>
 <!--end::Modal - New Target-->
+
+<script>
+    $(document).ready(function() {
+        $('#jenis').on('change', function() {
+            var jenis = $(this).val();
+
+            $.ajax({
+                url: "{{ url('/kaprodi/manajemen-jadwal/getMahasiswa') }}",
+                type: "GET",
+                data: {
+                    jenis: jenis
+                },
+                dataType: "HTML",
+                success: function(data) {
+                    $('#nama').html(data);
+                },
+            });
+        })
+
+        $('#nama').on('change', function() {
+            var nama = $(this).val();
+            var jenis = $('#jenis').val();
+
+            $.ajax({
+                url: "{{ url('/kaprodi/manajemen-jadwal/getPembimbing') }}",
+                type: "GET",
+                data: {
+                    nama: nama,
+                    jenis: jenis
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    console.log(data);
+                },
+            });
+        })
+
+    })
+</script>

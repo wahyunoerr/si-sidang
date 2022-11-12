@@ -39,7 +39,7 @@
             <select name="penguji_1" id="penguji_1" class="form-select form-select-solid" data-control="select2"
                 data-hide-search="true">
                 @foreach ($dosen as $d)
-                    @if ($data->pembimbing != $d->id )
+                    @if ($data->pembimbing != $d->id)
                         <option value="{{ $d->id }}">{{ $d->name }}
                         </option>
                     @endif
@@ -62,8 +62,8 @@
         <div class="col-md-4 fv-row">
             <label class="required fs-6 fw-bold mb-2">Ketua Sidang</label>
             <select name="ketua_sidang" id="ketua_sidang" class="form-control form-control-solid">
-                @foreach ($dosen as $d)               
-                        <option value="{{ $d->id }}">{{ $d->name }}</option>
+                @foreach ($dosen as $d)
+                    <option value="{{ $d->id }}">{{ $d->name }}</option>
                 @endforeach
             </select>
             <span class="text-danger" id="nKetuaSidangError"></span>

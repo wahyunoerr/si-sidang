@@ -8,7 +8,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex my-8">
-                        <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>Jadwal</a>
+                        <a href="#" class="btn btn-primary btn-sm" onclick="tambah()"><i
+                                class="fas fa-plus"></i>Jadwal</a>
                     </div>
 
                 </div>
@@ -72,5 +73,14 @@
     </div>
     <!--end::Modal - New Target-->
     @include('kaprodi.jadwal.create')
-
+    <script>
+        function tambah() {
+            typeSave = 'tambah';
+            $('#id').val('');
+            $('#form').trigger("reset");
+            $('.help-block').empty();
+            $('#modal-form').modal('show');
+            $('.modal-title').text('Tambah Jadwal');
+        }
+    </script>
 @endsection
